@@ -40,17 +40,29 @@
  */
 package org.netbeans.modules.bpel.validation.util;
 
+import org.netbeans.modules.xml.xam.Component;
+import org.netbeans.modules.xml.xam.spi.Validator.ResultItem;
+import org.netbeans.modules.xml.xam.spi.Validator.ResultType;
+import org.netbeans.modules.bpel.validation.util.QuickFix;
+
 /**
  * @author Vladimir Yaroslavskiy
- * @version 2007.12.06
+ * @version 2007.12.07
  */
-public interface QuickFix {
+public final class ValidationItem extends ResultItem {
 
-  boolean canFix();
-  void doFix();
-  String getDescription();
-
-  // ------------------------------------------------
-  public abstract class Adapter implements QuickFix {
+  public ValidationItem(Validator validator, ResultType type, Component component, String description) {
+    this(validator, type, component, description, null);
   }
+
+  public ValidationItem(Validator validator, ResultType type, Component component, String description, QuickFix quickFix) {
+    super(validator, type, component, description);
+    myQuickFix = quickFix;
+  }         
+
+  public QuickFix getQuickFix() {
+    return myQuickFix;
+  }
+
+  private QuickFix myQuickFix;
 }
