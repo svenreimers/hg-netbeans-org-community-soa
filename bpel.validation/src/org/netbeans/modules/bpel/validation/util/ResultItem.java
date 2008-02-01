@@ -1,8 +1,8 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- * 
+ *
  * Copyright 1997-2007 Sun Microsystems, Inc. All rights reserved.
- * 
+ *
  * The contents of this file are subject to the terms of either the GNU
  * General Public License Version 2 only ("GPL") or the Common
  * Development and Distribution License("CDDL") (collectively, the
@@ -20,7 +20,13 @@
  * License Header, with the fields enclosed by brackets [] replaced by
  * your own identifying information:
  * "Portions Copyrighted [year] [name of copyright owner]"
- * 
+ *
+ * Contributor(s):
+ *
+ * The Original Software is NetBeans. The Initial Developer of the Original
+ * Software is Sun Microsystems, Inc. Portions Copyright 1997-2006 Sun
+ * Microsystems, Inc. All Rights Reserved.
+ *
  * If you wish your version of this file to be governed by only the CDDL
  * or only the GPL Version 2, indicate your decision by adding
  * "[Contributor] elects to include this software in this distribution
@@ -31,64 +37,32 @@
  * However, if you add GPL Version 2 code and therefore, elected the GPL
  * Version 2 license, then the option applies only if the new code is
  * made subject to such option by the copyright holder.
- * 
- * Contributor(s):
- * 
- * Portions Copyrighted 2008 Sun Microsystems, Inc.
  */
-package org.netbeans.modules.bpel.design.actions;
+package org.netbeans.modules.bpel.validation.util;
 
-import java.awt.event.ActionEvent;
-import javax.swing.AbstractAction;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.KeyStroke;
-import org.netbeans.modules.bpel.core.debugger.DebuggerHelper;
-import org.netbeans.modules.bpel.design.DesignView;
-import org.netbeans.modules.bpel.model.api.BpelEntity;
-import org.openide.util.Lookup;
-import org.openide.util.NbBundle;
-import org.openide.util.Utilities;
+import org.netbeans.modules.xml.xam.Component;
+import org.netbeans.modules.xml.xam.spi.Validator;
+import org.netbeans.modules.xml.xam.spi.Validator.ResultType;
+import org.netbeans.modules.bpel.validation.util.QuickFix;
 
 /**
- *
- * @author ksorokin
+ * @author Vladimir Yaroslavskiy
+ * @version 2007.12.07
  */
-public class BreakpointsEnableAction extends AbstractAction {
+public final class ResultItem extends Validator.ResultItem {
+    
+  public ResultItem(Validator validator, ResultType type, Component component, String description) {
+    this(validator, type, component, description, null);
+  }
 
-    //public static final String ACCELERATOR = "alt shift F10"; // NOI18N
-    
-    private static final Icon ICON = new ImageIcon(Utilities.loadImage(
-            "org/netbeans/modules/bpel/design/actions/" + // NOI18N
-            "resources/breakpoints_enable.png")); // NOI18N
-    
-    private static final String LABEL = NbBundle.getMessage(
-            BreakpointsEnableAction.class, "NAME_Breakpoints_Enable");
-    
-    private DesignView designView;
-    
-    public BreakpointsEnableAction(DesignView designView) {
-        super(LABEL, ICON); 
-        
-        this.designView = designView;
-        
-        //putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(ACCELERATOR));
-        
-        putValue(NAME, LABEL);
-        putValue(SHORT_DESCRIPTION, LABEL);
-    }
+  public ResultItem(Validator validator, ResultType type, Component component, String description, QuickFix quickFix) {
+    super(validator, type, component, description);
+    myQuickFix = quickFix;
+  }         
 
-    public void actionPerformed(ActionEvent e) {
-        final DebuggerHelper helper = 
-                Lookup.getDefault().lookup(DebuggerHelper.class);
+  public QuickFix getQuickFix() {
+    return myQuickFix;
+  }
 
-        BpelEntity selected = 
-                designView.getSelectionModel().getSelected();
-        
-        if (selected == null) {
-            selected = designView.getBPELModel().getProcess();
-        }
-        
-        helper.enableBreakpoints(selected);
-    }
+  private QuickFix myQuickFix;
 }
