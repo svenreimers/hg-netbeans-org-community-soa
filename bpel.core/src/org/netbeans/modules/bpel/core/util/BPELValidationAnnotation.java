@@ -38,19 +38,42 @@
  * Version 2 license, then the option applies only if the new code is
  * made subject to such option by the copyright holder.
  */
-package org.netbeans.modules.bpel.validation.util;
+package org.netbeans.modules.bpel.core.util;
+
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
+import org.openide.text.Annotation;
+import org.openide.text.Line;
 
 /**
  * @author Vladimir Yaroslavskiy
- * @version 2007.12.06
+ * @version 2008.02.01
  */
-public interface QuickFix {
-
-  boolean canFix();
-  void doFix();
-  String getDescription();
-
-  // ------------------------------------------------
-  public abstract class Adapter implements QuickFix {
+final class BPELValidationAnnotation extends Annotation implements PropertyChangeListener {
+    
+  public String getAnnotationType() {
+    return "bpel-validation-annotation"; // NOI18N
   }
+  
+  public String getShortDescription() {
+    return myMessage;
+  }
+  
+  public void show(Line line, String message) {
+    myMessage = message;
+    attach(line);
+    line.addPropertyChangeListener(this);
+  }
+  
+  public void propertyChange( PropertyChangeEvent propertyChangeEvent ) {
+    Line line = (Line) propertyChangeEvent.getSource();
+
+    if (line != null) {
+      line.removePropertyChangeListener(this);
+      detach();
+    }
+  }
+
+  private String myMessage;
 }
