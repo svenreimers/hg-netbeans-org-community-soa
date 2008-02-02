@@ -39,6 +39,14 @@
   Version 2 license, then the option applies only if the new code is
   made subject to such option by the copyright holder.
 -->
-<project name="kit" default="netbeans" basedir=".">
-    <import file="../nbbuild/templates/projectized.xml"/>
-</project>
+<!DOCTYPE type PUBLIC "-//NetBeans//DTD annotation type 1.0//EN" "http://www.netbeans.org/dtds/annotation-type-1_0.dtd">
+
+<type
+  name="bpel-validation-annotation"
+  description_key="LBL_bpel_validation_annotation"
+  localizing_bundle="org.netbeans.modules.bpel.core.resources.Bundle"
+  glyph="nbresloc:/org/netbeans/modules/bpel/design/decoration/resources/error.png"
+  highlight="#EE891B"
+  type="linepart"
+  visible="true"
+/>
