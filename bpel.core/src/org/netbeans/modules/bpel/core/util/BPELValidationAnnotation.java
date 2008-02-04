@@ -24,7 +24,7 @@
  * Contributor(s):
  *
  * The Original Software is NetBeans. The Initial Developer of the Original
- * Software is Sun Microsystems, Inc. Portions Copyright 1997-2007 Sun
+ * Software is Sun Microsystems, Inc. Portions Copyright 1997-2006 Sun
  * Microsystems, Inc. All Rights Reserved.
  *
  * If you wish your version of this file to be governed by only the CDDL
@@ -38,77 +38,42 @@
  * Version 2 license, then the option applies only if the new code is
  * made subject to such option by the copyright holder.
  */
-package org.netbeans.modules.compapp.projects.common.ui.actions;
+package org.netbeans.modules.bpel.core.util;
 
-import org.netbeans.api.project.Project;
-import org.openide.nodes.Node;
-import org.openide.util.HelpCtx;
-import org.openide.util.NbBundle;
-import org.openide.util.actions.CookieAction;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
+import org.openide.text.Annotation;
+import org.openide.text.Line;
 
 /**
- * This class provides the project action implementation for validating the implicit catalog 
- * in projects. This delegates the work to ValidateImplicitCatalogActionPerformer.
- * @see ValidateImplicitCatalogActionPerformer
- * 
- * @author chikkala
+ * @author Vladimir Yaroslavskiy
+ * @version 2008.02.01
  */
-public final class ValidateImplicitCatalogAction extends CookieAction {
+final class BPELValidationAnnotation extends Annotation implements PropertyChangeListener {
+    
+  public String getAnnotationType() {
+    return "bpel-validation-annotation"; // NOI18N
+  }
+  
+  public String getShortDescription() {
+    return myMessage;
+  }
+  
+  public void show(Line line, String message) {
+    myMessage = message;
+    attach(line);
+    line.addPropertyChangeListener(this);
+  }
+  
+  public void propertyChange( PropertyChangeEvent propertyChangeEvent ) {
+    Line line = (Line) propertyChangeEvent.getSource();
 
-    /**
-     * 
-     * @param activatedNodes
-     */
-    protected void performAction(Node[] activatedNodes) {
-        Project project = activatedNodes[0].getLookup().lookup(Project.class);
-        (new ValidateImplicitCatalogActionPerformer()).perform(project);
+    if (line != null) {
+      line.removePropertyChangeListener(this);
+      detach();
     }
+  }
 
-    /**
-     * 
-     * @return
-     */
-    protected int mode() {
-        return CookieAction.MODE_EXACTLY_ONE;
-    }
-
-    /**
-     * 
-     * @return
-     */
-    public String getName() {
-        return NbBundle.getMessage(ValidateImplicitCatalogAction.class, "LBL_ValidateImplicitCatalogAction");
-    }
-
-    protected Class[] cookieClasses() {
-        return new Class[]{Project.class};
-    }
-
-    /**
-     * 
-     */
-    @Override
-    protected void initialize() {
-        super.initialize();
-        // see org.openide.util.actions.SystemAction.iconResource() Javadoc for more details
-        putValue("noIconInMenu", Boolean.TRUE);
-    }
-
-    /**
-     * 
-     * @return
-     */
-    public HelpCtx getHelpCtx() {
-        return HelpCtx.DEFAULT_HELP;
-    }
-
-    /**
-     * 
-     * @return
-     */
-    @Override
-    protected boolean asynchronous() {
-        return false;
-    }
+  private String myMessage;
 }
-

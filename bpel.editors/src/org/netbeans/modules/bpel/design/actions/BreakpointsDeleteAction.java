@@ -1,8 +1,8 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- *
+ * 
  * Copyright 1997-2007 Sun Microsystems, Inc. All rights reserved.
- *
+ * 
  * The contents of this file are subject to the terms of either the GNU
  * General Public License Version 2 only ("GPL") or the Common
  * Development and Distribution License("CDDL") (collectively, the
@@ -20,13 +20,7 @@
  * License Header, with the fields enclosed by brackets [] replaced by
  * your own identifying information:
  * "Portions Copyrighted [year] [name of copyright owner]"
- *
- * Contributor(s):
- *
- * The Original Software is NetBeans. The Initial Developer of the Original
- * Software is Sun Microsystems, Inc. Portions Copyright 1997-2007 Sun
- * Microsystems, Inc. All Rights Reserved.
- *
+ * 
  * If you wish your version of this file to be governed by only the CDDL
  * or only the GPL Version 2, indicate your decision by adding
  * "[Contributor] elects to include this software in this distribution
@@ -37,78 +31,64 @@
  * However, if you add GPL Version 2 code and therefore, elected the GPL
  * Version 2 license, then the option applies only if the new code is
  * made subject to such option by the copyright holder.
+ * 
+ * Contributor(s):
+ * 
+ * Portions Copyrighted 2008 Sun Microsystems, Inc.
  */
-package org.netbeans.modules.compapp.projects.common.ui.actions;
+package org.netbeans.modules.bpel.design.actions;
 
-import org.netbeans.api.project.Project;
-import org.openide.nodes.Node;
-import org.openide.util.HelpCtx;
+import java.awt.event.ActionEvent;
+import javax.swing.AbstractAction;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.KeyStroke;
+import org.netbeans.modules.bpel.core.debugger.DebuggerHelper;
+import org.netbeans.modules.bpel.design.DesignView;
+import org.netbeans.modules.bpel.model.api.BpelEntity;
+import org.openide.util.Lookup;
 import org.openide.util.NbBundle;
-import org.openide.util.actions.CookieAction;
+import org.openide.util.Utilities;
 
 /**
- * This class provides the project action implementation for validating the implicit catalog 
- * in projects. This delegates the work to ValidateImplicitCatalogActionPerformer.
- * @see ValidateImplicitCatalogActionPerformer
- * 
- * @author chikkala
+ *
+ * @author ksorokin
  */
-public final class ValidateImplicitCatalogAction extends CookieAction {
+public class BreakpointsDeleteAction extends AbstractAction {
 
-    /**
-     * 
-     * @param activatedNodes
-     */
-    protected void performAction(Node[] activatedNodes) {
-        Project project = activatedNodes[0].getLookup().lookup(Project.class);
-        (new ValidateImplicitCatalogActionPerformer()).perform(project);
+    //public static final String ACCELERATOR = "alt shift F10"; // NOI18N
+    
+    private static final Icon ICON = new ImageIcon(Utilities.loadImage(
+            "org/netbeans/modules/bpel/design/actions/" + // NOI18N
+            "resources/breakpoints_delete.png")); // NOI18N
+    
+    private static final String LABEL = NbBundle.getMessage(
+            BreakpointsDeleteAction.class, "NAME_Breakpoints_Delete");
+    
+    private DesignView designView;
+    
+    public BreakpointsDeleteAction(DesignView designView) {
+        super(LABEL, ICON); 
+        
+        this.designView = designView;
+        
+        //putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(ACCELERATOR));
+        
+        putValue(NAME, LABEL);
+        putValue(SHORT_DESCRIPTION, LABEL);
     }
 
-    /**
-     * 
-     * @return
-     */
-    protected int mode() {
-        return CookieAction.MODE_EXACTLY_ONE;
-    }
+    public void actionPerformed(ActionEvent e) {
+        final DebuggerHelper helper = 
+                Lookup.getDefault().lookup(DebuggerHelper.class);
 
-    /**
-     * 
-     * @return
-     */
-    public String getName() {
-        return NbBundle.getMessage(ValidateImplicitCatalogAction.class, "LBL_ValidateImplicitCatalogAction");
-    }
-
-    protected Class[] cookieClasses() {
-        return new Class[]{Project.class};
-    }
-
-    /**
-     * 
-     */
-    @Override
-    protected void initialize() {
-        super.initialize();
-        // see org.openide.util.actions.SystemAction.iconResource() Javadoc for more details
-        putValue("noIconInMenu", Boolean.TRUE);
-    }
-
-    /**
-     * 
-     * @return
-     */
-    public HelpCtx getHelpCtx() {
-        return HelpCtx.DEFAULT_HELP;
-    }
-
-    /**
-     * 
-     * @return
-     */
-    @Override
-    protected boolean asynchronous() {
-        return false;
+        BpelEntity selected = 
+                designView.getSelectionModel().getSelected();
+        
+        if (selected == null) {
+            selected = designView.getBPELModel().getProcess();
+        }
+        
+        helper.deleteBreakpoints(selected);
     }
 }
-
