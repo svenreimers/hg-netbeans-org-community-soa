@@ -16,39 +16,28 @@
  * Software is Sun Microsystems, Inc. Portions Copyright 1997-2007 Sun
  * Microsystems, Inc. All Rights Reserved.
  */
-package org.netbeans.modules.bpel.debugger.ui.callstack;
 
-import java.util.HashSet;
-import org.netbeans.spi.viewmodel.TreeExpansionModel;
-import org.netbeans.spi.viewmodel.UnknownTypeException;
+package org.netbeans.modules.bpel.debugger.eventlog;
 
 /**
- * 
- * 
+ *
  * @author Kirill Sorokin
  */
-public class CallStackTreeExpansionModel implements TreeExpansionModel {
+public class ActivityTerminatedRecord extends EventRecord {
+    private final String myBranchId;
+    private final String myActivityXpath;
     
-    private HashSet<Object> myExpandedNodes = new HashSet<Object>();
-    
-    /**{@inheritDoc}*/
-    public synchronized boolean isExpanded(
-            final Object object) throws UnknownTypeException {
-        
-        return myExpandedNodes.contains(object);
+    /** Creates a new instance of ActivityCompletedEvent */
+    public ActivityTerminatedRecord(String branchId, String activityXpath) {
+        myBranchId = branchId;
+        myActivityXpath = activityXpath;
     }
     
-    /**{@inheritDoc}*/
-    public synchronized void nodeExpanded(
-            final Object object) {
-        
-        myExpandedNodes.add(object);
+    public String getBranchId() {
+        return myBranchId;
     }
     
-    /**{@inheritDoc}*/
-    public synchronized void nodeCollapsed(
-            final Object object) {
-        
-        myExpandedNodes.remove(object);
+    public String getActivityXpath() {
+        return myActivityXpath;
     }
 }
