@@ -343,7 +343,7 @@ public class ApplyCustomEncodingAction extends NodeAction {
                     return true;
                 }
                 String msg = NbBundle.getMessage(ApplyCustomEncodingAction.class,
-                        "apply_custom_enc.lbl.warn_read_only", FileUtil.toFile(fileObj).getPath()); //NOI18N
+                        "apply_custom_enc.lbl.warn_read_only", FileUtil.toFile(fileObj).getAbsolutePath()); //NOI18N
                 int option =
                         JOptionPane.showConfirmDialog(
                                 WindowManager.getDefault().getMainWindow(),
@@ -357,8 +357,7 @@ public class ApplyCustomEncodingAction extends NodeAction {
                 return true;
             }
             try {
-                ApplyCustomEncodingXmlBeans.applyDetailCustomEncoding(
-                        new File(FileUtil.toFile(fileObj).getPath()));
+                ApplyCustomEncodingXmlBeans.applyDetailCustomEncoding(new File(FileUtil.toFile(fileObj).getAbsolutePath()));
             } catch (XmlException ex) {
                 throw new ModelVisitorException(ex);
             } catch (IOException ex) {
