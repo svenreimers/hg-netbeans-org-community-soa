@@ -1,8 +1,8 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- *
+ * 
  * Copyright 1997-2007 Sun Microsystems, Inc. All rights reserved.
- *
+ * 
  * The contents of this file are subject to the terms of either the GNU
  * General Public License Version 2 only ("GPL") or the Common
  * Development and Distribution License("CDDL") (collectively, the
@@ -20,13 +20,7 @@
  * License Header, with the fields enclosed by brackets [] replaced by
  * your own identifying information:
  * "Portions Copyrighted [year] [name of copyright owner]"
- *
- * Contributor(s):
- *
- * The Original Software is NetBeans. The Initial Developer of the Original
- * Software is Sun Microsystems, Inc. Portions Copyright 1997-2007 Sun
- * Microsystems, Inc. All Rights Reserved.
- *
+ * 
  * If you wish your version of this file to be governed by only the CDDL
  * or only the GPL Version 2, indicate your decision by adding
  * "[Contributor] elects to include this software in this distribution
@@ -37,47 +31,43 @@
  * However, if you add GPL Version 2 code and therefore, elected the GPL
  * Version 2 license, then the option applies only if the new code is
  * made subject to such option by the copyright holder.
+ * 
+ * Contributor(s):
+ * 
+ * Portions Copyrighted 2008 Sun Microsystems, Inc.
  */
-package org.netbeans.modules.bpel.project.anttasks;
 
-import java.io.File;
-import java.net.URI;
-import java.util.Collection;
-import java.util.Iterator;
+package org.netbeans.modules.compapp.casaeditor.properties.extension;
 
-import org.netbeans.modules.xml.xam.spi.ValidationResult;
-import org.netbeans.modules.bpel.model.api.BpelModel;
-import org.netbeans.modules.xml.xam.spi.Validator;
-import org.netbeans.modules.bpel.model.spi.BpelModelFactory;
-import org.netbeans.modules.xml.xam.spi.Validation;
-import org.netbeans.modules.xml.xam.spi.ValidationResult;
-import org.netbeans.modules.xml.xam.spi.Validator;
-import org.netbeans.modules.xml.xam.spi.Validation;
-import org.netbeans.modules.xml.xam.spi.Validation.ValidationType;
-import org.netbeans.modules.xml.xam.spi.Validator.ResultItem;
-import org.openide.util.lookup.Lookups;
+import org.netbeans.modules.compapp.casaeditor.model.casa.CasaComponent;
+import org.netbeans.modules.compapp.casaeditor.model.casa.CasaExtensibilityElement;
+import org.netbeans.modules.compapp.casaeditor.nodes.CasaNode;
+import org.netbeans.modules.compapp.casaeditor.properties.spi.ExtensionProperty;
 
 /**
- * Class used for validating the BPEL files
- * @author Sreenivasan Genipudi
+ * Extension poperty of Boolean type.
+ *
+ * @author jqian
  */
-public class ValidateBPEL {
-    public ValidateBPEL() {}
-    
-    public Collection validate(URI bpelFileUri) {
-        BpelModel model = null;
-        try {
-            model = BPELCatalogModel.getDefault().getBPELModel(bpelFileUri);
-        }catch (Exception ex) {
-            throw new RuntimeException("Error while trying to create BPEL Model ",ex);
-        }
-        Validation validation = new Validation();
-        validation.validate((org.netbeans.modules.xml.xam.Model)model,  ValidationType.COMPLETE);
-        Collection col  =validation.getValidationResult();
+public class BooleanExtensionProperty extends ExtensionProperty<Boolean> {
 
-        for (Iterator itr = col.iterator(); itr.hasNext();) {
-           ResultItem resultItem = (ResultItem) itr.next();
-        }
-        return col;
+    public BooleanExtensionProperty(
+            CasaNode node,
+            CasaComponent extensionPointComponent,
+            CasaExtensibilityElement firstEE,
+            CasaExtensibilityElement lastEE,
+            String propertyType,
+            String propertyName,
+            String displayName,
+            String description) {
+        super(node, extensionPointComponent, firstEE, lastEE, propertyType,
+                Boolean.class, propertyName, displayName, description);
+    }
+    
+    @Override
+    public Boolean getValue() {
+        String value = getStringValue();
+        return Boolean.parseBoolean(value);
     }
 }
+

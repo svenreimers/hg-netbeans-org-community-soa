@@ -1,8 +1,8 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- *
+ * 
  * Copyright 1997-2007 Sun Microsystems, Inc. All rights reserved.
- *
+ * 
  * The contents of this file are subject to the terms of either the GNU
  * General Public License Version 2 only ("GPL") or the Common
  * Development and Distribution License("CDDL") (collectively, the
@@ -20,13 +20,7 @@
  * License Header, with the fields enclosed by brackets [] replaced by
  * your own identifying information:
  * "Portions Copyrighted [year] [name of copyright owner]"
- *
- * Contributor(s):
- *
- * The Original Software is NetBeans. The Initial Developer of the Original
- * Software is Sun Microsystems, Inc. Portions Copyright 1997-2007 Sun
- * Microsystems, Inc. All Rights Reserved.
- *
+ * 
  * If you wish your version of this file to be governed by only the CDDL
  * or only the GPL Version 2, indicate your decision by adding
  * "[Contributor] elects to include this software in this distribution
@@ -37,39 +31,37 @@
  * However, if you add GPL Version 2 code and therefore, elected the GPL
  * Version 2 license, then the option applies only if the new code is
  * made subject to such option by the copyright holder.
+ * 
+ * Contributor(s):
+ * 
+ * Portions Copyrighted 2008 Sun Microsystems, Inc.
  */
-package org.netbeans.modules.bpel.project.anttasks;
 
-import java.io.File;
+package org.netbeans.modules.compapp.casaeditor.properties.extension;
 
-import org.netbeans.modules.xml.xam.ModelSource;
-import org.netbeans.modules.bpel.model.api.BpelModel;
-import org.netbeans.modules.bpel.model.spi.BpelModelFactory;
-import org.openide.util.Lookup;
-import org.openide.filesystems.FileObject;
-import org.openide.filesystems.FileUtil;
+import org.netbeans.modules.compapp.casaeditor.model.casa.CasaComponent;
+import org.netbeans.modules.compapp.casaeditor.model.casa.CasaExtensibilityElement;
+import org.netbeans.modules.compapp.casaeditor.nodes.CasaNode;
+import org.netbeans.modules.compapp.casaeditor.properties.spi.ExtensionProperty;
+
 /**
- * This class helps Bpel project to obtain the Bpel model given a BPEL File URI
- * @author Sreenivasan Genipudi
+ * Extension poperty of String type.
+ *
+ * @author jqian
  */
-public class IDEBPELCatalogModel {
+public class StringExtensionProperty extends ExtensionProperty<String> {
 
-    static IDEBPELCatalogModel singletonCatMod = null;
-
-    public IDEBPELCatalogModel() {}
-
-    public static IDEBPELCatalogModel getDefault(){
-        if (singletonCatMod == null){
-            singletonCatMod = new IDEBPELCatalogModel   ();
-        }
-        return singletonCatMod;
+    public StringExtensionProperty(
+            CasaNode node,
+            CasaComponent extensionPointComponent,
+            CasaExtensibilityElement firstEE,
+            CasaExtensibilityElement lastEE,
+            String propertyType,
+            String propertyName,
+            String displayName,
+            String description) {
+        super(node, extensionPointComponent, firstEE, lastEE, propertyType,
+                String.class, propertyName, displayName, description);
     }
-
-     public BpelModel getBPELModel(File file) throws Exception {
-             ModelSource source = org.netbeans.modules.xml.retriever.catalog.Utilities.createModelSource(FileUtil.toFileObject(file), true);
-             BpelModelFactory factory = (BpelModelFactory) Lookup.getDefault().lookup(BpelModelFactory.class);
-             BpelModel model = factory.getModel(source);
-             model.sync();
-             return model;
-         }
 }
+
