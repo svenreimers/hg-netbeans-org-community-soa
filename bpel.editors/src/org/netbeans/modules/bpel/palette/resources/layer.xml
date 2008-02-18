@@ -1,0 +1,178 @@
+<?xml version="1.0"?>
+<!--
+   The contents of this file are subject to the terms of the Common Development
+   and Distribution License (the License). You may not use this file except in
+   compliance with the License.
+
+   You can obtain a copy of the License at http://www.netbeans.org/cddl.html
+   or http://www.netbeans.org/cddl.txt.
+
+   When distributing Covered Code, include this CDDL Header Notice in each file
+   and include the License file at http://www.netbeans.org/cddl.txt.
+   If applicable, add the following below the CDDL Header, with the fields
+   enclosed by brackets [] replaced by your own identifying information:
+   "Portions Copyrighted [year] [name of copyright owner]"
+
+   The Original Software is NetBeans. The Initial Developer of the Original
+   Software is Sun Microsystems, Inc. Portions Copyright 1997-2007 Sun
+   Microsystems, Inc. All Rights Reserved.
+-->
+<!DOCTYPE filesystem PUBLIC "-//NetBeans//DTD Filesystem 1.0//EN" "http://www.netbeans.org/dtds/filesystem-1_0.dtd">
+<filesystem>
+    <folder name="Menu">
+        <folder name="Tools">
+            <folder name="PaletteManager">
+                <file name="org-netbeans-modules-bpel-palette-SoaPaletteMenu.instance">
+                    <attr name="position" intvalue="400"/>
+                </file>
+            </folder>
+        </folder>
+    </folder>
+
+    <folder name="Actions">
+        <folder name="BpelNodes">
+            <file name="org-netbeans-modules-bpel-nodes-actions-FindUsagesAction.instance"/>
+            <file name="org-netbeans-modules-bpel-nodes-actions-GoToDiagrammAction.instance"/>
+            <file name="org-netbeans-modules-bpel-nodes-actions-ShowBpelMapperAction.instance"/>
+            <file name="org-netbeans-modules-bpel-nodes-actions-GoToLoggingAction.instance"/>
+            <file name="org-netbeans-modules-bpel-nodes-actions-GoToSourceAction.instance"/>
+        </folder>
+    </folder>
+
+    <!-- TODO m -->
+    <folder name="Shortcuts">
+        <file name="O-D.shadow">
+          <attr name="originalFile" stringvalue="Actions/BpelNodes/org-netbeans-modules-bpel-nodes-actions-GoToDiagrammAction.instance"/>
+        </file>
+        <file name="DS-F9.shadow">
+          <attr name="originalFile" stringvalue="Actions/BpelNodes/org-netbeans-modules-bpel-nodes-actions-ShowBpelMapperAction.instance"/>
+        </file>
+        <file name="O-L.shadow">
+          <attr name="originalFile" stringvalue="Actions/BpelNodes/org-netbeans-modules-bpel-nodes-actions-GoToLoggingAction.instance"/>
+        </file>
+        <file name="O-O.shadow">
+          <attr name="originalFile" stringvalue="Actions/BpelNodes/org-netbeans-modules-bpel-nodes-actions-GoToSourceAction.instance"/>
+        </file>
+      </folder>
+
+    <folder name="Editors">
+        <folder name="text">
+            <folder name="xml">
+                <folder name="Popup">
+                    <file name="org-netbeans-modules-xml-xam-ui-actions-GoToAction.instance_hidden"/>
+                </folder>
+            </folder>
+            <folder name="x-bpel+xml">
+                <folder name="Popup">
+                    <file name="org-netbeans-modules-bpel-nodes-actions-GoToDiagrammAction.shadow">
+                        <attr name="originalFile" stringvalue="Actions/BpelNodes/org-netbeans-modules-bpel-nodes-actions-GoToDiagrammAction.instance"/>
+                        <attr name="position" intvalue="800"/>
+                    </file>
+                    <file name="org-netbeans-modules-bpel-nodes-actions-separatorAfter.instance">
+                        <attr name="instanceClass" stringvalue="javax.swing.JSeparator"/>
+                        <attr name="position" intvalue="900"/>
+                    </file>
+                    </folder>
+            </folder>
+        </folder>
+    </folder>
+
+    <folder name="SoaPalette">
+        <folder name="WebService">
+            <attr name="SystemFileSystem.localizingBundle" stringvalue="org.netbeans.modules.bpel.palette.resources.webservice.Bundle"/>
+
+            <attr name="position" intvalue="100"/>
+            <file name="invoke.xml" url="nbresloc:/org/netbeans/modules/bpel/palette/resources/webservice/invoke.xml">
+                <attr name="position" intvalue="100"/>
+            </file>
+            <file name="partner.xml" url="nbresloc:/org/netbeans/modules/bpel/palette/resources/webservice/partner.xml">
+                <attr name="position" intvalue="400"/>
+            </file>
+            <file name="receive.xml" url="nbresloc:/org/netbeans/modules/bpel/palette/resources/webservice/receive.xml">
+                <attr name="position" intvalue="200"/>
+            </file>
+            <file name="reply.xml" url="nbresloc:/org/netbeans/modules/bpel/palette/resources/webservice/reply.xml">
+                <attr name="position" intvalue="300"/>
+            </file>
+        </folder>
+
+        <folder name="BasicActivities">
+            <attr name="SystemFileSystem.localizingBundle" stringvalue="org.netbeans.modules.bpel.palette.resources.basic.Bundle"/>
+
+            <attr name="position" intvalue="200"/>
+            <file name="assign.xml" url="nbresloc:/org/netbeans/modules/bpel/palette/resources/basic/assign.xml">
+                <attr name="position" intvalue="100"/>
+            </file>
+            <file name="empty.xml" url="nbresloc:/org/netbeans/modules/bpel/palette/resources/basic/empty.xml">
+                <attr name="position" intvalue="200"/>
+            </file>
+            <file name="wait.xml" url="nbresloc:/org/netbeans/modules/bpel/palette/resources/basic/wait.xml">
+                <attr name="position" intvalue="300"/>
+            </file>
+            <file name="throw.xml" url="nbresloc:/org/netbeans/modules/bpel/palette/resources/basic/throw.xml">
+                <attr name="position" intvalue="400"/>
+            </file>
+            <file name="rethrow.xml" url="nbresloc:/org/netbeans/modules/bpel/palette/resources/basic/rethrow.xml">
+                <attr name="position" intvalue="450"/>
+            </file>
+            <file name="exit.xml" url="nbresloc:/org/netbeans/modules/bpel/palette/resources/basic/exit.xml">
+                <attr name="position" intvalue="500"/>
+            </file>
+            <file name="compensate.xml" url="nbresloc:/org/netbeans/modules/bpel/palette/resources/basic/compensate.xml">
+                <attr name="position" intvalue="600"/>
+            </file>
+            <file name="compensatescope.xml" url="nbresloc:/org/netbeans/modules/bpel/palette/resources/basic/compensatescope.xml">
+                <attr name="position" intvalue="700"/>
+            </file>
+        </folder>
+
+        <folder name="StructuredActivities">
+            <attr name="SystemFileSystem.localizingBundle" stringvalue="org.netbeans.modules.bpel.palette.resources.structured.Bundle"/>
+
+            <attr name="position" intvalue="300"/>
+            <file name="flow.xml" url="nbresloc:/org/netbeans/modules/bpel/palette/resources/structured/flow.xml">
+                <attr name="position" intvalue="600"/>
+            </file>
+            <file name="pick.xml" url="nbresloc:/org/netbeans/modules/bpel/palette/resources/structured/pick.xml">
+                <attr name="position" intvalue="500"/>
+            </file>
+            <file name="sequence.xml" url="nbresloc:/org/netbeans/modules/bpel/palette/resources/structured/sequence.xml">
+                <attr name="position" intvalue="700"/>
+            </file>
+            <file name="scope.xml" url="nbresloc:/org/netbeans/modules/bpel/palette/resources/structured/scope.xml">
+                <attr name="position" intvalue="800"/>
+            </file>
+            <file name="if.xml" url="nbresloc:/org/netbeans/modules/bpel/palette/resources/structured/if.xml">
+                <attr name="position" intvalue="100"/>
+            </file>
+            <file name="while.xml" url="nbresloc:/org/netbeans/modules/bpel/palette/resources/structured/while.xml">
+                <attr name="position" intvalue="200"/>
+            </file>
+            <file name="repeatuntil.xml" url="nbresloc:/org/netbeans/modules/bpel/palette/resources/structured/repeatuntil.xml">
+                <attr name="position" intvalue="300"/>
+            </file>
+            <file name="foreach.xml" url="nbresloc:/org/netbeans/modules/bpel/palette/resources/structured/foreach.xml">
+                <attr name="position" intvalue="400"/>
+            </file>
+        </folder>
+    </folder>
+
+    <folder name="Windows2">
+        <folder name="Groups">
+            <file name="bpel_designer.wsgrp" url="windowmanager/bpel_designer.wsgrp"/>
+            <folder name="bpel_designer">
+                <file name="properties.wstcgrp" url="windowmanager/properties.wstcgrp"/>
+                <file name="navigatorTC.wstcgrp" url="windowmanager/navigatorTC.wstcgrp"/>
+            </folder>
+            <file name="bpel_source.wsgrp" url="windowmanager/bpel_source.wsgrp"/>
+            <folder name="bpel_source">
+                <file name="properties.wstcgrp" url="windowmanager/properties.wstcgrp"/>
+                <file name="navigatorTC.wstcgrp" url="windowmanager/navigatorTC.wstcgrp"/>
+            </folder>
+        </folder>
+    </folder>
+
+    <folder name="wsdl">
+        <file name="wsdl.wsdl" url="../../properties/editors/resources/wsdl.wsdl"/>
+    </folder>
+</filesystem>
