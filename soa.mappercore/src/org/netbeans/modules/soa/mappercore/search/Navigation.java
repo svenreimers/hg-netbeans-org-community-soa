@@ -38,82 +38,48 @@
  * Version 2 license, then the option applies only if the new code is
  * made subject to such option by the copyright holder.
  */
-package org.netbeans.modules.xslt.project.wizard.element;
+package org.netbeans.modules.soa.mappercore.search;
 
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
+import java.awt.Dimension;
+
+import javax.swing.JComponent;
 import javax.swing.JPanel;
-
-import org.netbeans.api.project.Project;
-import org.netbeans.modules.xml.wsdl.model.WSDLModel;
-import static org.netbeans.modules.soa.ui.util.UI.*;
+import javax.swing.JScrollPane;
+import javax.swing.JTree;
 
 /**
  * @author Vladimir Yaroslavskiy
- * @version 2007.02.02
+ * @version 2007.10.18
  */
-final class PanelWSDLs<T> extends Panel<T> {
-    
-  PanelWSDLs(Project project, Panel<T> parent) {
-    super(project, parent);
-    myWebServiceImplement = new PanelWebService<T>(project, parent);
-    myWebServiceCall = new PanelWebService<T>(project, parent, i18n("LBL_Web_Service_File2")); // NOI18N
- }
+public final class Navigation extends JPanel {
+  
+  public Navigation(JTree tree, JScrollPane scrollPane, JComponent component) {
+    myWrapper = new Wrapper(tree);
+    myScrollPane = scrollPane;
+    myComponent = component;
 
-  @Override
-  protected String getComponentName()
-  {
-    return NAME_WSDL;
+    add(myWrapper);
+    add(myComponent);
   }
 
   @Override
-  protected Panel<T> getNext()
+  public boolean isOptimizedDrawingEnabled()
   {
-    return new PanelProxy<T>(getProject(), this,
-      (WSDLModel) myWebServiceImplement.getResult(),
-      (WSDLModel) myWebServiceCall.getResult());
+    return false;
   }
 
   @Override
-  protected String getError()
+  public void doLayout()
   {
-    return getError(myWebServiceImplement.getError(), myWebServiceCall.getError());
+    Dimension size = myWrapper.getPreferredSize();
+    int x = getWidth() - myScrollPane.getVerticalScrollBar().getPreferredSize().width -
+      size.width - INSET;
+    myWrapper.setBounds(x, INSET, size.width, size.height);
+    myComponent.setBounds(0, 0, getWidth(), getHeight());
   }
-
-  @Override
-  protected void createPanel(JPanel mainPanel, GridBagConstraints cc)
-  {
-    JPanel panel = new JPanel(new GridBagLayout());
-    GridBagConstraints c = new GridBagConstraints();
-    c.anchor = GridBagConstraints.WEST;
-    c.fill = GridBagConstraints.HORIZONTAL;
-    c.weightx = 1.0;
-
-    // we implement
-    c.gridy++;
-    c.insets = new Insets(0, 0, 0, 0);
-    panel.add(createSeparator(i18n("LBL_We_Implement")), c); // NOI18N
-
-    c.gridy++;
-    c.insets = new Insets(
-      TINY_INSET, MEDIUM_INSET + SMALL_INSET + TINY_INSET, TINY_INSET, 0);
-    myWebServiceImplement.createPanel(panel, c);
-
-    // we call
-    c.gridy++;
-    c.insets = new Insets(0, 0, 0, 0);
-    panel.add(createSeparator(i18n("LBL_We_Call")), c); // NOI18N
-
-    c.gridy++;
-    c.insets = new Insets(
-      TINY_INSET, MEDIUM_INSET + SMALL_INSET + TINY_INSET, TINY_INSET, 0);
-    myWebServiceCall.createPanel(panel, c);
-
-    mainPanel.add(panel, cc);
-    mainPanel.getAccessibleContext().setAccessibleDescription(i18n("ACSD_LBL_NewBridgeService2"));
-  }
-
-  private Panel<T> myWebServiceImplement;
-  private Panel<T> myWebServiceCall;
+  
+  private JPanel myWrapper;
+  private JComponent myComponent;
+  private JScrollPane myScrollPane;
+  private static final int INSET = 4;
 }
