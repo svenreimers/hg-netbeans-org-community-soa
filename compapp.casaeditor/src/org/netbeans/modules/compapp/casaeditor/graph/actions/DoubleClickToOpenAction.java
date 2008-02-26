@@ -37,19 +37,38 @@
  * Portions Copyrighted 2008 Sun Microsystems, Inc.
  */
 
-package org.netbeans.modules.compapp.projects.jbi.api;
+package org.netbeans.modules.compapp.casaeditor.graph.actions;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseEvent;
+import org.netbeans.api.visual.action.WidgetAction;
+import org.netbeans.api.visual.action.WidgetAction.State;
+import org.netbeans.api.visual.action.WidgetAction.WidgetMouseEvent;
+import org.netbeans.api.visual.widget.Widget;
+import org.netbeans.modules.compapp.casaeditor.nodes.actions.GoToSourceAction;
+import org.openide.util.actions.SystemAction;
 
 /**
- *
+ * Double click a widget to open the source.
+ * 
  * @author jqian
  */
-public interface JbiEndpointExtensionConstants {
-      
-    public static final String JBI_ENDPOINT_EXTENSION_NAMESPACE = "http://enterprise.netbeans.org/jbi-extensions"; // NOI18N
-    
-//    public static final String JBI_ENDPOINT_EXTENSION_ELEMENT = "endpoint-ext"; // NOI18N
-    
-    public static final String JBI_ENDPOINT_EXTENSION_DISPLAY_NAME = "display-name"; // NOI18N
-    public static final String JBI_ENDPOINT_EXTENSION_PROCESS_NAME = "process-name"; // NOI18N
-    public static final String JBI_ENDPOINT_EXTENSION_FILE_PATH = "file-path"; // NOI18N
-}
+public class DoubleClickToOpenAction extends WidgetAction.LockedAdapter {
+
+        public DoubleClickToOpenAction() {
+        }
+
+        protected boolean isLocked() {
+            return false;
+        }
+
+        @Override
+        public State mouseClicked(Widget widget, WidgetMouseEvent event) {
+            if (event.getButton() == MouseEvent.BUTTON1 && event.getClickCount() == 2) {
+                SystemAction action = SystemAction.get(GoToSourceAction.class);
+                action.actionPerformed(new ActionEvent(widget, 0, "")); // NOI18N
+                return State.CONSUMED;
+            }
+            return State.REJECTED;
+        }
+    }
