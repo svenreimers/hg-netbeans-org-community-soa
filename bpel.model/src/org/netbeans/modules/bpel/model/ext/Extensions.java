@@ -1,8 +1,8 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- *
- * Copyright 1997-2007 Sun Microsystems, Inc. All rights reserved.
- *
+ * 
+ * Copyright 2008 Sun Microsystems, Inc. All rights reserved.
+ * 
  * The contents of this file are subject to the terms of either the GNU
  * General Public License Version 2 only ("GPL") or the Common
  * Development and Distribution License("CDDL") (collectively, the
@@ -20,13 +20,7 @@
  * License Header, with the fields enclosed by brackets [] replaced by
  * your own identifying information:
  * "Portions Copyrighted [year] [name of copyright owner]"
- *
- * Contributor(s):
- *
- * The Original Software is NetBeans. The Initial Developer of the Original
- * Software is Sun Microsystems, Inc. Portions Copyright 1997-2007 Sun
- * Microsystems, Inc. All Rights Reserved.
- *
+ * 
  * If you wish your version of this file to be governed by only the CDDL
  * or only the GPL Version 2, indicate your decision by adding
  * "[Contributor] elects to include this software in this distribution
@@ -37,49 +31,22 @@
  * However, if you add GPL Version 2 code and therefore, elected the GPL
  * Version 2 license, then the option applies only if the new code is
  * made subject to such option by the copyright holder.
+ * 
+ * Contributor(s):
+ * 
+ * Portions Copyrighted 2008 Sun Microsystems, Inc.
  */
-package org.netbeans.modules.bpel.search.impl.ui;
 
-import org.netbeans.modules.bpel.search.api.SearchElement;
+package org.netbeans.modules.bpel.model.ext;
 
 /**
- * @author Vladimir Yaroslavskiy
- * @version 2008.02.27
+ *
+ * @author nk160297
  */
-public final class Element extends SearchElement.Adapter {
-
-  public Element(SearchElement element) {
-    super(
-      getName(element),
-      element.getToolTip(),
-      element.getIcon(),
-      null);
-
-    myElement = element;
-  }
-
-  @Override
-  public void gotoSource()
-  {
-    myElement.gotoSource();
-  }
-
-  @Override
-  public void select()
-  {
-    myElement.select();
-  }
-
-  private static String getName(SearchElement element) {
-    StringBuffer name = new StringBuffer(element.getName());
-    SearchElement parent = element.getParent();
-
-    while (parent != null) {
-      name.insert(0, parent.getName() + "."); // NOI18N
-      parent = parent.getParent();
-    }
-    return name.toString();
-  }
-
-  private SearchElement myElement;
+public interface Extensions {
+    
+    String TRANSACTION_EXT_URI = "http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Transaction"; // NOI18N
+    String TRACE_EXT_URI = "http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Trace"; // NOI18N
+    String ERROR_EXT_URI = "http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/ErrorHandling"; // NOI18N
+    
 }
