@@ -24,7 +24,7 @@
  * Contributor(s):
  *
  * The Original Software is NetBeans. The Initial Developer of the Original
- * Software is Sun Microsystems, Inc. Portions Copyright 1997-2007 Sun
+ * Software is Sun Microsystems, Inc. Portions Copyright 1997-2006 Sun
  * Microsystems, Inc. All Rights Reserved.
  *
  * If you wish your version of this file to be governed by only the CDDL
@@ -38,48 +38,27 @@
  * Version 2 license, then the option applies only if the new code is
  * made subject to such option by the copyright holder.
  */
-package org.netbeans.modules.bpel.search.impl.ui;
+package org.netbeans.modules.bpel.validation.core;
 
-import org.netbeans.modules.bpel.search.api.SearchElement;
+import org.netbeans.modules.xml.xam.Component;
+import org.netbeans.modules.xml.xam.spi.Validator.ResultItem;
+import org.netbeans.modules.xml.xam.spi.Validator.ResultType;
+import org.netbeans.modules.bpel.validation.core.QuickFix;
 
 /**
  * @author Vladimir Yaroslavskiy
- * @version 2008.02.27
+ * @version 2007.12.07
  */
-public final class Element extends SearchElement.Adapter {
+public final class QuickFixable extends ResultItem {
 
-  public Element(SearchElement element) {
-    super(
-      getName(element),
-      element.getToolTip(),
-      element.getIcon(),
-      null);
+  public QuickFixable(CoreValidator validator, ResultType type, Component component, String description, QuickFix quickFix) {
+    super(validator, type, component, description);
+    myQuickFix = quickFix;
+  }         
 
-    myElement = element;
+  public QuickFix getQuickFix() {
+    return myQuickFix;
   }
 
-  @Override
-  public void gotoSource()
-  {
-    myElement.gotoSource();
-  }
-
-  @Override
-  public void select()
-  {
-    myElement.select();
-  }
-
-  private static String getName(SearchElement element) {
-    StringBuffer name = new StringBuffer(element.getName());
-    SearchElement parent = element.getParent();
-
-    while (parent != null) {
-      name.insert(0, parent.getName() + "."); // NOI18N
-      parent = parent.getParent();
-    }
-    return name.toString();
-  }
-
-  private SearchElement myElement;
+  private QuickFix myQuickFix;
 }
