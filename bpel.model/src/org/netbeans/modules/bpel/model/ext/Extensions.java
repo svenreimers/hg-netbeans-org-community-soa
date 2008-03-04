@@ -1,8 +1,8 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- *
- * Copyright 1997-2007 Sun Microsystems, Inc. All rights reserved.
- *
+ * 
+ * Copyright 2008 Sun Microsystems, Inc. All rights reserved.
+ * 
  * The contents of this file are subject to the terms of either the GNU
  * General Public License Version 2 only ("GPL") or the Common
  * Development and Distribution License("CDDL") (collectively, the
@@ -20,13 +20,7 @@
  * License Header, with the fields enclosed by brackets [] replaced by
  * your own identifying information:
  * "Portions Copyrighted [year] [name of copyright owner]"
- *
- * Contributor(s):
- *
- * The Original Software is NetBeans. The Initial Developer of the Original
- * Software is Sun Microsystems, Inc. Portions Copyright 1997-2006 Sun
- * Microsystems, Inc. All Rights Reserved.
- *
+ * 
  * If you wish your version of this file to be governed by only the CDDL
  * or only the GPL Version 2, indicate your decision by adding
  * "[Contributor] elects to include this software in this distribution
@@ -37,32 +31,22 @@
  * However, if you add GPL Version 2 code and therefore, elected the GPL
  * Version 2 license, then the option applies only if the new code is
  * made subject to such option by the copyright holder.
+ * 
+ * Contributor(s):
+ * 
+ * Portions Copyrighted 2008 Sun Microsystems, Inc.
  */
-package org.netbeans.modules.bpel.validation.core;
 
-import org.netbeans.modules.xml.xam.Component;
-import org.netbeans.modules.xml.xam.spi.Validator.ResultItem;
-import org.netbeans.modules.xml.xam.spi.Validator.ResultType;
-import org.netbeans.modules.bpel.validation.core.QuickFix;
+package org.netbeans.modules.bpel.model.ext;
 
 /**
- * @author Vladimir Yaroslavskiy
- * @version 2007.12.07
+ *
+ * @author nk160297
  */
-public final class Outcome extends ResultItem {
-
-  public Outcome(CoreValidator validator, ResultType type, Component component, String description) {
-    this(validator, type, component, description, null);
-  }
-
-  public Outcome(CoreValidator validator, ResultType type, Component component, String description, QuickFix quickFix) {
-    super(validator, type, component, description);
-    myQuickFix = quickFix;
-  }         
-
-  public QuickFix getQuickFix() {
-    return myQuickFix;
-  }
-
-  private QuickFix myQuickFix;
+public interface Extensions {
+    
+    String TRANSACTION_EXT_URI = "http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Transaction"; // NOI18N
+    String TRACE_EXT_URI = "http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Trace"; // NOI18N
+    String ERROR_EXT_URI = "http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/ErrorHandling"; // NOI18N
+    
 }
