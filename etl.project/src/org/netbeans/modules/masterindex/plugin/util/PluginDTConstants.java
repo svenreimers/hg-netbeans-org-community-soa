@@ -38,105 +38,49 @@
  * Version 2 license, then the option applies only if the new code is
  * made subject to such option by the copyright holder.
  */
-package org.netbeans.modules.bpel.search.impl.ui;
+/*
+ * PluginDesignTimeConstants.java
+ * 
+ * Created on Oct 8, 2007, 3:59:03 PM
+ * 
+ * To change this template, choose Tools | Template Manager
+ * and open the template in the editor.
+ */
 
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
+package org.netbeans.modules.masterindex.plugin.util;
 
-import org.openide.util.HelpCtx;
-import org.openide.windows.TopComponent;
-import org.netbeans.modules.bpel.search.impl.util.Util;
-import static org.netbeans.modules.soa.ui.util.UI.*;
+import java.io.File;
 
 /**
- * @author Vladimir Yaroslavskiy
- * @version 2006.11.24
+ *
+ * @author Manish Bharani
  */
-public final class View extends TopComponent {
+public class PluginDTConstants {
 
-  public View() {
-    setIcon(icon(Util.class, "find").getImage()); // NOI18N
-    setLayout(new GridBagLayout());
-    setFocusable(true);
-  }
-
-  void show(Tree tree) {
-    addTab(tree);
-    open();
-    requestActive();
-  }
-
-  private void addTab(Tree tree) {
-    createTabbed();
-    myTabbed.addTree(tree);
-    revalidate();
-    repaint();
-  }
-
-  private void createTabbed() {
-    if (myTabbed != null) {
-      return;
+    // File System Constants
+    public static final String USER_DIR = System.getProperty("user.dir");
+    public static final String PS = ":"; //Path Separator
+    public static final String fs = System.getProperty("file.separator"); //File Separator
+    public static File EVIEW_CONFIG_FILE = null;
+    
+    //Axion Database Constants
+    public static final String AXION_KEY_TABLE = "AXION_KEYS";
+    public static final String DB_DRIVER = "org.axiondb.jdbc.AxionDriver";
+    public static final String URI_PRIFIX = "jdbc" + PS +  "axiondb";
+    public static final String AXION_DB_VERSION = ".VER";
+    
+    //Query Manager Specific Constants
+    public static final String QueryManagerTablePrefix = "SBYN_";
+    public static final String QualifiedPathPrefix = "Enterprise.SystemObject.";
+    
+    //Default Columns Constants
+    public static final String datatype = "string";
+    public static final int datasize = 32;
+    public static final boolean isRequired = true;
+    public static final boolean isUpdatable = false;    
+    
+    public PluginDTConstants(){
+        
     }
-    GridBagConstraints c = new GridBagConstraints();
-    c.anchor = GridBagConstraints.NORTHWEST;
-    c.fill = GridBagConstraints.BOTH;
-
-    c.weightx = 1.0;
-    c.weighty = 1.0;
-    myTabbed = new Tabbed();
-    add(myTabbed, c);
-  }
-
-  @Override
-  public void requestActive()
-  {
-    super.requestActive();
-    myTabbed.requestActive();
-  }
-
-  @Override
-  public HelpCtx getHelpCtx()
-  {
-    return HelpCtx.DEFAULT_HELP;
-  }
-
-  @Override
-  public int getPersistenceType()
-  {
-    return PERSISTENCE_ALWAYS;
-  }
-      
-  @Override
-  public String getName()
-  {
-    return NAME;
-  }
-  
-  @Override
-  public String getDisplayName()
-  {
-    return i18n(View.class, "LBL_Search_Results_Name"); // NOI18N
-  }
-
-  @Override
-  public String getToolTipText()
-  {
-    return i18n(View.class, "LBL_Search_Results_Tooltip"); // NOI18N
-  }
-
-  @Override
-  protected void componentClosed()
-  {
-    super.componentClosed();
-    myTabbed = null;
-  }
-
-  @Override
-  protected String preferredID()
-  {
-    return NAME;
-  }
-
-  private Tabbed myTabbed;
-  public static final String NAME = "search"; // NOI18N
+    
 }

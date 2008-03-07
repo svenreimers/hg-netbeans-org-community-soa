@@ -63,6 +63,7 @@ import org.netbeans.modules.xml.xam.Named;
 import org.netbeans.modules.xml.xam.dom.AbstractDocumentComponent;
 
 import org.netbeans.modules.bpel.model.api.BpelEntity;
+import org.netbeans.modules.bpel.model.api.ContentElement;
 import org.netbeans.modules.bpel.model.api.CorrelationSet;
 import org.netbeans.modules.bpel.model.api.CorrelationSetContainer;
 import org.netbeans.modules.bpel.model.api.CorrelationContainer;
@@ -94,9 +95,9 @@ import static org.netbeans.modules.soa.ui.util.UI.*;
  * @author Vladimir Yaroslavskiy
  * @version 2007.11.06
  */
-public class DocumentationCookie implements ReportCookie {
+public class DocumentationGenerator implements ReportCookie {
 
-  public DocumentationCookie(BPELDataObject dataObject, JComponent canvas) {
+  public DocumentationGenerator(BPELDataObject dataObject, JComponent canvas) {
     myDataObject = dataObject;
     myCanvas = canvas;
   }
@@ -168,23 +169,23 @@ public class DocumentationCookie implements ReportCookie {
     report.setBody(body);
     ReportSection section;
 
-    // import
+    // imports
     section = createSection("LBL_Import", "LBL_Section_Import"); // NOI18N
     fillImport(process, body, section);
 
-    // partner link
+    // partner links
     section = createSection("LBL_Partner_Link", "LBL_Section_Partner_Link"); // NOI18N
     fillPartnerLink(process, body, section);
 
-    // variable
+    // variables
     section = createSection("LBL_Variable", "LBL_Section_Variable"); // NOI18N
     fillVariable(process, body, section);
 
-    // correlation set
+    // correlation sets
     section = createSection("LBL_Correlation_Set","LBL_Section_Correlation_Set");//NOI18N
     fillCorrelationSet(process, body, section);
 
-    // elements 
+    // another elements 
     section = createSection("LBL_Element", "LBL_Section_Element"); // NOI18N
     body.addReportSection(section);
     travelElement(process, section);
@@ -302,7 +303,7 @@ public class DocumentationCookie implements ReportCookie {
     if (icon instanceof ImageIcon) {
       element.setImage(((ImageIcon) icon).getImage());
     }
-    element.setName(getDisplayName(entity));
+    element.setName(getInfo(entity));
     
     if (entity instanceof ExtensibleElements) {
       String documentation = ((ExtensibleElements) entity).getDocumentation();
@@ -317,12 +318,12 @@ public class DocumentationCookie implements ReportCookie {
 
   private void fillAttributes(BpelEntity entity, ReportElement element) {
     AbstractDocumentComponent component = (AbstractDocumentComponent) entity;
-    Map<QName,String> map = component.getAttributeMap();
-    Iterator<QName> iterator = map.keySet().iterator();
+    Map map = component.getAttributeMap();
+    Iterator iterator = map.keySet().iterator();
 
     while (iterator.hasNext()) {
-      QName name = iterator.next();
-      String value = map.get(name);
+      QName name = (QName) iterator.next();
+      String value = (String) map.get(name);
 
       if (value == null || value.length() == 0) {
         continue;
@@ -346,14 +347,21 @@ public class DocumentationCookie implements ReportCookie {
     return image;
   }
 
-  private String getDisplayName(BpelEntity entity) {
-    String type = RefactorUtil.getType(entity);
+  private String getInfo(BpelEntity entity) {
+    String info = RefactorUtil.getType(entity);
     String name = getName(entity);
 
     if (name != null) {
-      type += " '" + ((Named) entity).getName() + "'"; // NOI18N
+      info += " '" + ((Named) entity).getName() + "'"; // NOI18N
     }
-    return type;
+    else if (entity instanceof ContentElement) {
+      String content = ((ContentElement) entity).getContent();
+
+      if (content != null && content.length() > 0) {
+        info += ": " + content; // NOI18N
+      }
+    }
+    return info;
   }
 
   private String getName(BpelEntity entity) {
@@ -365,12 +373,12 @@ public class DocumentationCookie implements ReportCookie {
 
   private String i18n(String key) {
     return org.netbeans.modules.soa.ui.util.UI.i18n(
-      DocumentationCookie.class, key);
+      DocumentationGenerator.class, key);
   }
 
   private String i18n(String key, String param) {
     return org.netbeans.modules.soa.ui.util.UI.i18n(
-      DocumentationCookie.class, key, param);
+      DocumentationGenerator.class, key, param);
   }
 
   private JComponent myCanvas;
