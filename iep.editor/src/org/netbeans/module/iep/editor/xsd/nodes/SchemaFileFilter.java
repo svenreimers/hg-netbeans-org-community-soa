@@ -1,7 +1,7 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  * 
- * Copyright 1997-2007 Sun Microsystems, Inc. All rights reserved.
+ * Copyright 2008 Sun Microsystems, Inc. All rights reserved.
  * 
  * The contents of this file are subject to the terms of either the GNU
  * General Public License Version 2 only ("GPL") or the Common
@@ -37,77 +37,34 @@
  * Portions Copyrighted 2008 Sun Microsystems, Inc.
  */
 
-package org.netbeans.modules.iep.editor.wizard;
+package org.netbeans.module.iep.editor.xsd.nodes;
 
-import org.netbeans.modules.xml.axi.AXIComponent;
+import java.io.File;
+import java.io.FileFilter;
 
 /**
  *
  * @author radval
  */
-public class PlaceholderSchemaAttribute {
+public  class SchemaFileFilter implements FileFilter {
+    
+    public static final String SCHEMA_FILE_EXTENSION = "xsd";
+    
+    public boolean accept(File pathname) {
+        boolean result = false;
+        String fileName = pathname.getName();
+        String fileExtension = null;
+        int dotIndex = fileName.lastIndexOf('.');
+        if(dotIndex != -1) {
+            fileExtension = fileName.substring(dotIndex +1);
+        }
 
-    private String mAttributeName = "";
-    
-    private String mAttributeType = "";
-    
-    private String mAttributeSize = "";
-    
-    private String mAttributeScale = "";
-    
-    private String mAttributeComment = "";
-    
-    private AXIComponent mComponent;
-    
-    public PlaceholderSchemaAttribute(AXIComponent component) {
-        this.mComponent = component;
-    }
-    
-    public PlaceholderSchemaAttribute() {
-        
-    }
-    
-    public AXIComponent getAXIComponent() {
-        return this.mComponent;
-    }
-    
-    public String getAttributeName() {
-        return this.mAttributeName;
-    }
-    
-    public void setAttributeName(String attributeName) {
-        this.mAttributeName = attributeName;
-    }
-    
-    public String getAttributeType() {
-        return this.mAttributeType;
-    }
-    
-    public void setAttributeType(String attributeType) {
-        this.mAttributeType = attributeType;
-    }
-    
-    public String getAttributeSize() {
-        return this.mAttributeSize;
-    }
-    
-    public void setAttributeSize(String attributeSize) {
-        this.mAttributeSize = attributeSize;
-    }
-    
-    public String getAttributeScale() {
-        return this.mAttributeScale;
-    }
-    
-    public void setAttributeScale(String attributeScale) {
-        this.mAttributeScale = attributeScale;
-    }
-    
-    public String getAttributeComment() {
-        return this.mAttributeComment;
-    }
-    
-    public void setAttributeComment(String attributeComment) {
-        this.mAttributeComment = attributeComment;
+        if(fileExtension != null 
+                && (fileExtension.equalsIgnoreCase(SCHEMA_FILE_EXTENSION))) {
+            result = true;
+        }
+
+        return result;
     }
 }
+    

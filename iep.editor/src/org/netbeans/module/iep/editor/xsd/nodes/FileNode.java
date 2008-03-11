@@ -1,7 +1,7 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  * 
- * Copyright 1997-2007 Sun Microsystems, Inc. All rights reserved.
+ * Copyright 2008 Sun Microsystems, Inc. All rights reserved.
  * 
  * The contents of this file are subject to the terms of either the GNU
  * General Public License Version 2 only ("GPL") or the Common
@@ -37,77 +37,52 @@
  * Portions Copyrighted 2008 Sun Microsystems, Inc.
  */
 
-package org.netbeans.modules.iep.editor.wizard;
+package org.netbeans.module.iep.editor.xsd.nodes;
 
+import java.beans.BeanInfo;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.ImageIcon;
 import org.netbeans.modules.xml.axi.AXIComponent;
+import org.netbeans.modules.xml.axi.AXIModel;
+import org.openide.filesystems.FileObject;
+import org.openide.nodes.Node;
+import org.openide.loaders.DataObject;
 
 /**
  *
  * @author radval
  */
-public class PlaceholderSchemaAttribute {
+public class FileNode extends AbstractSchemaArtifactNode {
 
-    private String mAttributeName = "";
+    private Node mFileDelegateNode;
     
-    private String mAttributeType = "";
+    private List<AXIComponent> mExistingArtificatNames = new ArrayList<AXIComponent>();
     
-    private String mAttributeSize = "";
-    
-    private String mAttributeScale = "";
-    
-    private String mAttributeComment = "";
-    
-    private AXIComponent mComponent;
-    
-    public PlaceholderSchemaAttribute(AXIComponent component) {
-        this.mComponent = component;
-    }
-    
-    public PlaceholderSchemaAttribute() {
+    public FileNode(Node fileDelegate, List<AXIComponent> existingArtificatNames) {
+        super(fileDelegate.getDisplayName());
+        this.mFileDelegateNode = fileDelegate;
+        //this.setUserObject(projectDelegate.getDisplayName());
         
+        this.mIcon = new ImageIcon(this.mFileDelegateNode.getIcon(BeanInfo.ICON_COLOR_16x16)); 
+        this.mExistingArtificatNames = existingArtificatNames;
+        
+        populateSchemaFiles();
     }
     
-    public AXIComponent getAXIComponent() {
-        return this.mComponent;
-    }
-    
-    public String getAttributeName() {
-        return this.mAttributeName;
-    }
-    
-    public void setAttributeName(String attributeName) {
-        this.mAttributeName = attributeName;
-    }
-    
-    public String getAttributeType() {
-        return this.mAttributeType;
-    }
-    
-    public void setAttributeType(String attributeType) {
-        this.mAttributeType = attributeType;
-    }
-    
-    public String getAttributeSize() {
-        return this.mAttributeSize;
-    }
-    
-    public void setAttributeSize(String attributeSize) {
-        this.mAttributeSize = attributeSize;
-    }
-    
-    public String getAttributeScale() {
-        return this.mAttributeScale;
-    }
-    
-    public void setAttributeScale(String attributeScale) {
-        this.mAttributeScale = attributeScale;
-    }
-    
-    public String getAttributeComment() {
-        return this.mAttributeComment;
-    }
-    
-    public void setAttributeComment(String attributeComment) {
-        this.mAttributeComment = attributeComment;
+   
+    private void populateSchemaFiles() {
+        try {
+            DataObject dObject = this.mFileDelegateNode.getLookup().lookup(DataObject.class);
+            if(dObject != null) {
+                FileObject fileObject = dObject.getPrimaryFile();
+                AXIModel model = AxiModelHelper.getAXIModel(fileObject);
+                AxiTreeNodeVisitor mVisitor = new AxiTreeNodeVisitor(this, mExistingArtificatNames);
+                model.getRoot().accept(mVisitor);
+            }
+        } catch(Exception ex) {
+            ex.printStackTrace();
+        }
     }
 }
+
