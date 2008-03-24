@@ -16,31 +16,23 @@
  * Software is Sun Microsystems, Inc. Portions Copyright 1997-2007 Sun
  * Microsystems, Inc. All Rights Reserved.
  */
-package org.netbeans.modules.xslt.tmap.model.api.events;
+package org.netbeans.modules.bpel.model.ext.editor;
 
-import java.beans.PropertyChangeEvent;
+import org.netbeans.modules.bpel.model.api.*;
 
 /**
- * This class is intended for fired Exception about wrong change in Model was
- * trying to perform. This action should be rolled back.
  *
  * @author Vitaly Bychkov
- * @author ads
  * @version 1.0
  */
-public class VetoException extends Exception {
+public interface Editor extends ExtensionEntity, BpelContainer {
+    String EDITOR_NAMESPACE_URI =
+            "http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor";
 
-    private static final long serialVersionUID = 3499029788731463455L;
+    Casts getCasts();
 
-    public VetoException( String message, PropertyChangeEvent event ) {
-        super(message);
-        myEvent = event;
-    }
+    void removeCasts( );
 
-    public PropertyChangeEvent getChangeEvent() {
-        return myEvent;
-    }
-
-    private final PropertyChangeEvent myEvent;
+    void setCasts( Casts casts);
 
 }
