@@ -16,29 +16,29 @@
  * Software is Sun Microsystems, Inc. Portions Copyright 1997-2007 Sun
  * Microsystems, Inc. All Rights Reserved.
  */
-package org.netbeans.modules.xslt.tmap.multiview.designer;
+package org.netbeans.modules.bpel.model.ext.editor;
 
-import java.awt.Color;
-import javax.swing.JComponent;
-import javax.swing.JPanel;
-import org.openide.util.Lookup;
+import org.netbeans.modules.bpel.model.api.*;
 
 /**
  *
  * @author Vitaly Bychkov
  * @version 1.0
  */
-public class DesignView extends JPanel {
-    
-    private Lookup myLookup;
+public interface Casts extends ExtensionEntity, BpelContainer {
 
-    public DesignView(Lookup lookup) {
-        setBackground(new Color(0xFCFAF5));
-        this.myLookup = lookup;
-        setFocusable(true);
-    }
+    Cast[] getCasts();
 
-    public JComponent getView() {
-        return this;
-    }
+    Cast getCast( int i );
+
+    void removeCast( int i );
+
+    void setCasts( Cast[] casts );
+
+    void setCast( Cast cast, int i );
+
+    void addCast( Cast cast );
+
+    void insertCast( Cast cast, int i );
+
 }
