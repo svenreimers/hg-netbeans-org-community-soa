@@ -1,8 +1,8 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- *
- * Copyright 1997-2007 Sun Microsystems, Inc. All rights reserved.
- *
+ * 
+ * Copyright 2008 Sun Microsystems, Inc. All rights reserved.
+ * 
  * The contents of this file are subject to the terms of either the GNU
  * General Public License Version 2 only ("GPL") or the Common
  * Development and Distribution License("CDDL") (collectively, the
@@ -20,13 +20,7 @@
  * License Header, with the fields enclosed by brackets [] replaced by
  * your own identifying information:
  * "Portions Copyrighted [year] [name of copyright owner]"
- *
- * Contributor(s):
- *
- * The Original Software is NetBeans. The Initial Developer of the Original
- * Software is Sun Microsystems, Inc. Portions Copyright 1997-2007 Sun
- * Microsystems, Inc. All Rights Reserved.
- *
+ * 
  * If you wish your version of this file to be governed by only the CDDL
  * or only the GPL Version 2, indicate your decision by adding
  * "[Contributor] elects to include this software in this distribution
@@ -37,50 +31,23 @@
  * However, if you add GPL Version 2 code and therefore, elected the GPL
  * Version 2 license, then the option applies only if the new code is
  * made subject to such option by the copyright holder.
- */
-/*
- * PluginDesignTimeConstants.java
  * 
- * Created on Oct 8, 2007, 3:59:03 PM
+ * Contributor(s):
  * 
- * To change this template, choose Tools | Template Manager
- * and open the template in the editor.
+ * Portions Copyrighted 2008 Sun Microsystems, Inc.
  */
 
-package org.netbeans.modules.masterindex.plugin.util;
-
-import java.io.File;
+package org.netbeans.modules.bpel.mapper.tree.spi;
 
 /**
+ * The interface is useful in case when logical and phisical models are used. 
+ * In the case the tree item of the phisical model refers to the item of 
+ * logical model and this interface formalizes it. 
  *
- * @author Manish Bharani
+ * @author nk160297
  */
-public class PluginDTConstants {
+public interface DataObjectHolder<DataObject> {
+    
+    DataObject getDataObject();
 
-    // File System Constants
-    public static final String USER_DIR = System.getProperty("user.dir");
-    public static final String PS = ":"; //Path Separator
-    public static final String fs = System.getProperty("file.separator"); //File Separator
-    public static File EVIEW_CONFIG_FILE = null;
-    
-    //Axion Database Constants
-    public static final String AXION_KEY_TABLE = "AXION_KEYS";
-    public static final String DB_DRIVER = "org.axiondb.jdbc.AxionDriver";
-    public static final String URI_PRIFIX = "jdbc" + PS +  "axiondb";
-    public static final String AXION_DB_VERSION = ".VER";
-    
-    //Query Manager Specific Constants
-    public static final String QueryManagerTablePrefix = "SBYN_";
-    public static final String QualifiedPathPrefix = "Enterprise.SystemObject.";
-    
-    //Default Columns Constants
-    public static final String datatype = "string";
-    public static final int datasize = 32;
-    public static final boolean isRequired = true;
-    public static final boolean isUpdatable = false;    
-    
-    public PluginDTConstants(){
-        
-    }
-    
 }

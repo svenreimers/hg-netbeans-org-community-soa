@@ -17,16 +17,34 @@
  * Microsystems, Inc. All Rights Reserved.
  */
 
-package org.netbeans.modules.bpel.project.wizards;
+package org.netbeans.modules.bpel.mapper.cast;
 
-public class WizardProperties {
-    public static final String PROJECT_DIR = "projdir"; //NOI18N
-    public static final String NAME = "name"; //NOI18N
-    public static final String SOURCE_ROOT = "sourceRoot"; //NOI18N
+import org.netbeans.modules.bpel.mapper.tree.search.SimpleFinder;
+import org.netbeans.modules.xml.schema.model.GlobalType;
 
-    public static final String SET_AS_MAIN = "setAsMain"; //NOI18N
+/**
+ * Looks for a Global Type item in the SubtypeTreeModel.
+ * 
+ * @author nk160297
+ */
+public class GTypeFinder extends SimpleFinder {
 
-    public static final String CONFIG_FILES_FOLDER = "configFilesFolder"; //NOI18N
-    public static final String JAVA_ROOT = "javaRoot"; //NOI18N
-    public static final String LIB_FOLDER = "libFolder"; //NOI18N
+    private GlobalType mGType;
+    
+    public GTypeFinder(GlobalType gType) {
+        mGType = gType;
+    }
+    
+    protected boolean isFit(Object treeItem) {
+        if (treeItem == mGType) {
+             // found!!!
+            return true;
+        }
+        return false;
+    }
+
+    protected boolean drillDeeper(Object treeItem) {
+        return true;
+    }
+
 }
