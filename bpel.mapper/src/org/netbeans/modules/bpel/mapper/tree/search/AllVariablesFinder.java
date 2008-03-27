@@ -17,17 +17,28 @@
  * Microsystems, Inc. All Rights Reserved.
  */
 
-package org.netbeans.modules.bpel.project.wizards;
+package org.netbeans.modules.bpel.mapper.tree.search;
 
-import javax.swing.JPanel;
-import org.openide.WizardDescriptor;
+import org.netbeans.modules.bpel.mapper.tree.spi.MapperTreeModel;
+import org.netbeans.modules.bpel.mapper.tree.spi.TreeItemFinder;
+import org.netbeans.modules.bpel.model.api.BpelEntity;
+import org.netbeans.modules.bpel.model.api.Variable;
 
+/**
+ * Looks for all variables in the tree. 
+ * @author nk160297
+ */
+public class AllVariablesFinder implements TreeItemFinder {
 
-abstract class SettingsPanel extends JPanel {
+    public AllVariablesFinder() {
+    }
 
-    abstract void store (WizardDescriptor settings);
+    public FindResult process(Object treeItem, FindResult result) {
+        boolean isFit = (treeItem instanceof Variable);
+        boolean drillDeeper = !isFit && 
+                (treeItem == MapperTreeModel.TREE_ROOT || 
+                treeItem instanceof BpelEntity);
+        return new FindResult(isFit, drillDeeper);
+    }
 
-    abstract void read (WizardDescriptor settings);
-
-    abstract boolean valid (WizardDescriptor settings);
 }
