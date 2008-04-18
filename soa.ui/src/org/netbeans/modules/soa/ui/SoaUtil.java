@@ -41,7 +41,6 @@
 package org.netbeans.modules.soa.ui;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Container;
 import java.awt.Image;
 import java.beans.PropertyChangeEvent;
@@ -70,11 +69,27 @@ import org.openide.text.DataEditorSupport;
 import org.openide.util.HelpCtx;
 import org.openide.windows.TopComponent;
 import org.openide.windows.WindowManager;
+import org.openide.text.Line;
+import org.netbeans.modules.xml.xam.spi.Validator.ResultItem;
+import javax.swing.text.AbstractDocument;
+import org.openide.cookies.LineCookie;
+import org.openide.loaders.DataObjectNotFoundException;
+import org.netbeans.modules.xml.xam.Model;
+import org.netbeans.modules.xml.xam.ModelSource;
+import org.netbeans.modules.xml.xam.dom.AbstractDocumentComponent;
+import org.netbeans.modules.xml.xam.Component;
+import org.netbeans.modules.xml.xam.dom.DocumentComponent;
+import org.openide.text.NbDocument;
+import org.openide.util.Lookup;
+import javax.swing.text.StyledDocument;
+import org.netbeans.modules.xml.xam.dom.AbstractDocumentModel;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 
 /**
  * @author nk160297
  */
-public class SoaUiUtil {
+public class SoaUtil {
     
     public static Color MISTAKE_RED = new Color(204, 0, 0);
     public static Color INACTIVE_BLUE = new Color(0, 102, 153);
@@ -82,7 +97,7 @@ public class SoaUiUtil {
     
     private static String GRAY_COLOR = "#999999";
     
-    private SoaUiUtil() {}
+    private SoaUtil() {}
 
     public static String getGrayString(String message) {
         return getGrayString("", message);
@@ -225,7 +240,7 @@ public class SoaUiUtil {
     }
     
     public static <T> T lookForChildByClass(Container parent, Class<T> clazz) {
-        for (Component child : parent.getComponents()) {
+        for (java.awt.Component child : parent.getComponents()) {
             if (clazz.isInstance(child)) {
                 return clazz.cast(child);
             }
@@ -245,7 +260,7 @@ public class SoaUiUtil {
     
     private static <T> void lookForChildrenByClass(
             Container parent, Class<T> clazz, Collection<T> candidates) {
-        for (Component child : parent.getComponents()) {
+        for (java.awt.Component child : parent.getComponents()) {
             if (clazz.isInstance(child)) {
                 T candidate = clazz.cast(child);
                 candidates.add(candidate);
@@ -261,12 +276,12 @@ public class SoaUiUtil {
      * @param container 
      * @return 
      */
-    public static Component getInitialFocusComponent(Container container) {
+    public static java.awt.Component getInitialFocusComponent(Container container) {
         Collection<InitialFocusProvider> providers = lookForChildrenByClass(
                 container, InitialFocusProvider.class);
         //
         int maxPriority = Integer.MIN_VALUE;
-        Component resultComp = null;
+        java.awt.Component resultComp = null;
         //
         for (InitialFocusProvider provider : providers) {
             int priority = provider.getProviderPriority();
@@ -284,7 +299,7 @@ public class SoaUiUtil {
      * for the dialog or window.
      */ 
     public static boolean setInitialFocusComponentFor(Container container) {
-        Component comp = SoaUiUtil.getInitialFocusComponent(container);
+        java.awt.Component comp = getInitialFocusComponent(container);
         if (comp != null) {
             return comp.requestFocusInWindow();
         }
@@ -362,7 +377,7 @@ public class SoaUiUtil {
     }
 
     public static void activateInlineMnemonics(Container owner) {
-        for (Component comp : owner.getComponents()) {
+        for (java.awt.Component comp : owner.getComponents()) {
             if (comp instanceof JLabel) {
                 JLabel label = (JLabel)comp;
                 Mnemonics.setLocalizedText(label, label.getText());
@@ -375,7 +390,7 @@ public class SoaUiUtil {
         }
     }
     
-    public static void fireHelpContextChange(Component comp, HelpCtx newHelpCtx) {
+    public static void fireHelpContextChange(java.awt.Component comp, HelpCtx newHelpCtx) {
         Container parent = comp.getParent();
         if (parent != null) {
             PropertyChangeEvent event = new PropertyChangeEvent(
@@ -395,5 +410,22 @@ public class SoaUiUtil {
                 parent = newParent;
             }
         }
+    }
+
+    public static FileObject getFileObjectByModel(Model model) {
+      if (model == null) {
+        return null;
+      }
+      ModelSource src = model.getModelSource();
+
+      if (src == null) {
+       return null;
+      }
+      Lookup lookup = src.getLookup();
+
+      if (lookup == null) {
+        return null;
+      }
+      return lookup.lookup(FileObject.class);
     }
 }

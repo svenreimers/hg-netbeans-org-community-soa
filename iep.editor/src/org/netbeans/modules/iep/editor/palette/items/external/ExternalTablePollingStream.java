@@ -16,12 +16,25 @@
  * Software is Sun Microsystems, Inc. Portions Copyright 1997-2007 Sun
  * Microsystems, Inc. All Rights Reserved.
  */
-package org.netbeans.modules.bpel.core.util;
 
-import java.util.List;
-import org.netbeans.modules.xml.xam.spi.Validator.ResultItem;
+package org.netbeans.modules.iep.editor.palette.items.external;
 
-public interface BPELValidationListener {
+import org.netbeans.modules.iep.editor.tcg.palette.TcgActiveEditorDrop;
 
-  void validationUpdated(List<ResultItem> result);
+/*
+ * StreamInput.java
+ *
+ * Created on January 3, 2006, 5:18 PM
+ *
+ * @author Bing Lu
+ */
+public class ExternalTablePollingStream extends TcgActiveEditorDrop {
+    
+    /** 
+     * Creates a new instance of StreamInput 
+     */
+    public ExternalTablePollingStream() {
+        mPath = "/IEP/External/ExternalTablePollingStream";
+    }
+    
 }
