@@ -38,66 +38,46 @@
  * Version 2 license, then the option applies only if the new code is
  * made subject to such option by the copyright holder.
  */
-package org.netbeans.modules.bpel.validation.core;
+package org.netbeans.modules.xslt.validation.core;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import org.netbeans.modules.xml.xam.Component;
 import org.netbeans.modules.xml.xam.Model;
 import org.netbeans.modules.xml.xam.spi.Validation;
 import org.netbeans.modules.xml.xam.spi.Validation.ValidationType;
 import org.netbeans.modules.xml.xam.spi.ValidationResult;
 
-import org.netbeans.modules.xml.wsdl.model.WSDLModel;
-import org.netbeans.modules.xml.wsdl.model.Definitions;
-import org.netbeans.modules.xml.wsdl.model.visitor.WSDLVisitor;
+import org.netbeans.modules.xslt.model.XslModel;
+import org.netbeans.modules.xslt.model.Stylesheet;
+import org.netbeans.modules.xslt.model.XslVisitor;
 
 import org.netbeans.modules.soa.validation.core.Validator;
-import org.netbeans.modules.bpel.model.api.BpelModel;
-import org.netbeans.modules.bpel.model.api.Process;
 import static org.netbeans.modules.xml.ui.UI.*;
 
 /**
  * @author Vladimir Yaroslavskiy
- * @version 2008.02.15
+ * @version 2008.04.24
  */
-public abstract class WsdlValidator extends Validator {
+public abstract class XsltValidator extends Validator {
 
-  public abstract WSDLVisitor getVisitor();
+  public abstract XslVisitor getVisitor();
 
   public synchronized ValidationResult validate(Model m, Validation validation, ValidationType type) {
-    if ( !(m instanceof WSDLModel)) {
+    if ( !(m instanceof XslModel)) {
       return null;
     }
-//out();
-//out("VALIDATE WSDL");
-    WSDLModel model = (WSDLModel) m;
-
+    XslModel model = (XslModel) m;
+    
     if (model.getState() == Model.State.NOT_WELL_FORMED) {
-//out("11");
       return null;
     }
-//out("22");
     init(validation, type);
 
-    if ( !isValidationComplete()) {
-//out("33");
-      return null;
-    }
-    Definitions definitions = model.getDefinitions();
-//out("44");
+    Stylesheet stylesheet = model.getStylesheet();
 
-    if (definitions == null) {
-//out("55");
+    if (stylesheet == null) {
       return null;
     }
-//out("66");
     startTime();
-    definitions.accept(getVisitor());
+    stylesheet.accept(getVisitor());
     endTime(getDisplayName());
 
     return createValidationResult(model);
