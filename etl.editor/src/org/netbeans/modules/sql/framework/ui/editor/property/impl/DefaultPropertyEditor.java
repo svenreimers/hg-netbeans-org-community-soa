@@ -61,7 +61,6 @@ import org.openide.explorer.propertysheet.InplaceEditor;
 import org.openide.explorer.propertysheet.PropertyEnv;
 import org.openide.explorer.propertysheet.PropertyModel;
 
-
 /**
  * @author Ritesh Adval
  * @version $Revision$
@@ -206,7 +205,7 @@ public class DefaultPropertyEditor {
         }
     }
 
-/**
+    /**
      * Concrete implementation of PropertyEditorSupport to provide a single-line textfield
      * widget (with no custom editor) for use in a bean property sheet.
      */
