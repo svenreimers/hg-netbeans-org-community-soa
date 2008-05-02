@@ -1,8 +1,8 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
- *
- * Copyright 1997-2007 Sun Microsystems, Inc. All rights reserved.
- *
+ * 
+ * Copyright 2008 Sun Microsystems, Inc. All rights reserved.
+ * 
  * The contents of this file are subject to the terms of either the GNU
  * General Public License Version 2 only ("GPL") or the Common
  * Development and Distribution License("CDDL") (collectively, the
@@ -20,13 +20,7 @@
  * License Header, with the fields enclosed by brackets [] replaced by
  * your own identifying information:
  * "Portions Copyrighted [year] [name of copyright owner]"
- *
- * Contributor(s):
- *
- * The Original Software is NetBeans. The Initial Developer of the Original
- * Software is Sun Microsystems, Inc. Portions Copyright 1997-2007 Sun
- * Microsystems, Inc. All Rights Reserved.
- *
+ * 
  * If you wish your version of this file to be governed by only the CDDL
  * or only the GPL Version 2, indicate your decision by adding
  * "[Contributor] elects to include this software in this distribution
@@ -37,55 +31,69 @@
  * However, if you add GPL Version 2 code and therefore, elected the GPL
  * Version 2 license, then the option applies only if the new code is
  * made subject to such option by the copyright holder.
+ * 
+ * Contributor(s):
+ * 
+ * Portions Copyrighted 2008 Sun Microsystems, Inc.
  */
-package org.netbeans.modules.sql.framework.ui.graph.actions;
+package org.netbeans.modules.sql.framework.common.utils;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.InputEvent;
-import java.net.URL;
-
-import javax.swing.Action;
-import javax.swing.ImageIcon;
-import javax.swing.KeyStroke;
-
-import net.java.hulp.i18n.Logger;
-import org.netbeans.modules.etl.logger.Localizer;
-import org.netbeans.modules.sql.framework.ui.graph.IGraphView;
+import java.io.File;
+import org.openide.filesystems.FileObject;
+import org.openide.filesystems.FileUtil;
+import org.openide.util.Utilities;
 
 /**
- * @author Ritesh Adval
- * @version $Revision$
+ *
+ * @author Shankari
  */
-public class AutoLayoutAction extends GraphAction {
+public class MigrationUtils {
 
-    private static final URL autoLayoutImgUrl = AutoLayoutAction.class.getResource("/org/netbeans/modules/sql/framework/ui/resources/images/layout_edm.png");
-    private static transient final Logger mLogger = Logger.getLogger(AutoLayoutAction.class.getName());
-    private static transient final Localizer mLoc = Localizer.get();
+    public static boolean isCmdLine;
+    private static boolean isCommandLine = false;
+    private static File databases = null;
+    private static FileObject dbObj = null;
+    private static String dataPath = null;
+    private static String dbPath = null;
 
-    public AutoLayoutAction() {
-        //action name
-        String nbBundle = mLoc.t("BUND311: AutoLayout");
-        this.putValue(Action.NAME, nbBundle.substring(15));
-
-        //action icon
-        this.putValue(Action.SMALL_ICON, new ImageIcon(autoLayoutImgUrl));
-
-        //action tooltip
-        String nbBundle1 = mLoc.t("BUND312: AutoLayout All Graph Objects");
-        this.putValue(Action.SHORT_DESCRIPTION, nbBundle1.substring(15));
-
-        // Acceleratot Shift-L
-
+    public static void isCmdLineImport(boolean val) {
+        isCmdLine = val;
     }
 
-    /**
-     * called when this action is performed in the ui
-     * 
-     * @param ev event
-     */
-    public void actionPerformed(ActionEvent ev) {
-        IGraphView graphView = (IGraphView) ev.getSource();
-        graphView.autoLayout();
+    public static boolean isCommandLineImport(File dir) {
+        while (dir.getParentFile() != null) {
+            dir = dir.getParentFile();
+        }
+        FileObject fo = FileUtil.toFileObject(dir);
+        if (null != fo) {
+            isCommandLine = false;
+        } else {
+            isCommandLine = true;
+        }
+        return isCommandLine;
+    }
+
+    public static File getDatabasesFolder() {
+        return databases;
+    }
+
+    public static String getDatabasesFolderPath() {
+        return dbPath;
+    }
+
+    public static String getDataFolderPath() {
+       return dataPath;
+    }
+
+    public static void setDatabasesFolder(File file) {
+        databases = file;
+    }
+
+    public static void setDatabasesFolderPath(String path) {
+       dbPath =  path;
+    }
+
+    public static void setDataFolderPath(String path) {
+        dataPath = path;
     }
 }
-

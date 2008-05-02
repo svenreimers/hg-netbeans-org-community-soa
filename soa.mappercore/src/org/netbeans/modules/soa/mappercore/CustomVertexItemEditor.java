@@ -17,18 +17,16 @@
  * Microsystems, Inc. All Rights Reserved.
  */
 
+package org.netbeans.modules.soa.mappercore;
 
-package org.netbeans.modules.compapp.projects.base.ui.wizards;
+import javax.swing.tree.TreePath;
+import org.netbeans.modules.soa.mappercore.model.VertexItem;
 
-import javax.swing.JPanel;
-import org.openide.WizardDescriptor;
-
-
-public abstract class SettingsPanel extends JPanel {
-
-    public abstract void store (WizardDescriptor settings);
-
-    public abstract void read (WizardDescriptor settings);
-
-    public abstract boolean valid (WizardDescriptor settings);
+/**
+ *
+ * @author anjeleevich
+ */
+public interface CustomVertexItemEditor {
+    public void edit(Mapper mapper, TreePath rightTreePath, 
+            VertexItem vertexItem);
 }
