@@ -24,7 +24,7 @@
  * Contributor(s):
  *
  * The Original Software is NetBeans. The Initial Developer of the Original
- * Software is Sun Microsystems, Inc. Portions Copyright 1997-2007 Sun
+ * Software is Sun Microsystems, Inc. Portions Copyright 1997-2006 Sun
  * Microsystems, Inc. All Rights Reserved.
  *
  * If you wish your version of this file to be governed by only the CDDL
@@ -38,46 +38,43 @@
  * Version 2 license, then the option applies only if the new code is
  * made subject to such option by the copyright holder.
  */
-package org.netbeans.modules.soa.validation.core;
 
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import org.openide.text.Annotatable;
+package org.netbeans.modules.bpel.design.actions;
+
+import java.awt.event.ActionEvent;
+import javax.swing.AbstractAction;
+import org.netbeans.modules.bpel.design.DesignView;
+import org.netbeans.modules.bpel.design.model.connections.Connection;
+import org.netbeans.modules.bpel.design.model.connections.MessageConnection;
+import org.netbeans.modules.bpel.design.model.patterns.Pattern;
+import org.openide.util.NbBundle;
 
 /**
- * @author Vladimir Yaroslavskiy
- * @version 2008.02.01
+ *
+ * @author anjeleevich
  */
-final class Annotation extends org.openide.text.Annotation implements PropertyChangeListener {
+public class ScrollToOperationAction extends AbstractAction {
+    private DesignView designView;
     
-  public Annotation(Annotatable annotatable, String message) {
-    myMessage = message;
-
-    if (annotatable != null) {
-      attach(annotatable);
-      annotatable.addPropertyChangeListener(this);
+    public ScrollToOperationAction(DesignView designView) {
+        super(ACTION_NAME);
+        this.designView = designView;
     }
-  }
-
-  public String getAnnotationType() {
-    return "validation-annotation"; // NOI18N
-  }
-  
-  public String getShortDescription() {
-    return myMessage;
-  }
-  
-  public void propertyChange( PropertyChangeEvent propertyChangeEvent ) {
-    if (Annotatable.PROP_ANNOTATION_COUNT.equals(propertyChangeEvent.getPropertyName())) {
-      return;
+    
+    public void actionPerformed(ActionEvent e) {
+        Pattern pattern = designView.getSelectionModel().getSelectedPattern();
+        if (pattern != null && pattern.getView() 
+                == designView.getProcessView()) 
+        {
+            for (Connection c : pattern.getConnections()) {
+                if (c instanceof MessageConnection) {
+                    designView.scrollToOperation((MessageConnection) c);
+                    break;
+                }
+            }
+        }
     }
-    Annotatable annotatable = (Annotatable) propertyChangeEvent.getSource();
-
-    if (annotatable != null) {
-      annotatable.removePropertyChangeListener(this);
-      detach();
-    }
-  }
-
-  private String myMessage;
+    
+    public static String ACTION_NAME = NbBundle.getMessage(
+            ScrollToOperationAction.class, "NAME_ScrollToOperation"); // NOI18N
 }
