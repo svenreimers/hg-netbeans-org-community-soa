@@ -24,7 +24,7 @@
  * Contributor(s):
  *
  * The Original Software is NetBeans. The Initial Developer of the Original
- * Software is Sun Microsystems, Inc. Portions Copyright 1997-2007 Sun
+ * Software is Sun Microsystems, Inc. Portions Copyright 1997-2006 Sun
  * Microsystems, Inc. All Rights Reserved.
  *
  * If you wish your version of this file to be governed by only the CDDL
@@ -38,46 +38,37 @@
  * Version 2 license, then the option applies only if the new code is
  * made subject to such option by the copyright holder.
  */
-package org.netbeans.modules.soa.validation.core;
+package org.netbeans.modules.xslt.validation.transformmap;
 
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import org.openide.text.Annotatable;
+import java.util.List;
+
+import org.netbeans.modules.xslt.tmap.TMapConstants;
+import org.netbeans.modules.xslt.tmap.model.api.TMapComponent;
+import org.netbeans.modules.xslt.tmap.model.api.TMapVisitor;
+import org.netbeans.modules.xslt.tmap.model.api.TMapVisitorAdapter;
+import org.netbeans.modules.xslt.tmap.model.api.TransformMap;
+
+import org.netbeans.modules.xslt.validation.core.TMapValidator;
+import static org.netbeans.modules.xml.ui.UI.*;
 
 /**
  * @author Vladimir Yaroslavskiy
- * @version 2008.02.01
+ * @version 2007.05.07
  */
-final class Annotation extends org.openide.text.Annotation implements PropertyChangeListener {
-    
-  public Annotation(Annotatable annotatable, String message) {
-    myMessage = message;
+public final class Validator extends TMapValidator {
 
-    if (annotatable != null) {
-      attach(annotatable);
-      annotatable.addPropertyChangeListener(this);
+  public TMapVisitor getVisitor() { return new TMapVisitorAdapter() {
+
+  @Override
+  public void visit(TransformMap transformMap) {
+    String targetNamespace = transformMap.getTargetNamespace();
+
+    if (TMapConstants.OLD_TRANSFORM_MAP_NS_URI.equals(targetNamespace)) {
+      addError("FIX_IncorrectNamespace", transformMap, targetNamespace); // NOI18N
+    }
+    if ( !TMapComponent.TRANSFORM_MAP_NS_URI.equals(targetNamespace)) {
+      addError("FIX_DeprecatedTMap", transformMap, targetNamespace); // NOI18N
     }
   }
 
-  public String getAnnotationType() {
-    return "validation-annotation"; // NOI18N
-  }
-  
-  public String getShortDescription() {
-    return myMessage;
-  }
-  
-  public void propertyChange( PropertyChangeEvent propertyChangeEvent ) {
-    if (Annotatable.PROP_ANNOTATION_COUNT.equals(propertyChangeEvent.getPropertyName())) {
-      return;
-    }
-    Annotatable annotatable = (Annotatable) propertyChangeEvent.getSource();
-
-    if (annotatable != null) {
-      annotatable.removePropertyChangeListener(this);
-      detach();
-    }
-  }
-
-  private String myMessage;
-}
+};}}
