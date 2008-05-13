@@ -24,7 +24,7 @@
  * Contributor(s):
  *
  * The Original Software is NetBeans. The Initial Developer of the Original
- * Software is Sun Microsystems, Inc. Portions Copyright 1997-2007 Sun
+ * Software is Sun Microsystems, Inc. Portions Copyright 1997-2006 Sun
  * Microsystems, Inc. All Rights Reserved.
  *
  * If you wish your version of this file to be governed by only the CDDL
@@ -38,46 +38,51 @@
  * Version 2 license, then the option applies only if the new code is
  * made subject to such option by the copyright holder.
  */
-package org.netbeans.modules.soa.validation.core;
+package org.netbeans.modules.xslt.validation.core;
 
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import org.openide.text.Annotatable;
+import org.netbeans.modules.xml.xam.Model;
+import org.netbeans.modules.xml.xam.spi.Validation;
+import org.netbeans.modules.xml.xam.spi.Validation.ValidationType;
+import org.netbeans.modules.xml.xam.spi.ValidationResult;
+
+import org.netbeans.modules.xslt.tmap.model.api.TMapModel;
+import org.netbeans.modules.xslt.tmap.model.api.TransformMap;
+import org.netbeans.modules.xslt.tmap.model.api.TMapVisitor;
+
+import org.netbeans.modules.soa.validation.core.Validator;
+import static org.netbeans.modules.xml.ui.UI.*;
 
 /**
  * @author Vladimir Yaroslavskiy
- * @version 2008.02.01
+ * @version 2008.05.07
  */
-final class Annotation extends org.openide.text.Annotation implements PropertyChangeListener {
+public abstract class TMapValidator extends Validator {
+
+  public abstract TMapVisitor getVisitor();
+
+  public synchronized ValidationResult validate(Model m, Validation validation, ValidationType type) {
+    if ( !(m instanceof TMapModel)) {
+      return null;
+    }
+//out();
+//out("TMAP VALIDATOR");
+//out();
+    TMapModel model = (TMapModel) m;
     
-  public Annotation(Annotatable annotatable, String message) {
-    myMessage = message;
-
-    if (annotatable != null) {
-      attach(annotatable);
-      annotatable.addPropertyChangeListener(this);
+    if (model.getState() == Model.State.NOT_WELL_FORMED) {
+      return null;
     }
-  }
+    init(validation, type);
 
-  public String getAnnotationType() {
-    return "validation-annotation"; // NOI18N
-  }
-  
-  public String getShortDescription() {
-    return myMessage;
-  }
-  
-  public void propertyChange( PropertyChangeEvent propertyChangeEvent ) {
-    if (Annotatable.PROP_ANNOTATION_COUNT.equals(propertyChangeEvent.getPropertyName())) {
-      return;
+    TransformMap transformMap = model.getTransformMap();
+
+    if (transformMap == null) {
+      return null;
     }
-    Annotatable annotatable = (Annotatable) propertyChangeEvent.getSource();
+    startTime();
+    transformMap.accept(getVisitor());
+    endTime(getDisplayName());
 
-    if (annotatable != null) {
-      annotatable.removePropertyChangeListener(this);
-      detach();
-    }
+    return createValidationResult(model);
   }
-
-  private String myMessage;
 }
