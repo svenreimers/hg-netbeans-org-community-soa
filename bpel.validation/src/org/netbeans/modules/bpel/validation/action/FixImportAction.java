@@ -38,99 +38,86 @@
  * Version 2 license, then the option applies only if the new code is
  * made subject to such option by the copyright holder.
  */
-package org.netbeans.modules.soa.validation.action;
+package org.netbeans.modules.bpel.validation.action;
 
 import java.awt.event.ActionEvent;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
-
 import org.openide.nodes.Node;
-import org.openide.windows.IOProvider;
-import org.openide.windows.InputOutput;
-import org.openide.windows.OutputWriter;
 
+import org.netbeans.modules.xml.xam.Model;
+import org.netbeans.modules.xml.xam.spi.Validation.ValidationType;
 import org.netbeans.modules.xml.xam.spi.Validator.ResultItem;
 import org.netbeans.modules.soa.validation.core.Controller;
-import org.netbeans.modules.soa.validation.core.QuickFix;
-import org.netbeans.modules.soa.validation.core.QuickFixable;
+
+import org.netbeans.modules.bpel.model.api.BpelModel;
+import org.netbeans.modules.bpel.model.api.Import;
+import org.netbeans.modules.bpel.model.api.Process;
+
 import static org.netbeans.modules.xml.ui.UI.*;
 
 /**
  * @author Vladimir Yaroslavskiy
- * @version 2007.12.03
+ * @version 2008.05.20
  */
-public final class QuickFixAction extends IconAction {
+public final class FixImportAction extends IconAction {
 
-  public QuickFixAction() {
+  public FixImportAction() {
     super(
-      i18n(QuickFixAction.class, "CTL_Quick_Fix_Action"), // NOI18N
-      i18n(QuickFixAction.class, "TLT_Quick_Fix_Action"), // NOI18N
-      icon(QuickFixAction.class, "quickfix") // NOI18N
+      i18n(FixImportAction.class, "CTL_Fix_Import_Action"), // NOI18N
+      i18n(FixImportAction.class, "TLT_Fix_Import_Action"), // NOI18N
+      null
     );
   }
 
   public void actionPerformed(ActionEvent event) {
-    InputOutput io = IOProvider.getDefault().getIO(i18n(QuickFixAction.class, "LBL_Quick_Fix_Window"), false); // NOI18N
-    OutputWriter out = io.getOut();
-
-    try {
-      out.reset();
-    }
-    catch (IOException e) {
-      e.printStackTrace();
-    }
-    io.select();
-
-    out.println(i18n(QuickFixAction.class, "MSG_Quick_Fix_started")); // NOI18N
-    doQuickFix(getQuickFixes(getSelectedNode()), out);
-    out.println();
-    out.print(i18n(QuickFixAction.class,"MSG_Quick_Fix_finished")); // NOI18N
-  }
-
-  private void doQuickFix(List<QuickFix> quickFixes, OutputWriter out) {
-    if (quickFixes.size() == 0) {
-      out.println();
-      out.println(i18n(QuickFixAction.class, "MSG_Nothing_to_do")); // NOI18N
-      return;
-    }
-    for (QuickFix quickFix: quickFixes) {
-      String description = quickFix.doFix();
-
-      if (description != null) {
-        out.println();
-        out.println(i18n(QuickFixAction.class, "MSG_Quick_Fix", description)); // NOI18N
-      }
-    }
-  }
-
-  private List<QuickFix> getQuickFixes(Node node) {
-    List<QuickFix> quickFixes = new ArrayList<QuickFix>();
+    Node node = getSelectedNode();
+//out();
+//out("node: " + node);
 
     if (node == null) {
-      return quickFixes;
+      return;
     }
-//out();
-//out("NODE: " + node);
     Controller controller = node.getLookup().lookup(Controller.class);
-//out("CONTROLLER: " + controller);
 
     if (controller == null) {
-//out("CONTROLLER is NULL");
-      return quickFixes;
+      return;
     }
-    List<ResultItem> result = controller.getResult();
+//out("controller: " + controller);
+    Model model = controller.getModel();
+//out("model: " + model);
 
-    for (ResultItem item : result) {
-      if ( !(item instanceof QuickFixable)) {
-        continue;
+    if ( !(model instanceof BpelModel)) {
+      return;
+    }
+    fixImport((BpelModel) model, controller);
+  }
+
+  private void fixImport(BpelModel model, Controller controller) {
+    Process process = model.getProcess();
+
+    if (process == null) {
+      return;
+    }
+    Import [] imports = process.getImports();
+
+    if (imports == null) {
+      return;
+    }
+//out();
+    for (int i=imports.length - 1; i >= 0; i--) {
+//out();
+//out("see: " + imports[i].getLocation());
+      model.startTransaction();
+      process.removeImport(i);
+
+      if (controller.validate(ValidationType.PARTIAL).isEmpty()) {
+        model.endTransaction();
+//out("     REMOVE");
       }
-      QuickFix quickFix = ((QuickFixable) item).getQuickFix();
-
-      if (quickFix != null) {
-        quickFixes.add(quickFix);
+      else {
+        model.rollbackTransaction();
+//out("     ++");
       }
     }
-    return quickFixes;
   }
 }
