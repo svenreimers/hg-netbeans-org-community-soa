@@ -41,26 +41,35 @@ package org.netbeans.modules.soa.mappercore;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import javax.swing.Action;
 import javax.swing.KeyStroke;
+import javax.swing.text.DefaultEditorKit.CopyAction;
 import javax.swing.tree.TreePath;
 import org.netbeans.modules.soa.mappercore.model.Graph;
 import org.netbeans.modules.soa.mappercore.model.GraphSubset;
 import org.netbeans.modules.soa.mappercore.model.MapperModel;
 import org.netbeans.modules.soa.mappercore.model.Vertex;
+import org.openide.actions.PasteAction;
+import org.openide.util.actions.CallbackSystemAction;
+import org.openide.util.actions.SystemAction;
 
 /**
  *
  * @author AlexanderPermyakov
  */
-public class PasteCanvasAction extends MapperKeyboardAction {
-    
-    PasteCanvasAction(Canvas canvas) {
+public class PasteMapperAction extends MapperKeyboardAction {
+        
+    PasteMapperAction(Canvas canvas) {
         super(canvas);
+        putValue(NAME, "Paste");
+        putValue(ACCELERATOR_KEY, 
+                KeyStroke.getKeyStroke(KeyEvent.VK_V, KeyEvent.CTRL_DOWN_MASK));
+        
     }
     
     @Override
     public String getActionKey() {
-        return "Paste-Action";
+        return ((CallbackSystemAction)SystemAction.get(PasteAction.class)).getActionMapKey().toString();
     }
 
     @Override

@@ -37,46 +37,70 @@
  * Portions Copyrighted 2008 Sun Microsystems, Inc.
  */
 
-package org.netbeans.modules.soa.mappercore;
+package org.netbeans.modules.iep.model.impl;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import javax.swing.ActionMap;
-import javax.swing.InputMap;
-import javax.swing.JComponent;
-import javax.swing.KeyStroke;
-import javax.swing.tree.TreePath;
-import org.netbeans.modules.soa.mappercore.model.GraphSubset;
+import org.netbeans.modules.iep.model.ExternalTablePollingStreamOperatorComponent;
+import org.netbeans.modules.iep.model.IEPModel;
+import org.netbeans.modules.iep.model.Property;
+import org.netbeans.modules.iep.model.TableInputOperatorComponent;
+import org.w3c.dom.Element;
 
 /**
  *
- * @author AlexanderPermyakov
+ * @author radval
  */
-public class CopyCanvasAction extends MapperKeyboardAction {
-    CopyCanvasAction(Canvas canvas) {
-        super(canvas); 
-    }
-    
-    @Override
-    public String getActionKey() {
-        return "Copy-Action";
+public class TableInputOperatorComponentImpl extends OperatorComponentImpl implements  TableInputOperatorComponent {
+
+    public TableInputOperatorComponentImpl(IEPModel model,  Element e) {
+        super(model, e);
     }
 
-    @Override
-    public KeyStroke[] getShortcuts() {
-        return new KeyStroke[] {
-          KeyStroke.getKeyStroke(KeyEvent.VK_C, KeyEvent.CTRL_DOWN_MASK),
-          KeyStroke.getKeyStroke(KeyEvent.VK_INSERT, KeyEvent.CTRL_DOWN_MASK),
-          KeyStroke.getKeyStroke(KeyEvent.VK_COPY, 0)
-        };
+    public TableInputOperatorComponentImpl(IEPModel model) {
+        super(model);
     }
 
-    public void actionPerformed(ActionEvent e) {
-        SelectionModel selectionModel = canvas.getSelectionModel();
-        TreePath treePath = selectionModel.getSelectedPath();
-        if (treePath == null) { return; }
+    public void setDatabaseJndiName(String databaseJndiName) {
+        Property p = super.getProperty(PROP_DATABASE_JNDI_NAME);
+        if(p == null) {
+            p = getModel().getFactory().createProperty(getModel());
+            p.setName(PROP_DATABASE_JNDI_NAME);
+            addProperty(p);
+        }
         
-        canvas.setBufferCopyPaste(selectionModel.getSelectedSubset());
+        p.setValue(databaseJndiName);
     }
+
+    public String getDatabaseJndiName() {
+        String databaseJndiName = null;
+        
+        Property p = super.getProperty(PROP_DATABASE_JNDI_NAME);
+        if(p != null) {
+            databaseJndiName = p.getValue();
+        }
+
+        return databaseJndiName;
+    }
+
+    public void setExternalTableName(String tableName) {
+        Property p = super.getProperty(PROP_EXTERNAL_TABLE_NAME);
+        if(p == null) {
+            p = getModel().getFactory().createProperty(getModel());
+            p.setName(PROP_EXTERNAL_TABLE_NAME);
+            addProperty(p);
+        }
+        
+        p.setValue(tableName);
+    }
+
+    public String getExternalTableName() {
+        String tableName = null;
+        
+        Property p = super.getProperty(PROP_DATABASE_JNDI_NAME);
+        if(p != null) {
+            tableName = p.getValue();
+        }
+
+        return tableName;
+    }
+
 }
