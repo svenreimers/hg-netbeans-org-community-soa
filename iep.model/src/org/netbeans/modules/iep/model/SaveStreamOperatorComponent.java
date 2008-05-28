@@ -43,23 +43,10 @@ package org.netbeans.modules.iep.model;
  *
  * @author radval
  */
-public interface TableInputOperatorComponent extends OperatorComponent {
+public class SaveStreamOperatorComponent {
 
+    public static String PROP_TABLE_NAME = "tableName";
+    
     public static String PROP_DATABASE_JNDI_NAME = "databaseJndiName";
-    
-    public static String PROP_EXTERNAL_TABLE_NAME = "externalTableName";
-    
-    public void setGlobalId(String globalId);
-    
-    public String getGlobalId();
-    
-    public void setDatabaseJndiName(String jndiName);
-    
-    public String getDatabaseJndiName();
-    
-    public void setExternalTableName(String tableName);
-    
-    public String getExternalTableName();
-    
     
 }
