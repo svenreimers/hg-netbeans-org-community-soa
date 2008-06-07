@@ -37,29 +37,33 @@
  * Portions Copyrighted 2008 Sun Microsystems, Inc.
  */
 
-package org.netbeans.module.iep.editor.xsd.nodes;
+package org.netbeans.modules.iep.editor.xsd.nodes;
 
-import java.io.File;
-import java.io.IOException;
-import org.netbeans.modules.xml.axi.AXIModel;
-import org.netbeans.modules.xml.axi.AXIModelFactory;
-import org.netbeans.modules.xml.schema.model.SchemaModel;
-import org.netbeans.modules.xml.schema.model.SchemaModelFactory;
-import org.netbeans.modules.xml.xam.ModelSource;
-import org.netbeans.modules.xml.xam.locator.CatalogModelException;
-import org.openide.filesystems.FileObject;
-import org.openide.filesystems.FileUtil;
+import org.netbeans.modules.iep.editor.xsd.nodes.images.NodeIcons;
+import org.netbeans.modules.xml.axi.Attribute;
 
 /**
  *
  * @author radval
  */
-public class AxiModelHelper {
- 
-    public static AXIModel getAXIModel(FileObject thisFileObj) throws CatalogModelException, IOException {
-        ModelSource modelSource = org.netbeans.modules.xml.retriever.catalog.Utilities.getModelSource(thisFileObj, false); 
-        SchemaModel model = SchemaModelFactory.getDefault().getModel(modelSource);
-        return AXIModelFactory.getDefault().getModel(model);
+public class SchemaAttributeNode extends AbstractSchemaArtifactNode implements SelectableTreeNode {
+
+    private boolean mSelected;
+    
+    public SchemaAttributeNode(Attribute attr) {
+        super(attr);
+        
+        
+        this.mIcon = NodeIcons.ATTRIBUTE.getIcon();
+        this.setAllowsChildren(false);
     }
     
+    public boolean isSelected() {
+        return mSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.mSelected = selected;
+    }
+
 }
