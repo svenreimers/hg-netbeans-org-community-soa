@@ -17,24 +17,24 @@
  * Microsystems, Inc. All Rights Reserved.
  */
 
-package org.netbeans.modules.iep.editor.palette.items.relationConverter;
+package org.netbeans.modules.iep.editor.palette.items.external;
 
 import org.netbeans.modules.iep.editor.tcg.palette.TcgActiveEditorDrop;
 
 /*
- * Table.java
+ * StreamInput.java
  *
  * Created on January 3, 2006, 5:18 PM
  *
- * @author Bing Lu
+ * 
  */
-public class Table extends TcgActiveEditorDrop {
+public class ReplayStream extends TcgActiveEditorDrop {
     
     /** 
-     * Creates a new instance of Table 
+     * Creates a new instance of ReplayStream 
      */
-    public Table() {
-        mPath = "/IEP/Operator/Table";
+    public ReplayStream() {
+        mPath = "/IEP/External/ReplayStream";
     }
     
 }
