@@ -17,24 +17,20 @@
  * Microsystems, Inc. All Rights Reserved.
  */
 
-package org.netbeans.modules.iep.editor.palette.items.relationConverter;
+package org.netbeans.modules.soa.ui.tree;
 
-import org.netbeans.modules.iep.editor.tcg.palette.TcgActiveEditorDrop;
+import java.util.List;
+import javax.swing.Action;
+import javax.swing.tree.TreePath;
 
-/*
- * Table.java
- *
- * Created on January 3, 2006, 5:18 PM
- *
- * @author Bing Lu
+/**
+ * The SPI interface for rendering tree items.
+ * 
+ * An external code can provide an instance of such interface 
+ * to perform required view of tree items. 
+ * 
+ * @author nk160297
  */
-public class Table extends TcgActiveEditorDrop {
-    
-    /** 
-     * Creates a new instance of Table 
-     */
-    public Table() {
-        mPath = "/IEP/Operator/Table";
-    }
-    
+public interface TreeItemActionsProvider {
+    public List<Action> getMenuActions(TreeItem treeItem, Object context, TreePath treePath);
 }

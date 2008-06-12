@@ -17,34 +17,24 @@
  * Microsystems, Inc. All Rights Reserved.
  */
 
-package org.netbeans.modules.bpel.mapper.cast;
+package org.netbeans.modules.iep.editor.palette.items.external;
 
-import org.netbeans.modules.bpel.mapper.tree.search.SimpleFinder;
-import org.netbeans.modules.xml.schema.model.GlobalType;
+import org.netbeans.modules.iep.editor.tcg.palette.TcgActiveEditorDrop;
 
-/**
- * Looks for a Global Type item in the SubtypeTreeModel.
+/*
+ * StreamInput.java
+ *
+ * Created on January 3, 2006, 5:18 PM
+ *
  * 
- * @author nk160297
  */
-public class GTypeFinder extends SimpleFinder {
-
-    private GlobalType mGType;
+public class ReplayStream extends TcgActiveEditorDrop {
     
-    public GTypeFinder(GlobalType gType) {
-        mGType = gType;
+    /** 
+     * Creates a new instance of ReplayStream 
+     */
+    public ReplayStream() {
+        mPath = "/IEP/External/ReplayStream";
     }
     
-    protected boolean isFit(Object treeItem) {
-        if (treeItem == mGType) {
-             // found!!!
-            return true;
-        }
-        return false;
-    }
-
-    protected boolean drillDeeper(Object treeItem) {
-        return true;
-    }
-
 }
