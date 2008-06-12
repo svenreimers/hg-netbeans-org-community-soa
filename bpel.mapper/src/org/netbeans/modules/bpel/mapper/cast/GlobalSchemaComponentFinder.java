@@ -17,39 +17,38 @@
  * Microsystems, Inc. All Rights Reserved.
  */
 
-package org.netbeans.modules.bpel.mapper.predicates;
+package org.netbeans.modules.bpel.mapper.cast;
 
 import org.netbeans.modules.bpel.mapper.tree.search.SimpleFinder;
+import org.netbeans.modules.xml.schema.model.ReferenceableSchemaComponent;
 import org.netbeans.modules.xml.schema.model.SchemaComponent;
 
 /**
- * It is intended to look for a set of predicated schema tree item. 
+ * Looks for a schema component item in the SubtypeTreeModel.
+ * 
  * @author nk160297
  */
-public class PredicatesSetFinder extends SimpleFinder {
+public class GlobalSchemaComponentFinder extends SimpleFinder {
 
-    private SchemaComponent mSchemaComp;
+    private SchemaComponent mGlobalSComp;
     
-    public PredicatesSetFinder(SchemaComponent schemaComp) {
-        mSchemaComp = schemaComp;
+    public GlobalSchemaComponentFinder(SchemaComponent gSchemaComp) {
+        mGlobalSComp = gSchemaComp;
     }
     
     protected boolean isFit(Object treeItem) {
-        if (mSchemaComp == null) {
-            return treeItem instanceof AbstractPredicate;
-        } else {
-            if (treeItem instanceof AbstractPredicate) {
-                SchemaComponent sComp = 
-                        ((AbstractPredicate)treeItem).getSComponent();
-                return sComp.equals(mSchemaComp);
-            }
+        if (treeItem == mGlobalSComp) {
+             // found!!!
+            return true;
         }
-        //
         return false;
     }
 
     protected boolean drillDeeper(Object treeItem) {
-        return false;
+        if (treeItem instanceof ReferenceableSchemaComponent) {
+            return false;
+        }
+        return true;
     }
 
 }
