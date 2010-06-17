@@ -24,6 +24,10 @@
             <code-name-base>org.netbeans.modules.wsdlextensions.file</code-name-base>
             <module-dependencies>
                 <dependency>
+                    <code-name-base>org.netbeans.modules.soa.kit</code-name-base>
+                    <run-dependency><specification-version>6.9</specification-version></run-dependency>
+                </dependency>
+                <dependency>
                     <code-name-base>org.jdesktop.layout</code-name-base>
                     <build-prerequisite/>
                     <compile-dependency/>
