@@ -12,10 +12,8 @@
     </volume>
     <volume>
         <type>src</type>
-        
     </volume>
     <volume>
         <type>javadoc</type>            
-        
     </volume>
 </library>

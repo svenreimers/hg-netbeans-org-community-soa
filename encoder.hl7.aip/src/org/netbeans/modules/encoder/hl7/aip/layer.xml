@@ -6,12 +6,13 @@
             <folder name="x-schema+xml">
                 <folder name="Actions">
                     <folder name="encoding">
-                        <file name="test-enc.instance">
-                            <attr name="instanceClass" stringvalue="org.netbeans.modules.encoder.ui.tester.action.TestEncodingAction"/>
-                        </file>
+                        <file name="apply-hl7.instance">
+                            <attr name="instanceClass" stringvalue="org.netbeans.modules.encoder.hl7.aip.action.ApplyHL7EncodingAction"/>
+                        </file> 
                     </folder>
                 </folder>
             </folder>
         </folder>
     </folder>
 </filesystem>
+
