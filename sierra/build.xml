@@ -367,9 +367,13 @@
     <target name=   "do-encoder">
         <antcall target="do-module"><param name="module" value="encoder"/></antcall>
         <antcall target="do-module"><param name="module" value="encoder.custom"/></antcall>
-        <antcall target="do-module"><param name="module" value="encoder.ui.basic"/></antcall>
         <antcall target="do-module"><param name="module" value="encoder.custom.aip"/></antcall>
+        <antcall target="do-module"><param name="module" value="encoder.ui.basic"/></antcall>
         <antcall target="do-module"><param name="module" value="encoder.ui.tester"/></antcall>
+        <antcall target="do-module"><param name="module" value="encoder.coco"/></antcall>
+        <antcall target="do-module"><param name="module" value="encoder.coco.ui"/></antcall>
+        <antcall target="do-module"><param name="module" value="encoder.hl7"/></antcall>
+        <antcall target="do-module"><param name="module" value="encoder.hl7.aip"/></antcall>
     </target>
 
     <!-- wsdlextensions -->
