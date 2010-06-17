@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE library PUBLIC "-//NetBeans//DTD Library Declaration 1.0//EN" "http://www.netbeans.org/dtds/library-declaration-1_0.dtd">
 <library version="1.0">
-    <name>Encoder-Custom</name>
+    <name>Encoder-HL7</name>
     <type>j2se</type>
-    <localizing-bundle>com.sun.encoder.custom.Bundle</localizing-bundle>
+    <localizing-bundle>com.sun.encoder.hl7.Bundle</localizing-bundle>
     <volume>
         <type>classpath</type>
-        <resource>jar:nbinst://com.sun.encoder.custom/modules/ext/custom.jar!/</resource>
-        <resource>jar:nbinst://com.sun.encoder.custom/modules/ext/customencoder-xsdextension.jar!/</resource>
+        <resource>jar:nbinst://com.sun.encoder.hl7/modules/ext/hl7.jar!/</resource>
+        <resource>jar:nbinst://com.sun.encoder.hl7/modules/ext/hl7encoder-xsdextension.jar!/</resource>
     </volume>
     <volume>
         <type>src</type>
