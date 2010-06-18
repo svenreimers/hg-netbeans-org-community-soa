@@ -113,6 +113,11 @@
             <zipfileset dir="${home}/nbbuild">
                 <include name="netbeans/**"/>
                 <exclude name="netbeans/ergonomics/**"/>
+                <exclude name="netbeans/groovy/**"/>
+                <exclude name="netbeans/identity/**"/>
+                <exclude name="netbeans/javacard/**"/>
+                <exclude name="netbeans/mobility/**"/>
+                <exclude name="netbeans/profiler/**"/>
                 <exclude name="netbeans/moduleCluster.properties"/>
                 <exclude name="netbeans/**/.lastModified"/>
             </zipfileset>
