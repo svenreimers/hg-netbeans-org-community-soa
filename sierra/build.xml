@@ -112,6 +112,7 @@
         <zip destfile="${cache}/latest/${build.name}_${env.BUILD_NUMBER}_${time.stamp}.zip">
             <zipfileset dir="${home}/nbbuild">
                 <include name="netbeans/**"/>
+                <exclude name="netbeans/ergonomics/**"/>
                 <exclude name="netbeans/moduleCluster.properties"/>
                 <exclude name="netbeans/**/.lastModified"/>
             </zipfileset>
@@ -144,12 +145,13 @@
 
     <!-- javadoc -->
     <target name="javadoc">
-        <ant target="javadoc" dir="${home}/print"/>
+        <!--ant target="javadoc" dir="${home}/print"/-->
     </target>
 
     <!-- module -->
     <target name="build-module">
-        <ant dir="${home}/${module}" target="netbeans"/>
+        <!--echo message="============= ${module} ============="/-->
+        <!--ant dir="${home}/${module}" target="netbeans"/-->
     </target>
 
     <!-- build -->
