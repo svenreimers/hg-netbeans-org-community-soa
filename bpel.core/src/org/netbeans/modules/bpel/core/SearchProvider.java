@@ -61,7 +61,7 @@ final class SearchProvider extends org.netbeans.modules.xml.search.spi.SearchPro
 
   // vlv
   public SearchProvider(DataObject data) {
-    super(null, data);
+      super(null, data);
   }
 
   @Override
