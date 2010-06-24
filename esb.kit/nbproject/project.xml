@@ -71,8 +71,8 @@
             <!--dependency><code-name-base>org.netbeans.modules.edm.project</code-name-base><run-dependency><specification-version>6.9</specification-version></run-dependency></dependency-->
 
             <!-- etl -->
-            <!--dependency><code-name-base>org.netbeans.modules.etl.editor</code-name-base><run-dependency><specification-version>6.9</specification-version></run-dependency></dependency-->
-            <!--dependency><code-name-base>org.netbeans.modules.etl.project</code-name-base><run-dependency><specification-version>6.9</specification-version></run-dependency></dependency-->
+            <dependency><code-name-base>org.netbeans.modules.etl.editor</code-name-base><run-dependency><specification-version>6.9</specification-version></run-dependency></dependency>
+            <dependency><code-name-base>org.netbeans.modules.etl.project</code-name-base><run-dependency><specification-version>6.9</specification-version></run-dependency></dependency>
 
             </module-dependencies>
             <public-packages/>
