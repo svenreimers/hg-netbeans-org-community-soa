@@ -158,10 +158,10 @@ is divided into following sections:
                         <include name="org-netbeans-modules-etl-project.jar"/>
                         <include name="org-netbeans-modules-soa-ui.jar"/>
                     </fileset>
-                    <fileset dir="${{module.install.dir}}/ext">
+                    <fileset dir="${{module.install.dir}}/ext/etlpro">
                         <include name="org-netbeans-modules-etl-project-anttask.jar"/>
                     </fileset>
-                    <fileset dir="${{o.n.soa.libs.wsdl4j.dir}}/modules">
+                    <fileset dir="${{module.install.dir}}">
                         <include name="org-netbeans-soa-libs-wsdl4j.jar" />
                     </fileset>
                     <fileset dir="${{netbeans.home}}/core">
@@ -169,6 +169,7 @@ is divided into following sections:
                     </fileset>
                     <fileset dir="${{netbeans.home}}/lib">
                         <include name="org-openide-util.jar" />
+                        <include name="org-openide-util-lookup.jar"/>
                     </fileset>
                     <fileset dir="${{netbeans.home}}/modules">
                         <include name="org-openide-text.jar" />
@@ -185,13 +186,13 @@ is divided into following sections:
                         <include name="org-openide-io.jar"/>
                         <include name="org-openide-explorer.jar"/>
                     </fileset>
-                    <fileset dir="${{xml.validation.dir}}/modules/">
+                    <fileset dir="${{netbeans.home}}/../xml/modules/">
                         <include name="org-netbeans-modules-xml-validation.jar"/>
                     </fileset>
-                    <fileset dir="${{netbeans.home}}/../ide12/modules/">
+                    <fileset dir="${{netbeans.home}}/../ide/modules/">
                         <include name="org-netbeans-api-xml.jar"/>
                     </fileset>
-                    <fileset dir="${{netbeans.home}}/../ide12/modules/">
+                    <fileset dir="${{netbeans.home}}/../ide/modules/">
                         <include name="org-netbeans-modules-db.jar"/>
                     </fileset>
                 </path>
