@@ -55,9 +55,9 @@
     <property name="sierra.name" value="soa-69"/>
     <property name="sierra.user" value=".netbeans/sierra"/>
 
-    <!-- NetBeans 6.9 FCS -->
+    <!-- NetBeans 6.9 FCS ML -->
     <property name="netbeans.host" value="http://smetiste.czech.sun.com"/>
-    <property name="netbeans.path" value="builds/netbeans/6.9/fcs/latest/zip"/>
+    <property name="netbeans.path" value="builds/netbeans/6.9/fcs/latest/ml/zip"/>
     <property name="netbeans.zip"  value="netbeans-6.9.zip"/>
     <property name="netbeans.user" value=".netbeans/6.9"/>
 
