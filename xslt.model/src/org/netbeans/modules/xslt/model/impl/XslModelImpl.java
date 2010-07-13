@@ -113,8 +113,9 @@ class XslModelImpl extends AbstractDocumentModel<XslComponent>
     
     @Override
     public ChangeInfo prepareChangeInfo(List<? extends Node> pathToRoot,
-            List<? extends Node> nsContextPathToRoot) {
-        ChangeInfo change = super.prepareChangeInfo(pathToRoot, nsContextPathToRoot);
+            List<? extends Node> nsContextPathToRoot) 
+    {
+        ChangeInfo change = super.prepareChangeInfo((List)pathToRoot, (List)nsContextPathToRoot);
         DocumentComponent parentComponent = findComponent(change.getRootToParentPath());
         if (parentComponent == null) {
             return change;
