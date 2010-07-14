@@ -164,6 +164,7 @@
     
     <target name="build-01">
         <ant dir="${home}/xml.kit" target="netbeans"/>
+        <ant dir="${home}/xml.xam" target="netbeans"/>
         <ant dir="${home}/soa.kit" target="netbeans"/>
     </target>
 
