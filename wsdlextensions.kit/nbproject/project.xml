@@ -56,17 +56,11 @@
             <dependency><code-name-base>org.netbeans.modules.wsdlextensions.file</code-name-base><run-dependency><specification-version>6.9</specification-version></run-dependency></dependency>
             <dependency><code-name-base>org.netbeans.modules.wsdlextensions.ftp</code-name-base><run-dependency><specification-version>6.9</specification-version></run-dependency></dependency>
             <dependency><code-name-base>org.netbeans.modules.wsdlextensions.hl7</code-name-base><run-dependency><specification-version>6.9</specification-version></run-dependency></dependency>
-            <dependency><code-name-base>org.netbeans.modules.wsdlextensions.ims</code-name-base><run-dependency><specification-version>6.9</specification-version></run-dependency></dependency>
             <dependency><code-name-base>org.netbeans.modules.wsdlextensions.jdbc</code-name-base><run-dependency><specification-version>6.9</specification-version></run-dependency></dependency>
             <dependency><code-name-base>org.netbeans.modules.wsdlextensions.jms</code-name-base><run-dependency><specification-version>6.9</specification-version></run-dependency></dependency>
             <dependency><code-name-base>org.netbeans.modules.wsdlextensions.ldap</code-name-base><run-dependency><specification-version>6.9</specification-version></run-dependency></dependency>
-            <dependency><code-name-base>org.netbeans.modules.wsdlextensions.mq</code-name-base><run-dependency><specification-version>6.9</specification-version></run-dependency></dependency>
             <dependency><code-name-base>org.netbeans.modules.wsdlextensions.rest</code-name-base><run-dependency><specification-version>6.9</specification-version></run-dependency></dependency>
-            <dependency><code-name-base>org.netbeans.modules.wsdlextensions.sap</code-name-base><run-dependency><specification-version>6.9</specification-version></run-dependency></dependency>
             <dependency><code-name-base>org.netbeans.modules.wsdlextensions.scheduler</code-name-base><run-dependency><specification-version>6.9</specification-version></run-dependency></dependency>
-            <dependency><code-name-base>org.netbeans.modules.wsdlextensions.smtp</code-name-base><run-dependency><specification-version>6.9</specification-version></run-dependency></dependency>
-            <dependency><code-name-base>org.netbeans.modules.wsdlextensions.snmp</code-name-base><run-dependency><specification-version>6.9</specification-version></run-dependency></dependency>
-            <dependency><code-name-base>org.netbeans.modules.wsdlextensions.swift</code-name-base><run-dependency><specification-version>6.9</specification-version></run-dependency></dependency>
 
             </module-dependencies>
             <public-packages/>
