@@ -45,7 +45,7 @@
 <project name="main" basedir="." default="main">
     <import file="build.tst"/>
 
-    <target name="main" depends="init,netbeans,build,javadoc,zip"/>
+    <target name="main" depends="init,netbeans,clean,build,javadoc,zip"/>
     <target name="test" depends="get-daily-test,sierra"/>
 
     <target name="init">
@@ -142,9 +142,16 @@
     </target>
 
     <!-- module -->
-    <target name="build-module">
-        <!--echo message="============= ${module} ============="/-->
-        <!--ant dir="${home}/${module}" target="netbeans"/-->
+    <!--target name="build-module">
+        <echo message="============= ${module} ============="/>
+        <ant dir="${home}/${module}" target="netbeans"/>
+    </target-->
+
+    <!-- clean -->
+    <target name="clean">
+        <delete>
+            <fileset dir="${home}" includes="**/build/**/*"/>
+        </delete>
     </target>
 
     <!-- build -->
@@ -152,7 +159,6 @@
     
     <target name="build-01">
         <ant dir="${home}/xml.kit" target="netbeans"/>
-        <!-- todo r ant dir="${home}/xml.xam" target="netbeans"/-->
         <ant dir="${home}/soa.kit" target="netbeans"/>
     </target>
 
