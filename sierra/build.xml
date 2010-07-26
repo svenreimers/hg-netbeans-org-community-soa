@@ -45,7 +45,7 @@
 <project name="main" basedir="." default="main">
     <import file="build.tst"/>
 
-    <target name="main" depends="init,netbeans,build,javadoc,unit-test,zip"/>
+    <target name="main" depends="init,netbeans,build,javadoc,zip"/>
     <target name="test" depends="get-daily-test,sierra"/>
 
     <target name="init">
@@ -90,18 +90,6 @@
         <get src="${sierra.url}" dest="${cache}/netbeans/${sierra.name}.zip" usetimestamp="true"/>
         <delete dir="${home}/nbbuild/netbeans"/>
         <unzip src="${cache}/netbeans/${sierra.name}.zip" dest="${home}/nbbuild"/>
-    </target>
-
-    <!-- unit test -->
-    <target name="unit-test">
-        <ant target="test" dir="${home}/print"/>
-        <ant target="test" dir="${home}/xml.xam"/>
-        <ant target="test" dir="${home}/xml.xdm"/>
-        <ant target="test" dir="${home}/xml.search"/>
-        <ant target="test" dir="${home}/xml.wsdl.model"/>
-        <ant target="test" dir="${home}/soa.ui"/>
-        <ant target="test" dir="${home}/bpel.model"/>
-        <ant target="test" dir="${home}/bpel.mapper"/>
     </target>
 
     <!-- zip -->
@@ -164,7 +152,7 @@
     
     <target name="build-01">
         <ant dir="${home}/xml.kit" target="netbeans"/>
-        <ant dir="${home}/xml.xam" target="netbeans"/>
+        <!-- todo r ant dir="${home}/xml.xam" target="netbeans"/-->
         <ant dir="${home}/soa.kit" target="netbeans"/>
     </target>
 
