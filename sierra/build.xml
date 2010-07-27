@@ -46,7 +46,7 @@
     <import file="build.tst"/>
 
     <target name="main" depends="init,netbeans,clean,build,javadoc,zip"/>
-    <target name="test" depends="get-daily-test,clean,sierra"/>
+    <target name="test" depends="get-daily-test,clean,init,sierra"/>
 
     <target name="init">
         <property name="env.BUILD_NUMBER" value=""/>
