@@ -56,10 +56,16 @@
     <property name="sierra.user" value=".netbeans/sierra"/>
 
     <!-- NetBeans 6.9 FCS ML -->
+    <!-- property name="netbeans.host" value="http://smetiste.czech.sun.com"/ -->
+    <!-- property name="netbeans.path" value="builds/netbeans/6.9/fcs/latest/ml/zip"/ -->
+    <!-- property name="netbeans.zip"  value="netbeans-6.9.zip"/ -->
+    <!-- property name="netbeans.user" value=".netbeans/6.9"/ -->
+
+    <!-- NetBeans 6.9.1 latest daily -->
     <property name="netbeans.host" value="http://smetiste.czech.sun.com"/>
-    <property name="netbeans.path" value="builds/netbeans/6.9/fcs/latest/ml/zip"/>
-    <property name="netbeans.zip"  value="netbeans-6.9.zip"/>
-    <property name="netbeans.user" value=".netbeans/6.9"/>
+    <property name="netbeans.path" value="builds/netbeans/6.9.1/daily/latest/zip"/>
+    <property name="netbeans.zip"  value="netbeans-6.9.1.zip"/>
+    <property name="netbeans.user" value=".netbeans/6.9.1dev"/>
 
     <!-- cvs -->
     <property name="test.cvs.host" value=":pserver:guest@cvs.dev.java.net:/cvs"/>

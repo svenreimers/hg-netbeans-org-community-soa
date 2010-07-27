@@ -48,12 +48,14 @@
     <target name="all-test" depends="unit-test,sample-test,project-test"/>
     
     <!-- unit test -->
-    <target name="unit-test">
-        <ant target="test" dir="${home}/print"/>
-        <ant target="test" dir="${home}/xml.xam"/>
-        <ant target="test" dir="${home}/xml.xdm"/>
+    <target name="unit-test" depends="test-u1"/>
+
+    <target name="test-u1">
+        <!-- ant target="test" dir="${home}/print"/-->
+        <!-- ant target="test" dir="${home}/xml.xam"/-->
+        <!-- ant target="test" dir="${home}/xml.xdm"/-->
+        <!-- ant target="test" dir="${home}/xml.wsdl.model"/-->
         <ant target="test" dir="${home}/xml.search"/>
-        <ant target="test" dir="${home}/xml.wsdl.model"/>
         <ant target="test" dir="${home}/soa.ui"/>
         <ant target="test" dir="${home}/bpel.model"/>
         <ant target="test" dir="${home}/bpel.mapper"/>
