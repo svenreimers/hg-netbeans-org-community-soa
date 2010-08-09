@@ -57,8 +57,8 @@
         <!-- ant target="test" dir="${home}/xml.wsdl.model"/-->
         <ant target="test" dir="${home}/xml.search"/>
         <ant target="test" dir="${home}/soa.ui"/>
-        <ant target="test" dir="${home}/bpel.mapper"/>
         <ant target="test" dir="${home}/bpel.model"/>
+        <ant target="test" dir="${home}/bpel.mapper"/>
     </target>
 
     <!-- sample test -->
