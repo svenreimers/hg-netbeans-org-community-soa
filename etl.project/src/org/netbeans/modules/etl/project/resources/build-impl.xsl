@@ -158,7 +158,7 @@ is divided into following sections:
                         <include name="org-netbeans-modules-etl-project.jar"/>
                         <include name="org-netbeans-modules-soa-ui.jar"/>
                     </fileset>
-                    <fileset dir="${{module.install.dir}}/ext/etlpro">
+                    <fileset dir="${{module.install.dir}}/ext">
                         <include name="org-netbeans-modules-etl-project-anttask.jar"/>
                     </fileset>
                     <fileset dir="${{module.install.dir}}">
