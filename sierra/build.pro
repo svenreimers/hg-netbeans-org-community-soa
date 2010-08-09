@@ -49,7 +49,7 @@
     <property name="netbeans.type" value="java"/>
 
     <!-- GlassFish ESB latest continuous -->
-    <property name="sierra.host" value="http://nephrite.russia.sun.com:8080"/>
+    <property name="sierra.host" value="http://beryl.russia.sun.com:8080"/>
     <property name="sierra.path" value="hudson/job/soa-69/ws/cache/latest"/>
     <property name="sierra.file" value="soa-69.zip"/>
     <property name="sierra.name" value="soa-69"/>
