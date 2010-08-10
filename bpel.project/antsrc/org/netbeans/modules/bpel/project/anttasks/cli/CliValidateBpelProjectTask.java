@@ -83,6 +83,8 @@ public class CliValidateBpelProjectTask extends Task {
     }
     
     public void setAllowBuildWithError(String flag) {
+//System.out.println();
+//System.out.println("setAllowBuildWithError: " + flag);
         if (flag == null) {
             return;
         }
@@ -92,6 +94,7 @@ public class CliValidateBpelProjectTask extends Task {
         else if (flag.equals("true")) {
             myAllowBuildWithError = true;
         }
+//System.out.println("myAllowBuildWithError: " + myAllowBuildWithError);
     }
     
     public void setValidation(String flag) {
@@ -122,6 +125,9 @@ public class CliValidateBpelProjectTask extends Task {
             driver = antTaskClass.getMethod("setAllowBuildWithError", new Class[] {String.class});
             param = new Object[] {"" + myAllowBuildWithError};
             driver.invoke(validateObj, param);
+//System.out.println();
+//System.out.println("invoke.setAllowBuildWithError: " + myAllowBuildWithError);
+//System.out.println();
 
             driver = antTaskClass.getMethod("setValidation", new Class[] {String.class});
             String type = "complete";
@@ -145,6 +151,8 @@ public class CliValidateBpelProjectTask extends Task {
             e.printStackTrace();
             throw new BuildException("Exception occured.", e);
         }
+//System.out.println("11: myAllowBuildWithError: " + myAllowBuildWithError);
+
         if (isErrors != null && isErrors.booleanValue()) {
             if ( !myAllowBuildWithError) {
                 throw new BuildException(Xml.FOUND_VALIDATION_ERRORS);
