@@ -213,7 +213,7 @@ public class InboundMessagePanel extends javax.swing.JPanel implements AncestorL
         resetView();
         populateView(mWsdlComponent);
         mMessageTypePanel.setDescriptionPanel(descPanel);
-        
+
         initListeners();
     }
 
@@ -426,7 +426,7 @@ public class InboundMessagePanel extends javax.swing.JPanel implements AncestorL
         if (!mSolicit) {
             pollIntervalText.setText("5000");
         }
-        
+
         archiveCheck.setSelected(true);
         stageCheck.setSelected(true);
 
@@ -537,7 +537,7 @@ public class InboundMessagePanel extends javax.swing.JPanel implements AncestorL
 
         archiveCheck.setToolTipText(mBundle.getString("DESC_Attribute_Message_archive"));
         stageCheck.setToolTipText(mBundle.getString("DESC_Attribute_Message_stage"));
-        
+
         if (pollMessage != null) {
             messageNamePrefixText.setText(pollMessage.getMessageNamePrefixIB());
             messageNameText.setText(pollMessage.getMessageName());
@@ -550,7 +550,7 @@ public class InboundMessagePanel extends javax.swing.JPanel implements AncestorL
 
             archiveCheck.setSelected(pollMessage.getArchiveEnabled());
             stageCheck.setSelected(pollMessage.getStagingEnabled());
-            
+
             Object obj = pollMessage.getParent();
             Collection<Part> parts = null;
             if (obj instanceof BindingInput) {
@@ -566,7 +566,7 @@ public class InboundMessagePanel extends javax.swing.JPanel implements AncestorL
                 vect.add(part.getName());
             }
 
-            // BASED on Message Type selected, need to check if Part selected has a type            
+            // BASED on Message Type selected, need to check if Part selected has a type
             partComboBox.setModel(new DefaultComboBoxModel(vect));
             String part = pollMessage.getPart();
             if (part == null) {
@@ -780,7 +780,7 @@ public class InboundMessagePanel extends javax.swing.JPanel implements AncestorL
         pollReqOrRespConfigPanel.setPreferredSize(new java.awt.Dimension(610, 300));
         pollReqOrRespConfigPanel.setLayout(new java.awt.GridBagLayout());
 
-        requestLab.setFont(new java.awt.Font("Tahoma", 1, 11));
+        requestLab.setFont(new java.awt.Font("Dialog", 1, 11));
         org.openide.awt.Mnemonics.setLocalizedText(requestLab, org.openide.util.NbBundle.getMessage(InboundMessagePanel.class, "InboundMessagePanel.requestLab.text_1")); // NOI18N
         requestLab.setName("requestLab"); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1146,7 +1146,7 @@ private void stageCheckFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:eve
     private javax.swing.JCheckBox stageCheck;
     private javax.swing.JLabel stagePolledImgLab;
     // End of variables declaration//GEN-END:variables
-    
+
     public boolean commit() {
         boolean result = false;
         ErrorDescription error = validateMe();
@@ -1321,10 +1321,10 @@ private void stageCheckFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:eve
             return false;
         } //finally {
 //            if (wsdlModel.isIntransaction()) {
-//               wsdlModel.endTransaction(); 
-//            }                        
+//               wsdlModel.endTransaction();
+//            }
 //            return true;
-//        }   
+//        }
 
         return true;
     }
@@ -1340,10 +1340,10 @@ private void stageCheckFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:eve
             return false;
         } //finally {
 //            if (wsdlModel.isIntransaction()) {
-//               wsdlModel.endTransaction(); 
-//            }                        
+//               wsdlModel.endTransaction();
+//            }
 //            return true;
-//        } 
+//        }
 
         return true;
     }
@@ -1356,7 +1356,7 @@ private void stageCheckFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:eve
 
         pollFTPMessage.setArchiveEnabled(archiveCheck.isSelected());
         pollFTPMessage.setStagingEnabled(stageCheck.isSelected());
-        
+
         String s = null;
         if (mWzdProps != null) {
             s = (String) mWzdProps.get(FTPConstants.WSDL_PROP_MSGREPO);
@@ -1379,17 +1379,17 @@ private void stageCheckFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:eve
 
         pollFTPMessage.setUse(FTPConstants.LITERAL);
         if (mMessageTypePanel.getInputUseType() != null) {
-            if (mMessageTypePanel.getInputUseType().equals(FTPConstants.ENCODED)) {        
+            if (mMessageTypePanel.getInputUseType().equals(FTPConstants.ENCODED)) {
                 pollFTPMessage.setEncodingStyle(mMessageTypePanel.getEncodingStyle());
                 pollFTPMessage.setUse(mMessageTypePanel.getInputUseType());
             } else if ((pollFTPMessage.getUse() != null) &&
                         (mMessageTypePanel.getInputUseType().equals(FTPConstants.LITERAL))) {
-                    pollFTPMessage.setEncodingStyle(null);                   
+                    pollFTPMessage.setEncodingStyle(null);
             }
         } else {
             pollFTPMessage.setAttribute(FTPMessage.FTP_ENCODINGSTYLE_PROPERTY, null);
         }
-        
+
         if ( mMessageTypePanel.getMessageType() == FTPConstants.BINARY_MESSAGE_TYPE )
             pollFTPMessage.setFileType(FTPConstants.BINARY);
         else {
@@ -1399,10 +1399,10 @@ private void stageCheckFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:eve
                 pollFTPMessage.setCharacterEncoding(enc.trim());
             }
         }
-        
+
         if ( mMessageTypePanel.getForwardAsAttachment() )
             pollFTPMessage.setForwardAsAttachment(true);
-        
+
         // set the type of the message part if it is undefined based
         // on the MessageType option from user
         commitMessageType(binding, opName, pollFTPMessage);
@@ -1520,7 +1520,7 @@ private void stageCheckFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:eve
     }
 
     /**
-     * Returns the selected part 
+     * Returns the selected part
      * @return
      */
     public GlobalType getSelectedPartType() {
@@ -1538,7 +1538,7 @@ private void stageCheckFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:eve
     /**
      * Return message type.  Options are FileConstants.XML_MESSAGE_TYPE,
      * FileConstants.TEXT_MESSAGE_TYPE, FileConstants.ENCODED_MESSAGE_TYPE
-     * 
+     *
      * @return
      */
     int getMessageType() {

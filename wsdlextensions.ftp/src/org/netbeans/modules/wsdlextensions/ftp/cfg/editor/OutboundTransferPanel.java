@@ -396,7 +396,7 @@ public class OutboundTransferPanel extends javax.swing.JPanel implements Ancesto
             preSendLocHasPattern.setSelected(putTransfer.getPreSendLocationHasPatterns());
             sendToHasPatternCheck.setSelected(putTransfer.getSendToHasPatterns());
             bRequestResponseCorrelate = putTransfer.getMessageCorrelateEnabled();
-            
+
             Object obj = putTransfer.getParent();
             Collection<Part> parts = null;
 
@@ -415,7 +415,7 @@ public class OutboundTransferPanel extends javax.swing.JPanel implements Ancesto
 
             appendCheck.setSelected(putTransfer.getAppend());
 
-            // BASED on Message Type selected, need to check if Part selected has a type            
+            // BASED on Message Type selected, need to check if Part selected has a type
             partComboBox.setModel(new DefaultComboBoxModel(vect));
             String part = putTransfer.getPart();
             if (part == null) {
@@ -796,7 +796,7 @@ public class OutboundTransferPanel extends javax.swing.JPanel implements Ancesto
         putReqOrRespConfigPanel.setPreferredSize(new java.awt.Dimension(610, 430));
         putReqOrRespConfigPanel.setLayout(new java.awt.GridBagLayout());
 
-        titleLab.setFont(new java.awt.Font("Tahoma", 1, 11));
+        titleLab.setFont(new java.awt.Font("Dialog", 1, 11));
         org.openide.awt.Mnemonics.setLocalizedText(titleLab, org.openide.util.NbBundle.getMessage(OutboundTransferPanel.class, "OutboundTransferPanel.titleLab.text")); // NOI18N
         titleLab.setName("titleLab"); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1315,7 +1315,7 @@ private void appendCheckFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:ev
         // sendTo must be specified
         // if pre/post send operation is not NONE
         // then the corresponding location is required
-        // 
+        //
         if (sendToText.getText() == null || sendToText.getText().trim().length() == 0) {
             error = Utilities.setError(error, "TransferConfiguration.MISSING_SENDTO");
         } else {
@@ -1475,7 +1475,7 @@ private void appendCheckFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:ev
         putTransfer.setPostSendLocationHasPatterns(postSendLocHasPattern.isSelected());
 
         putTransfer.setAppend(appendCheck.isSelected());
-        
+
         Boolean b = null;
         if (mWzdProps != null) {
             b = (Boolean) mWzdProps.get(FTPConstants.WSDL_PROP_REQRESPCORRELATE);
@@ -1489,17 +1489,17 @@ private void appendCheckFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:ev
 
         putTransfer.setUse(FTPConstants.LITERAL);
         if (mMessageTypePanel.getInputUseType() != null) {
-            if (mMessageTypePanel.getInputUseType().equals(FTPConstants.ENCODED)) {        
+            if (mMessageTypePanel.getInputUseType().equals(FTPConstants.ENCODED)) {
                 putTransfer.setEncodingStyle(mMessageTypePanel.getEncodingStyle());
                 putTransfer.setUse(mMessageTypePanel.getInputUseType());
             } else if ((putTransfer.getUse() != null) &&
                         (mMessageTypePanel.getInputUseType().equals(FTPConstants.LITERAL))) {
-                    putTransfer.setEncodingStyle(null);                   
+                    putTransfer.setEncodingStyle(null);
             }
         } else {
             putTransfer.setAttribute(FTPMessage.FTP_ENCODINGSTYLE_PROPERTY, null);
         }
-        
+
         if ( mMessageTypePanel.getMessageType() == FTPConstants.BINARY_MESSAGE_TYPE )
             putTransfer.setFileType(FTPConstants.BINARY);
         else {
@@ -1591,7 +1591,7 @@ private void appendCheckFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:ev
     }
 
     /**
-     * Returns the selected part 
+     * Returns the selected part
      * @return
      */
     public GlobalType getSelectedPartType() {
@@ -1609,7 +1609,7 @@ private void appendCheckFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:ev
     /**
      * Return message type.  Options are FileConstants.XML_MESSAGE_TYPE,
      * FileConstants.TEXT_MESSAGE_TYPE, FileConstants.ENCODED_MESSAGE_TYPE
-     * 
+     *
      * @return
      */
     int getMessageType() {
@@ -1675,7 +1675,7 @@ private void appendCheckFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:ev
     private javax.swing.JLabel titleLab;
     // End of variables declaration//GEN-END:variables
 
-    
+
     public boolean getRequestResponseCorrelate() {
         return bRequestResponseCorrelate;
     }

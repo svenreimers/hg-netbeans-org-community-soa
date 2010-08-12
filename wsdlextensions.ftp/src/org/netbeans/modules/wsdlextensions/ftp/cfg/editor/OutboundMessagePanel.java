@@ -379,7 +379,7 @@ public class OutboundMessagePanel extends javax.swing.JPanel implements Ancestor
         messageRepoText.setToolTipText(mBundle.getString("DESC_Attribute_Message_messageRepository"));
         protectCheck.setToolTipText(mBundle.getString("DESC_Attribute_Message_protect"));
         stagingCheck.setToolTipText(mBundle.getString("DESC_Attribute_Message_stage"));
-        
+
         if (putMessage != null) {
             messageNamePrefixText.setText(putMessage.getMessageNamePrefixOB());
             messageNameText.setText(putMessage.getMessageName());
@@ -416,7 +416,7 @@ public class OutboundMessagePanel extends javax.swing.JPanel implements Ancestor
                 vect.add(part.getName());
             }
 
-            // BASED on Message Type selected, need to check if Part selected has a type            
+            // BASED on Message Type selected, need to check if Part selected has a type
             partComboBox.setModel(new DefaultComboBoxModel(vect));
             String part = putMessage.getPart();
             if (part == null) {
@@ -712,7 +712,7 @@ public class OutboundMessagePanel extends javax.swing.JPanel implements Ancestor
         putReqOrRespConfigPanel.setPreferredSize(new java.awt.Dimension(610, 260));
         putReqOrRespConfigPanel.setLayout(new java.awt.GridBagLayout());
 
-        requestLab.setFont(new java.awt.Font("Tahoma", 1, 11));
+        requestLab.setFont(new java.awt.Font("Dialog", 1, 11));
         org.openide.awt.Mnemonics.setLocalizedText(requestLab, org.openide.util.NbBundle.getMessage(OutboundMessagePanel.class, "OutboundMessagePanel.requestLab.text")); // NOI18N
         requestLab.setName("requestLab"); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1075,7 +1075,7 @@ private void stagingCheckFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:e
                     binding.getBindingOperations();
 
             // only 1
-            // 
+            //
             for (BindingOperation bop : bindingOperations) {
                 if (bop.getName().equals(operationName)) {
                     // put message is inside <input> if is for request
@@ -1186,22 +1186,22 @@ private void stagingCheckFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:e
         if ( mWzdProps != null ) {
             b = (Boolean)mWzdProps.get(FTPConstants.WSDL_PROP_REQRESPCORRELATE);
         }
-        
+
         putFTPMessage.setMessageCorrelateEnabled(mOneWay ? false : (b != null ? b.booleanValue() : true));
 
         putFTPMessage.setUse(FTPConstants.LITERAL);
         if (mMessageTypePanel.getInputUseType() != null) {
-            if (mMessageTypePanel.getInputUseType().equals(FTPConstants.ENCODED)) {        
+            if (mMessageTypePanel.getInputUseType().equals(FTPConstants.ENCODED)) {
                 putFTPMessage.setEncodingStyle(mMessageTypePanel.getEncodingStyle());
                 putFTPMessage.setUse(mMessageTypePanel.getInputUseType());
             } else if ((putFTPMessage.getUse() != null) &&
                         (mMessageTypePanel.getInputUseType().equals(FTPConstants.LITERAL))) {
-                    putFTPMessage.setEncodingStyle(null);                   
+                    putFTPMessage.setEncodingStyle(null);
             }
         } else {
             putFTPMessage.setAttribute(FTPMessage.FTP_ENCODINGSTYLE_PROPERTY, null);
         }
-        
+
         if ( mMessageTypePanel.getMessageType() == FTPConstants.BINARY_MESSAGE_TYPE )
             putFTPMessage.setFileType(FTPConstants.BINARY);
         else {
@@ -1320,7 +1320,7 @@ private void stagingCheckFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:e
     }
 
     /**
-     * Returns the selected part 
+     * Returns the selected part
      * @return
      */
     public GlobalType getSelectedPartType() {
@@ -1338,7 +1338,7 @@ private void stagingCheckFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:e
     /**
      * Return message type.  Options are FileConstants.XML_MESSAGE_TYPE,
      * FileConstants.TEXT_MESSAGE_TYPE, FileConstants.ENCODED_MESSAGE_TYPE
-     * 
+     *
      * @return
      */
     int getMessageType() {

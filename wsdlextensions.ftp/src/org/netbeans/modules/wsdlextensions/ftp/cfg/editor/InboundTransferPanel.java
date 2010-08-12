@@ -84,14 +84,14 @@ public class InboundTransferPanel extends javax.swing.JPanel implements Ancestor
     private javax.swing.JComboBox portTypeComboBox;
     private javax.swing.JComboBox operationNameComboBox;
     private javax.swing.JComboBox partComboBox;
-    
+
     private Part mPart = null;
     private Map<String, Object> mWzdProps;
     private PropertyChangeSupport mProxy;
     private boolean mSolicit;
     private boolean bOneWay;
     private boolean bRequestResponseCorrelate;
-    
+
     /** Creates new form InboundTransferPanel */
     public InboundTransferPanel(QName qName, WSDLComponent component, boolean oneway, boolean b, boolean solicit) {
         this(qName, component, oneway, b, solicit, null);
@@ -173,7 +173,7 @@ public class InboundTransferPanel extends javax.swing.JPanel implements Ancestor
             pollIntervalText.setVisible(false);
             pollIntervalText.setEnabled(false);
         }
-        
+
         /**
          * change title depend on the bRequest
          */
@@ -530,7 +530,7 @@ public class InboundTransferPanel extends javax.swing.JPanel implements Ancestor
         preReceiveCmdCombo.setToolTipText(mBundle.getString("DESC_Attribute_preReceiveCommand"));
         preReceiveLocHasPattern.setToolTipText(mBundle.getString("DESC_Attribute_preReceiveLocationHasPatterns"));
         receiveFromHasRegexCheck.setToolTipText(mBundle.getString("DESC_Attribute_receiveFromHasRegexs"));
-        
+
         if ( !mSolicit )
             pollIntervalText.setToolTipText(mBundle.getString("DESC_Attribute_pollIntervalMillis"));
 
@@ -545,7 +545,7 @@ public class InboundTransferPanel extends javax.swing.JPanel implements Ancestor
             preReceiveLocHasPattern.setSelected(pollTransfer.getPreReceiveLocationHasPatterns());
             receiveFromHasRegexCheck.setSelected(pollTransfer.getReceiveFromHasPatterns());
             bRequestResponseCorrelate = pollTransfer.getMessageCorrelateEnabled();
-            
+
             if ( !mSolicit )
                 pollIntervalText.setText(pollTransfer.getPollInterval());
 
@@ -564,7 +564,7 @@ public class InboundTransferPanel extends javax.swing.JPanel implements Ancestor
                 vect.add(part.getName());
             }
 
-            // BASED on Message Type selected, need to check if Part selected has a type            
+            // BASED on Message Type selected, need to check if Part selected has a type
             partComboBox.setModel(new DefaultComboBoxModel(vect));
             String part = pollTransfer.getPart();
             if (part == null) {
@@ -792,7 +792,7 @@ public class InboundTransferPanel extends javax.swing.JPanel implements Ancestor
         pollReqOrRespConfigPanel.setPreferredSize(new java.awt.Dimension(610, 430));
         pollReqOrRespConfigPanel.setLayout(new java.awt.GridBagLayout());
 
-        requestLab.setFont(new java.awt.Font("Tahoma", 1, 11));
+        requestLab.setFont(new java.awt.Font("Dialog", 1, 11));
         org.openide.awt.Mnemonics.setLocalizedText(requestLab, org.openide.util.NbBundle.getMessage(InboundTransferPanel.class, "InboundTransferPanel.requestLab.text")); // NOI18N
         requestLab.setName("requestLab"); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1321,7 +1321,7 @@ private void pollIntervalTextFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIR
         // sendTo must be specified
         // if pre/post send operation is not NONE
         // then the corresponding location is required
-        // 
+        //
         if (receiveFromText.getText() == null || receiveFromText.getText().trim().length() == 0) {
             error = Utilities.setError(error, "TransferConfiguration.MISSING_RECEIVEFROM");
         } else {
@@ -1468,10 +1468,10 @@ private void pollIntervalTextFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIR
             return false;
         } //finally {
 //            if (wsdlModel.isIntransaction()) {
-//               wsdlModel.endTransaction(); 
-//            }                        
+//               wsdlModel.endTransaction();
+//            }
 //            return true;
-//        }   
+//        }
 
         return true;
     }
@@ -1487,10 +1487,10 @@ private void pollIntervalTextFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIR
             return false;
         } //finally {
 //            if (wsdlModel.isIntransaction()) {
-//               wsdlModel.endTransaction(); 
-//            }                        
+//               wsdlModel.endTransaction();
+//            }
 //            return true;
-//        } 
+//        }
 
         return true;
     }
@@ -1507,25 +1507,25 @@ private void pollIntervalTextFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIR
         pollTransfer.setPostReceiveLocationHasPatterns(postReceiveLocHasPattern.isSelected());
 
         Boolean b = null;
-        
+
         if (mWzdProps != null) {
             b = (Boolean) mWzdProps.get(FTPConstants.WSDL_PROP_REQRESPCORRELATE);
         }
 
         // from prev panel
         pollTransfer.setMessageCorrelateEnabled(mSolicit ? false : (b != null ? b.booleanValue() : true));
-        
+
         if ( bOneWay )
             pollTransfer.setMessageCorrelateEnabled(false);
 
         pollTransfer.setUse(FTPConstants.LITERAL);
         if (mMessageTypePanel.getInputUseType() != null) {
-            if (mMessageTypePanel.getInputUseType().equals(FTPConstants.ENCODED)) {        
+            if (mMessageTypePanel.getInputUseType().equals(FTPConstants.ENCODED)) {
                 pollTransfer.setEncodingStyle(mMessageTypePanel.getEncodingStyle());
                 pollTransfer.setUse(mMessageTypePanel.getInputUseType());
             } else if ((pollTransfer.getUse() != null) &&
                         (mMessageTypePanel.getInputUseType().equals(FTPConstants.LITERAL))) {
-                    pollTransfer.setEncodingStyle(null);                   
+                    pollTransfer.setEncodingStyle(null);
             }
         } else {
             pollTransfer.setAttribute(FTPTransfer.FTP_ENCODINGSTYLE_PROPERTY, null);
@@ -1664,7 +1664,7 @@ private void pollIntervalTextFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIR
     }
 
     /**
-     * Returns the selected part 
+     * Returns the selected part
      * @return
      */
     public GlobalType getSelectedPartType() {
@@ -1682,7 +1682,7 @@ private void pollIntervalTextFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIR
     /**
      * Return message type.  Options are FileConstants.XML_MESSAGE_TYPE,
      * FileConstants.TEXT_MESSAGE_TYPE, FileConstants.ENCODED_MESSAGE_TYPE
-     * 
+     *
      * @return
      */
     int getMessageType() {
@@ -1749,7 +1749,7 @@ private void pollIntervalTextFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIR
     private javax.swing.JLabel requestLab;
     // End of variables declaration//GEN-END:variables
 
-    
+
     public boolean getRequestResponseCorrelate() {
         return bRequestResponseCorrelate;
     }

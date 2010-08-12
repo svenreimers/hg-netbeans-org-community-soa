@@ -124,7 +124,7 @@ public class FTPSettingsOneWayPanel extends javax.swing.JPanel implements Ancest
 
         // if secure ftp is explicit SSL/implicit SSL
         // key store and trust store can not both be blank
-        // 
+        //
         // enableCCC only applies to explicit SSL
         if (hostText.getText() == null || hostText.getText().trim().length() == 0) {
             error = Utilities.setError(error, "FTPSettingsValidation.MISSING_FTP_HOST");
@@ -277,7 +277,7 @@ public class FTPSettingsOneWayPanel extends javax.swing.JPanel implements Ancest
             fTPAddress.setDataChannelTimeout(dataChannelTimeoutText.getText());
             fTPAddress.setControlChannelEncoding(controlEncodingText.getText());
             fTPAddress.setPersistenceBaseDir(persistLocText.getText());
-            
+
             Port port = (Port) fTPAddress.getParent();
             Binding binding = port.getBinding().get();
             String operationName = getOperationName();
@@ -1167,7 +1167,7 @@ public class FTPSettingsOneWayPanel extends javax.swing.JPanel implements Ancest
         gridBagConstraints.insets = new java.awt.Insets(10, 150, 10, 10);
         connectionPanel.add(jSeparator2, gridBagConstraints);
 
-        connectionPanelTitleLab.setFont(new java.awt.Font("Tahoma", 1, 11));
+        connectionPanelTitleLab.setFont(new java.awt.Font("Dialog", 1, 11));
         org.openide.awt.Mnemonics.setLocalizedText(connectionPanelTitleLab, org.openide.util.NbBundle.getMessage(FTPSettingsOneWayPanel.class, "FTPSettingsOneWayPanel.connectionPanelTitleLab.text")); // NOI18N
         connectionPanelTitleLab.setName("connectionPanelTitleLab"); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1519,7 +1519,7 @@ public class FTPSettingsOneWayPanel extends javax.swing.JPanel implements Ancest
         gridBagConstraints.insets = new java.awt.Insets(10, 80, 10, 10);
         sslConfigPanel.add(jSeparator1, gridBagConstraints);
 
-        sslPanelTitleLab.setFont(new java.awt.Font("Tahoma", 1, 11));
+        sslPanelTitleLab.setFont(new java.awt.Font("Dialog", 1, 11));
         org.openide.awt.Mnemonics.setLocalizedText(sslPanelTitleLab, org.openide.util.NbBundle.getMessage(FTPSettingsOneWayPanel.class, "FTPSettingsOneWayPanel.sslPanelTitleLab.text")); // NOI18N
         sslPanelTitleLab.setName("sslPanelTitleLab"); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1809,7 +1809,7 @@ public class FTPSettingsOneWayPanel extends javax.swing.JPanel implements Ancest
         gridBagConstraints.insets = new java.awt.Insets(10, 120, 10, 10);
         advancedPanel.add(jSeparator3, gridBagConstraints);
 
-        advancedPanelTitleLab1.setFont(new java.awt.Font("Tahoma", 1, 11));
+        advancedPanelTitleLab1.setFont(new java.awt.Font("Dialog", 1, 11));
         org.openide.awt.Mnemonics.setLocalizedText(advancedPanelTitleLab1, org.openide.util.NbBundle.getMessage(FTPSettingsOneWayPanel.class, "FTPSettingsOneWayPanel.advancedPanelTitleLab1.text")); // NOI18N
         advancedPanelTitleLab1.setName("advancedPanelTitleLab1"); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -2176,7 +2176,7 @@ private void persistLocTextFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST
         bindingNameComboBox = new JComboBox();
         portTypeComboBox = new JComboBox();
         operationNameComboBox = new JComboBox();
-        
+
         /**
          * set mnemonic for tabs
          */
@@ -2191,7 +2191,7 @@ private void persistLocTextFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST
                 }
             }
         });
-        
+
         this.addAncestorListener(this);
     }
 
