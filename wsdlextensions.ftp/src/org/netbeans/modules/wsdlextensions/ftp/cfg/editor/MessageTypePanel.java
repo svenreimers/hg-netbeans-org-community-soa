@@ -56,7 +56,7 @@ public class MessageTypePanel extends javax.swing.JPanel {
     private GlobalElement mElement = null;
     private PropertyChangeSupport mPropertySupport;
     private boolean bEnableForwardAsAttach;
-    
+
     /** Creates new form MessageTypePanel */
     public MessageTypePanel(WSDLComponent component, Part part,
             FTPMessage ftpMessage, String operationName, PropertyChangeSupport topContainer, boolean forwardAsAttach) {
@@ -92,7 +92,7 @@ public class MessageTypePanel extends javax.swing.JPanel {
     /**
      * Return message type.  Options are FileConstants.XML_MESSAGE_TYPE,
      * FileConstants.TEXT_MESSAGE_TYPE, FileConstants.ENCODED_MESSAGE_TYPE
-     * 
+     *
      * @return
      */
     public int getMessageType() {
@@ -111,7 +111,7 @@ public class MessageTypePanel extends javax.swing.JPanel {
             }
         }
         return msgType;
-    }     
+    }
     /**
      * get charset for the message type selected
      * must be "text"
@@ -119,7 +119,7 @@ public class MessageTypePanel extends javax.swing.JPanel {
      */
     public String getMessageCharEncoding() {
         return messageCharEncodingComboBox.getSelectedItem() != null ?  messageCharEncodingComboBox.getSelectedItem().toString() : null;
-    }     
+    }
 
     /**
      * Return the encoding style value
@@ -145,7 +145,7 @@ public class MessageTypePanel extends javax.swing.JPanel {
     public GlobalType getSelectedPartType() {
         return mType;
     }
-    
+
     public GlobalElement getSelectedElementType() {
         return mElement;
     }
@@ -170,7 +170,7 @@ public class MessageTypePanel extends javax.swing.JPanel {
         if (mDocumentListener == null) {
             mDocumentListener = new MyDocumentListener();
         }
-        
+
         messageTypeCombo.addItemListener(mItemListener);
         messageCharEncodingComboBox.getEditor().getEditorComponent().addFocusListener(
             new java.awt.event.FocusAdapter() {
@@ -183,7 +183,7 @@ public class MessageTypePanel extends javax.swing.JPanel {
                 messageCharEncodingComboBoxFocusLost(evt);
             }}
         );
-        
+
         inputXmlDetailsBtn.addActionListener(mActionListener);
         inputEncodedTypeTfld.getDocument().addDocumentListener(mDocumentListener);
         inputXMLTfld.getDocument().addDocumentListener(mDocumentListener);
@@ -209,12 +209,12 @@ public class MessageTypePanel extends javax.swing.JPanel {
             if ( mFTPEncodable.getFileType() != null && mFTPEncodable.getFileType().trim().length() > 0 ) {
                 messageTypeCombo.setSelectedItem(mProject);
             }
-            
+
             if ( bEnableForwardAsAttach ) {
                 chkAttach.setVisible(true);
                 chkAttach.setSelected(mFTPEncodable.getForwardAsAttachment());
             }
-            
+
             if (mPart != null) {
                 String ptStr = Utilities.getPartTypeOrElementString(mPart);
 
@@ -251,8 +251,8 @@ public class MessageTypePanel extends javax.swing.JPanel {
         messageTypeCombo.addItem(FTPConstants.TEXT);
         messageTypeCombo.addItem(FTPConstants.BINARY);
         messageTypeCombo.addItem(FTPConstants.XML);
-        messageTypeCombo.addItem(FTPConstants.ENCODED_DATA);      
-    
+        messageTypeCombo.addItem(FTPConstants.ENCODED_DATA);
+
         messageCharEncodingComboBox.removeAllItems();
         messageCharEncodingComboBox.addItem("");
         SortedMap<String, Charset> cs = Charset.availableCharsets();
@@ -298,7 +298,7 @@ public class MessageTypePanel extends javax.swing.JPanel {
                         messageCharEncodingComboBox.getToolTipText()};
             } else if (evt.getSource() == chkAttach) {
                 desc = new String[]{"Forward as Attachment\n\n",
-                   chkAttach.getToolTipText()}; 
+                   chkAttach.getToolTipText()};
             }
 
             if (desc != null) {
@@ -341,7 +341,7 @@ public class MessageTypePanel extends javax.swing.JPanel {
         messageTypePanel.setPreferredSize(new java.awt.Dimension(610, 260));
         messageTypePanel.setLayout(new java.awt.GridBagLayout());
 
-        payloadProcessingSectionLab.setFont(new java.awt.Font("Tahoma", 1, 11));
+        payloadProcessingSectionLab.setFont(new java.awt.Font("Dialog", 1, 11));
         payloadProcessingSectionLab.setText(org.openide.util.NbBundle.getMessage(MessageTypePanel.class, "MessageTypePanel.payloadProcessingSectionLab.text")); // NOI18N
         payloadProcessingSectionLab.setName("payloadProcessingSectionLab"); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -577,7 +577,7 @@ private void attachCheckFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:
 
 private void messageTypeComboFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_messageTypeComboFocusGained
 // TODO add your handling code here:
-        updateDescriptionArea(evt);                                       
+        updateDescriptionArea(evt);
 }//GEN-LAST:event_messageTypeComboFocusGained
 
 private void messageTypeComboFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_messageTypeComboFocusLost
@@ -658,7 +658,7 @@ private void messageCharEncodingComboBoxFocusLost(java.awt.event.FocusEvent evt)
     public ErrorDescription validateMe() {
         return validateMe(false);
     }
-    
+
     public ErrorDescription validateMe(boolean fireEvent) {
         return validateMe(fireEvent, false);
     }
@@ -670,7 +670,7 @@ private void messageCharEncodingComboBoxFocusLost(java.awt.event.FocusEvent evt)
         if ((isXMLPayload()) && (messageTypeCombo.isEnabled())) {
             if (inputXMLTfld.getText() == null || inputXMLTfld.getText().trim().length() == 0) {
                 valid = false;
-                String msg = NbBundle.getMessage(MessageTypePanel.class, 
+                String msg = NbBundle.getMessage(MessageTypePanel.class,
                         "MessageTypePanel.XMLElementIncomplete");
                 mLogger.finest(msg);
                 error.setErrorMessage(msg);
@@ -679,7 +679,7 @@ private void messageCharEncodingComboBoxFocusLost(java.awt.event.FocusEvent evt)
                         PROPERTY_ERROR_EVT);
                 if (fireEvent) {
                     mPropertySupport.doFirePropertyChange(ExtensibilityElementConfigurationEditorComponent.
-                                PROPERTY_ERROR_EVT, null, msg);                
+                                PROPERTY_ERROR_EVT, null, msg);
                 }
             }
         } else if (isEncodedPayload()) {
@@ -687,16 +687,16 @@ private void messageCharEncodingComboBoxFocusLost(java.awt.event.FocusEvent evt)
                     (inputXMLTfld.getText().trim().length() == 0)) {
                 valid = false;
             }
-            if (!valid) {                
-                String msg = NbBundle.getMessage(MessageTypePanel.class, 
-                        "MessageTypePanel.EncodedDataIncomplete");  
+            if (!valid) {
+                String msg = NbBundle.getMessage(MessageTypePanel.class,
+                        "MessageTypePanel.EncodedDataIncomplete");
                 error.setErrorMessage(msg);
                 error.setErrorMode(
                         ExtensibilityElementConfigurationEditorComponent.
-                        PROPERTY_ERROR_EVT);   
+                        PROPERTY_ERROR_EVT);
                 if (fireEvent) {
                     mPropertySupport.doFirePropertyChange(ExtensibilityElementConfigurationEditorComponent.
-                                PROPERTY_ERROR_EVT, null, msg);                
+                                PROPERTY_ERROR_EVT, null, msg);
                 }
             }
         }
@@ -717,7 +717,7 @@ private void messageCharEncodingComboBoxFocusLost(java.awt.event.FocusEvent evt)
                 }
             }
         }
-        
+
         return error;
     }
 
@@ -747,7 +747,7 @@ private void messageCharEncodingComboBoxFocusLost(java.awt.event.FocusEvent evt)
                         DialogDisplayer.getDefault().notify(d);
                         return;
                     }
-                } 
+                }
                 inputXMLTfld.setText(partTypeStr);
             }
         } else {
@@ -867,7 +867,7 @@ private void messageCharEncodingComboBoxFocusLost(java.awt.event.FocusEvent evt)
 
     /**
      * Return true if payload is to be forwarded as an attachment
-     * @return boolean 
+     * @return boolean
      */
     public boolean getForwardAsAttachment() {
         return chkAttach.isSelected();
