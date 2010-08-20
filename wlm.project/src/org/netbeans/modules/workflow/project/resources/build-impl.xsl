@@ -176,6 +176,7 @@ is divided into following sections:
                     <pathelement path="${{esb.netbeans.platform}}/../ide/modules/org-netbeans-modules-xml-retriever.jar"/>
                     <pathelement path="${{esb.netbeans.platform}}/../ide/modules/org-netbeans-modules-projectapi.jar"/>
                     <pathelement path="${{esb.netbeans.platform}}/../platform/lib/org-openide-util.jar"/>
+                    <pathelement path="${{esb.netbeans.platform}}/../platform/lib/org-openide-util-lookup.jar"/>
                     <pathelement path="${{esb.netbeans.platform}}/../platform/modules/org-openide-loaders.jar"/>
                     <pathelement path="${{esb.netbeans.platform}}/../soa/modules/ext/log4j-1.2.13.jar"/>
                     <pathelement path="${{esb.netbeans.platform}}/../platform/modules/org-netbeans-modules-masterfs.jar"/>
