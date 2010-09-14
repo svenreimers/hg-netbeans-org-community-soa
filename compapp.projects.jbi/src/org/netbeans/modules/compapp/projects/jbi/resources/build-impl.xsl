@@ -808,6 +808,9 @@
                             <xsl:attribute name="dir">${<xsl:value-of select="$subproj"/>.su.dir}<xsl:text>/META-INF</xsl:text></xsl:attribute>
                         </fileset>
                     </move>
+                    <copy todir="${{build.dir}}">
+                        <xsl:attribute name="file">${reference.<xsl:value-of select="$subproj"/>.dist_se}</xsl:attribute>
+                    </copy>                    
                 </xsl:if>
             </xsl:for-each>
         </target>
