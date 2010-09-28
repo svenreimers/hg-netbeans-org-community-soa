@@ -30,7 +30,7 @@
 	       xmlns:xsi="http://www.w3.org/1999/XMLSchema/instance"
                xsi:schemaLocation="http://xml.netbeans.org/schema/templates 
                templates.xsd" prefix="hl7">
-    <!--template name="HL7Transport" skeleton="true">
+    <template name="HL7Transport" skeleton="true">
         <wsdlElement name="Binding">
             <extensionElement name="binding"/>
         </wsdlElement>
@@ -78,7 +78,7 @@
             </extensionElement>
 			 <extensionElement name="communicationcontrols"/>
         </wsdlElement>
-    </template-->
+    </template>
     <template name="HL7 Version 2 - Inbound">
         <wsdlTemplate file="wsdltemplates/HL7V2InOut.wsdl"/>
     </template>
