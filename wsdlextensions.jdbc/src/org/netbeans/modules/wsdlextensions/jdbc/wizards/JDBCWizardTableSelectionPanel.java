@@ -1046,7 +1046,7 @@ public class JDBCWizardTableSelectionPanel extends javax.swing.JPanel implements
             	this.addButtonModel.setEnabled(false);
             	this.addAllButtonModel.setEnabled(false);
             	this.removeButtonModel.setEnabled(canRemove);
-            	this.removeAllButtonModel.setEnabled(canRemove);
+            	this.removeAllButtonModel.setEnabled(false);
             } else{
             	this.addButtonModel.setEnabled(canAdd);
             	this.addAllButtonModel.setEnabled(canRemove);
