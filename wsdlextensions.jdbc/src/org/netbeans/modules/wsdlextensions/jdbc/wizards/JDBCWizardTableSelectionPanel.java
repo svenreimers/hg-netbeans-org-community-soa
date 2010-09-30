@@ -390,6 +390,10 @@ public class JDBCWizardTableSelectionPanel extends javax.swing.JPanel implements
         this.selectedTablesList.addListSelectionListener(this);
         this.availableTablesScrollPane.setViewportView(this.availableTablesList);
         this.selectedTablesScrollPane.setViewportView(this.selectedTablesList);
+        final int[] indices = this.availableTablesList.getSelectedIndices();
+        final Object[] selections = this.availableTablesList.getSelectedValues();
+        this.listModel.add(selections, indices);
+
     }
     /**
      * 
