@@ -367,8 +367,9 @@ public class CasaBuilder {
             try {
                 List<Element> externalSESUs = getExternalSESUs();
                 for (Element oldSESU : externalSESUs) {
-                    String unknown = oldSESU.getAttribute(CASA_UNKNOWN_ATTR_NAME);
-                    if ("true".equalsIgnoreCase(unknown)) {
+                    //defined is false for external JBI Module
+                    String defined = oldSESU.getAttribute(CASA_DEFINED_ATTR_NAME);
+                    if ("true".equalsIgnoreCase(defined)) {
                         Node newSESU = deepCloneCasaNodeWithEndpointConversion(oldSESU);
                         casaSUs.appendChild(newSESU);
                     }
