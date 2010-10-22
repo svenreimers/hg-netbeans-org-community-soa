@@ -117,7 +117,7 @@ public class ETLCollaborationWizardTransferPanel extends JPanel implements Actio
     private static transient final Logger mLogger = Logger.getLogger(ETLCollaborationWizardTransferPanel.class.getName());
     private static transient final Localizer mLoc = Localizer.get();
     HashMap<String, SQLDBModel> connURLToDBModelMap = null;
-    boolean hasnext = true;
+    boolean hasNextPanel = false;
 
     /**
      * Extends ChangeEvent to convey information on an item being transferred to or from
@@ -780,7 +780,6 @@ public class ETLCollaborationWizardTransferPanel extends JPanel implements Actio
      *        false if it displays available destination Databases
      */
     public ETLCollaborationWizardTransferPanel(String title, List dsList, Collection destColl, boolean sourceDb) {
-        this();
         nameToConnMap = new HashMap<String, DatabaseConnection>();
         if (title != null && title.trim().length() != 0) {
             setName(title);
@@ -939,6 +938,9 @@ public class ETLCollaborationWizardTransferPanel extends JPanel implements Actio
      *            ActionEvent to handle
      */
     public void actionPerformed(ActionEvent e) {
+        hasNextPanel = true;
+        fireChangeEvent();
+        
         if (e.getSource() instanceof JComboBox) {
             populateTableList((String) schemaComboBox.getSelectedItem());
         }
@@ -1244,7 +1246,7 @@ public class ETLCollaborationWizardTransferPanel extends JPanel implements Actio
      */
     @Override
     public boolean isValid() {
-        return hasnext;
+        return hasNextPanel;
     }
 
     /**
@@ -1273,7 +1275,7 @@ public class ETLCollaborationWizardTransferPanel extends JPanel implements Actio
             Boolean isbasicetl = (Boolean) wizard.getProperty(ETLCollaborationWizard.IS_BASIC_ETL_LOADER);
             Boolean isbulkloader = (Boolean) wizard.getProperty(ETLCollaborationWizard.IS_BULK_LOADER);
 
-            if ((!isbasicetl.booleanValue()) && (!isbulkloader.booleanValue())) {
+            if ((isbasicetl != null && !isbasicetl.booleanValue()) && (isbulkloader != null && !isbulkloader.booleanValue())) {
                 DatabaseConnection fftableconn = null;
                 DatabaseConnection schemagendbconn = null;
                 if (WizardDescriptor.NEXT_OPTION.equals(wizard.getValue())) {
