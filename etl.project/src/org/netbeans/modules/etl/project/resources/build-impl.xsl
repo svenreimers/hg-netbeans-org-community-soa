@@ -157,12 +157,10 @@ is divided into following sections:
                         <include name="org-netbeans-modules-etl-editor.jar"/>
                         <include name="org-netbeans-modules-etl-project.jar"/>
                         <include name="org-netbeans-modules-soa-ui.jar"/>
+                        <include name="org-netbeans-modules-soa-libs-wsdl4j.jar" />
                     </fileset>
                     <fileset dir="${{module.install.dir}}/ext">
                         <include name="org-netbeans-modules-etl-project-anttask.jar"/>
-                    </fileset>
-                    <fileset dir="${{module.install.dir}}">
-                        <include name="org-netbeans-soa-libs-wsdl4j.jar" />
                     </fileset>
                     <fileset dir="${{netbeans.home}}/core">
                         <include name="org-openide-filesystems.jar" />
