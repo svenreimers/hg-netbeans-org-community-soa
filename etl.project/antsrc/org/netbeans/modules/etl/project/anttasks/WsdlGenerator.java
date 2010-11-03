@@ -250,7 +250,7 @@ public class WsdlGenerator {
         while (keysIter.hasNext()) {
             Message msg = (Message) msgs.get(keysIter.next());
             if (msg != null) {
-				modifyMessageElementName((Message) msg);
+                modifyMessageElementName((Message) msg);
             }
         }
     }
@@ -261,9 +261,9 @@ public class WsdlGenerator {
             QName qname = new QName("http://com.sun.jbi/etl/etlengine", engineFileName + "_" + msgLocalName);
             message.setQName(qname);
         }
-		Part p = message.getPart("part");
-		QName pqname = new QName("http://com.sun.jbi/etl/etlengine", engineFileName + "_" + p.getElementName().getLocalPart());
-		p.setElementName(pqname);
+        Part p = message.getPart("part");
+        QName pqname = new QName("http://com.sun.jbi/etl/etlengine", engineFileName + "_" + p.getElementName().getLocalPart());
+        p.setElementName(pqname);
     }
 
     private void modifyMessageTypes() {
@@ -287,10 +287,10 @@ public class WsdlGenerator {
         Document doc = (Document) root.getParentNode().getParentNode().getParentNode();
         Element inputItem = getElementByName(root, "inputItem");
 
-		inputItem.setAttribute("name", engineFileName + "_" + "inputItem");
+        inputItem.setAttribute("name", engineFileName + "_" + "inputItem");
 
-		Element outputItem = getElementByName(root, "outputItem");
-		outputItem.setAttribute("name", engineFileName + "_" + "outputItem");
+        Element outputItem = getElementByName(root, "outputItem");
+        outputItem.setAttribute("name", engineFileName + "_" + "outputItem");
         Node sequence = inputItem.getElementsByTagName("xsd:sequence").item(0);
 
         Map inputParams = getEngineInputParams();
@@ -466,7 +466,6 @@ public class WsdlGenerator {
      * @throws WsdlGenerateException
      */
     private Definition getWsdlTemplate() throws WsdlGenerateException {
-
         Definition def = null;
         WSDLReader reader = factory.newWSDLReader();
 
