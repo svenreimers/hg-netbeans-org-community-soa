@@ -52,19 +52,19 @@ import org.netbeans.modules.etl.project.Localizer;
  */
 public class ETLLoaderZip extends Task {
 private static transient final Logger mLogger = Logger.getLogger(ETLLoaderZip.class.getName());
-     private static transient final Localizer mLoc = Localizer.get();
+//   private static transient final Localizer mLoc = Localizer.get();
     
     public void execute() {
         Project p = this.getProject();
         String projhome = null;
-	if (p != null) {
-	   projhome = p.getProperty("basedir");
+    if (p != null) {
+       projhome = p.getProperty("basedir");
         }
-        mLogger.infoNoloc(mLoc.t("eTL Bulk Loader Packaging Begins ..."));
+//      mLogger.infoNoloc(mLoc.t("eTL Bulk Loader Packaging Begins ..."));
         ETLBLPackager packager = new ETLBLPackager(projhome);
         packager.createExecutablePackage();
         packager.makeZip(projhome);
-        mLogger.infoNoloc(mLoc.t("eTL Bulk Loader Packaging Ends."));
+//      mLogger.infoNoloc(mLoc.t("eTL Bulk Loader Packaging Ends."));
     }
 
     /**
@@ -74,7 +74,4 @@ private static transient final Logger mLogger = Logger.getLogger(ETLLoaderZip.cl
         ETLLoaderZip loader = new ETLLoaderZip();
         loader.execute();
     }
-    
-
-
 }

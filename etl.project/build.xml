@@ -21,6 +21,33 @@
     <import file="../nbbuild/templates/projectized.xml"/>
     
     <target name="ant-extra" depends="init">
+        <mkdir dir="build/antclasses"/>
+        <javac srcdir="antsrc" destdir="build/antclasses" source="1.6" debug="true" deprecation="true">
+            <classpath>
+                <path refid="cp"/>
+                <pathelement location="${netbeans.dest.dir}/java/ant/lib/ant.jar"/>
+                <pathelement location="${cluster}/${module.jar}"/>
+                <pathelement location="${cluster}/modules/org-netbeans-modules-etl-editor.jar"/>
+                <pathelement location="${netbeans.dest.dir}/platform/modules/org-openide-io.jar"/>
+            </classpath>
+        </javac>
+        <copy todir="build/antclasses">
+            <fileset dir="antsrc">
+                <include name="**/*.wsdl.template"/>
+                <include name="**/*.xml"/>
+            </fileset>
+        </copy>
+   
+        <mkdir dir="${cluster}/ant/nblib/"/>
+
+        <jar jarfile="${cluster}/ant/nblib/org-netbeans-modules-etl-project.jar" compress="false">
+            <fileset dir="build/antclasses"/>
+        </jar>
+    </target>
+
+    <target name="netbeans-extra" depends="ant-extra,etl-cli"/>
+
+    <!--target name="ant-extra" depends="init">
         <echo message="Building ETL Project System ANT src ..."/>
         <mkdir dir="build/antclasses"/>
         <javac srcdir="antsrc" destdir="build/antclasses" source="1.5" debug="true" >
@@ -36,11 +63,12 @@
             <fileset dir="antsrc" includes="**/*.wsdl.template">
             </fileset>
         </copy>
-        <mkdir dir="${cluster}/modules/ext"/>
-        <jar jarfile="${cluster}/modules/ext/org-netbeans-modules-etl-project-anttask.jar" compress="false">
+        <mkdir dir="${cluster}/ant/nblib/"/>
+
+        <jar jarfile="${cluster}/ant/nblib/org-netbeans-modules-etl-project.jar" compress="false">
             <fileset dir="build/antclasses"/>
         </jar>
-    </target>
+    </target-->
     
     <target name="etl-cli">
         <echo message="Building ETL Command Line Invoker ..."/>
@@ -60,11 +88,10 @@
         <mkdir dir="${cluster}/modules/ext"/>
         <jar jarfile="${cluster}/modules/ext/org-netbeans-modules-etl-project-etlcli.jar" compress="false">
             <fileset dir="build/etlcliclasses"/>
-            <!--<fileset dir="build/etlcliclasses/config/"/>-->
         </jar>
     </target>
     
-    <target name="netbeans-extra" depends="ant-extra, etl-cli"/>
+    <!-- target name="netbeans-extra" depends="ant-extra, etl-cli"/>
     <taskdef name="i18n" classname="net.java.hulp.i18n.buildtools.I18NTask" classpath="${basedir}/../etl.editor/external/net.java.hulp.i18ntask.jar">
     </taskdef>
     <target name="compile" depends="projectized-common.compile">
@@ -72,5 +99,5 @@
         </i18n>
         <i18n dir="${basedir}/build/classes" file="${basedir}/build/classes/org/netbeans/modules/etl/project/msgs_log.properties" prefix="DM-DI-" strict="false" pattern="(PRJS\d\d\d)(: )(.*)">
         </i18n>
-    </target>
+    </target-->
 </project>

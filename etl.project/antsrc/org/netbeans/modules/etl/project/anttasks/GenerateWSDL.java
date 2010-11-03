@@ -162,12 +162,10 @@ public class GenerateWSDL extends Task {
                 // srcDir.getAbsoluteFile().getParentFile().getName() +
                 // f.getName().substring(0, f.getName().indexOf(".xml"));
                 String engineFileName = f.getName().substring(0, f.getName().indexOf(".xml"));
-
                 WsdlGenerator wg = new WsdlGenerator(f, engineFileName, srcDir.getCanonicalPath());
                 Definition def = wg.generateWsdl();
                 wsdlMap.put(def.getQName().getLocalPart(), def);
             }
-
             ETLMapWriter ew = new ETLMapWriter(wsdlMap, bulldDir.getCanonicalPath());
             ew.writeMap();
 
@@ -187,7 +185,6 @@ public class GenerateWSDL extends Task {
             fw.writeJBI();
             
             if(buildFailed) throw new BuildException("Unable to build one or more engine files.");
-            
         } catch (Exception e) {
             throw new BuildException(e.getMessage());
         }
@@ -223,13 +220,5 @@ public class GenerateWSDL extends Task {
             bulldDir = new File(mBuildDirectoryLocation);
         }
         return bulldDir;
-    }
-
-    public static void main(String[] args) {
-        GenerateWSDL task = new GenerateWSDL();
-        task.setSrcDirectoryLocation("test");
-        task.setBuildDirectoryLocation("test/build");
-        task.execute();
-
     }
 }

@@ -68,6 +68,14 @@
                     </run-dependency>
                 </dependency>
                 <dependency>
+                    <code-name-base>org.openide.io</code-name-base>
+                    <build-prerequisite/>
+                    <compile-dependency/>
+                    <run-dependency>
+                        <specification-version>1.9.22</specification-version>
+                    </run-dependency>
+                </dependency>
+                <dependency>
                     <code-name-base>org.netbeans.modules.dm.virtual.db</code-name-base>
                     <build-prerequisite/>
                     <compile-dependency/>
@@ -264,6 +272,30 @@
                 <package>org.netbeans.modules.masterindex.plugin.datamodel</package>
                 <package>org.netbeans.modules.masterindex.plugin.util</package>
             </public-packages>
+            <class-path-extension>
+                <runtime-relative-path>ext/velocity-1.4.jar</runtime-relative-path>
+                <binary-origin>external/velocity-1.4.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/i18n-1.0.jar</runtime-relative-path>
+                <binary-origin>external/i18n-1.0.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/commons-collections-3.0.jar</runtime-relative-path>
+                <binary-origin>external/commons-collections-3.0.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/avalon-logkit-current.jar</runtime-relative-path>
+                <binary-origin>external/avalon-logkit-current.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/etlengine.jar</runtime-relative-path>
+                <binary-origin>external/etlengine.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/sbme.jar</runtime-relative-path>
+                <binary-origin>external/sbme.jar</binary-origin>
+            </class-path-extension>
         </data>
     </configuration>
 </project>

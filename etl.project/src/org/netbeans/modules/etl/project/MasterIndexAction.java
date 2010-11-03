@@ -88,7 +88,6 @@ public class MasterIndexAction  extends CallableSystemAction {
     @Override
     public void performAction() {
         mLogger.infoNoloc(Localizer.get().t("Generating Schema ... "));
-        //System.out.println("eTLeView Design Time - Query Builder [START] ...\n");
         ChooseLocationDialog dialog = new ChooseLocationDialog(new JFrame(), true);
         dialog.setVisible(true);
         if ((dialog.getDBLocation()) != null && (dialog.getDBName()) != null && (dialog.getObjectDefinition()) != null) {
@@ -123,10 +122,8 @@ public class MasterIndexAction  extends CallableSystemAction {
     public HelpCtx getHelpCtx() {
         return HelpCtx.DEFAULT_HELP;
     }
-    
-    
-    private void parseObjectDef() {
 
+    private void parseObjectDef() {
         try {
             DocumentBuilder root = DocumentBuilderFactory.newInstance().newDocumentBuilder();
             docroot = root.parse(CONFIG_DIR + fs + OBJECTDEF).getDocumentElement();
@@ -158,7 +155,6 @@ public class MasterIndexAction  extends CallableSystemAction {
                 this.selectFields.add(qualname + "." + filed_name);
             }
         }
-    //System.out.println("Fields are :: " + this.selectFields.toString());
     }
 
     private String getQualifiedName(String tag_value) {

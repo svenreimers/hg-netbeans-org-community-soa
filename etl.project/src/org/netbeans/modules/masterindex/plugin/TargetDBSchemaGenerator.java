@@ -211,7 +211,7 @@ public class TargetDBSchemaGenerator {
         if (!tablename.equals(lookup.getRootName())) {
             try {
                 Statement stmt1 = conn.createStatement();
-		mLogger.infoNoloc(mLoc.t("PRJS020: Creating Foreign Key [ {0} ] on table [ {1} ]. Reference table is [ {2} ]", "fk_" + lookup.getRootName().toLowerCase() + "id" + tablename.toLowerCase(), normtablename, normalizeTableName(lookup.getRootName()) + "(" + lookup.getRootName() + "Id" + ")"));
+        mLogger.infoNoloc(mLoc.t("PRJS020: Creating Foreign Key [ {0} ] on table [ {1} ]. Reference table is [ {2} ]", "fk_" + lookup.getRootName().toLowerCase() + "id" + tablename.toLowerCase(), normtablename, normalizeTableName(lookup.getRootName()) + "(" + lookup.getRootName() + "Id" + ")"));
                 stmt1.execute("ALTER TABLE " + normtablename + " ADD CONSTRAINT fk_" + lookup.getRootName().toLowerCase() + "id" + tablename.toLowerCase() + " FOREIGN KEY (" + lookup.getRootName() + "Id" + ") REFERENCES " + normalizeTableName(lookup.getRootName()) + "(" + lookup.getRootName() + "Id" + ")");
                 stmt1.close();
             } catch (SQLException ex) {
@@ -432,7 +432,6 @@ public class TargetDBSchemaGenerator {
             String errMsg = "object definition xml file validation failed!.\nGenerate [ " + fkname + " ] field in all the child objects and re-run schema generator with the valid object definition xml file";
             mLogger.infoNoloc(mLoc.t(errMsg));    
             System.out.println(errMsg);
-            //JOptionPane.showMessageDialog(new JFrame(), errMsg, "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
     private boolean overallstatus = true;

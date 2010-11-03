@@ -122,7 +122,6 @@ public class MasterIndexDesignTime extends Task {
                 this.selectFields.add(qualname + "." + filed_name);
             }
         }
-    //System.out.println("Fields are :: " + this.selectFields.toString());
     }
 
     private String getQualifiedName(String tag_value) {
