@@ -87,7 +87,7 @@
     <target name="sierra">
         <mkdir dir="${cache}/netbeans"/>
         <property name="sierra.url" value="${sierra.host}/${sierra.path}/${sierra.file}"/>
-        <get src="${sierra.url}" dest="${cache}/netbeans/${sierra.name}.zip" usetimestamp="true"/>
+        <get src="${sierra.url}" dest="${cache}/netbeans/${sierra.file}" usetimestamp="true"/>
         <delete dir="${home}/nbbuild/netbeans"/>
         <unzip src="${cache}/netbeans/${sierra.name}.zip" dest="${home}/nbbuild"/>
     </target>

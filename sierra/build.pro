@@ -51,9 +51,8 @@
     <!-- GlassFish ESB latest continuous -->
     <property name="sierra.host" value="http://beryl.russia.sun.com:8080"/>
     <property name="sierra.path" value="hudson/job/soa-main/ws/cache/latest"/>
-    <property name="sierra.file" value="soa-main.zip"/>
-    <property name="sierra.name" value="soa-main"/>
-    <property name="sierra.user" value=".netbeans/sierra"/>
+    <property name="sierra.file" value="R63.zip"/>
+    <property name="sierra.user" value=".netbeans/R63"/>
 
     <!-- NetBeans 6.9.1 latest daily -->
     <!-- property name="netbeans.host" value="http://smetiste.czech.sun.com"/ -->
@@ -118,8 +117,9 @@
     "/>
     <property name="home" value="../.."/>
     <property name="cache" value="${home}/../cache"/>
-    <property name="build.name"  value="soa-main"/>
+    <property name="build.name"  value="R63"/>
     <property name="repository" value="http://hg.netbeans.org/soa-main"/>
+    <property name="branch" value="R63"/>
     <property name="jbi" location="${cache}/test/${test.cvs.path}"/>
     <property name="bpel.samples" value="${home}/bpel.samples/resources"/>
     <property name="xslt.samples" value="${home}/xslt.samples/resources"/>
