@@ -54,6 +54,12 @@
     <property name="sierra.file" value="soa-main.zip"/>
     <property name="sierra.user" value=".netbeans/sierra"/>
 
+    <!-- NetBeans latest nightly -->
+    <!-- property name="netbeans.host" value="http://bits.netbeans.org"/ -->
+    <!-- property name="netbeans.path" value="download/trunk/nightly/latest/zip"/ -->
+    <!-- property name="netbeans.zip"  value="netbeans.zip"/ -->
+    <!-- property name="netbeans.user" value=".netbeans/dev"/ -->
+
     <!-- NetBeans 6.9.1 latest daily -->
     <!-- property name="netbeans.host" value="http://smetiste.czech.sun.com"/ -->
     <!-- property name="netbeans.path" value="builds/netbeans/6.9.1/daily/latest/zip"/ -->
