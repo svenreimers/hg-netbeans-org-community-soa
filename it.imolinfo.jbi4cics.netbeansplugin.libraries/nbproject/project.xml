@@ -67,51 +67,51 @@
             </public-packages>
             <class-path-extension>
                 <runtime-relative-path>ext/commons-collections-3.2.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/commons-collections-3.2.jar</binary-origin>
+                <binary-origin>external/commons-collections-3.2.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
                 <runtime-relative-path>ext/xfire-aegis-1.2.2.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/xfire-aegis-1.2.2.jar</binary-origin>
+                <binary-origin>external/xfire-aegis-1.2.2.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
                 <runtime-relative-path>ext/jdom-1.0.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/jdom-1.0.jar</binary-origin>
+                <binary-origin>external/jdom-1.0.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
                 <runtime-relative-path>ext/jbi4cics-0.5-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/jbi4cics-0.5-SNAPSHOT.jar</binary-origin>
+                <binary-origin>external/jbi4cics-0.5-SNAPSHOT.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
                 <runtime-relative-path>ext/jcl104-over-slf4j-1.3.1.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/jcl104-over-slf4j-1.3.1.jar</binary-origin>
+                <binary-origin>external/jcl104-over-slf4j-1.3.1.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
                 <runtime-relative-path>ext/slf4j-api-1.3.1.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/slf4j-api-1.3.1.jar</binary-origin>
+                <binary-origin>external/slf4j-api-1.3.1.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
                 <runtime-relative-path>ext/wsdl4j-1.5.2.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/wsdl4j-1.5.2.jar</binary-origin>
+                <binary-origin>external/wsdl4j-1.5.2.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
                 <runtime-relative-path>ext/antlr-2.7.7.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/antlr-2.7.7.jar</binary-origin>
+                <binary-origin>external/antlr-2.7.7.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
                 <runtime-relative-path>ext/wstx-asl-3.0.3.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/wstx-asl-3.0.3.jar</binary-origin>
+                <binary-origin>external/wstx-asl-3.0.3.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
                 <runtime-relative-path>ext/asm-all-2.2.3.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/asm-all-2.2.3.jar</binary-origin>
+                <binary-origin>external/asm-all-2.2.3.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
                 <runtime-relative-path>ext/xfire-core-1.2.2.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/xfire-core-1.2.2.jar</binary-origin>
+                <binary-origin>external/xfire-core-1.2.2.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
                 <runtime-relative-path>ext/activation-1.1.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/activation-1.1.jar</binary-origin>
+                <binary-origin>external/activation-1.1.jar</binary-origin>
             </class-path-extension>
         </data>
     </configuration>
