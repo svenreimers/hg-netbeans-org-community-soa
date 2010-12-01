@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE MIME-resolver PUBLIC "-//NetBeans//DTD MIME Resolver 1.0//EN" "http://www.netbeans.org/dtds/mime-resolver-1_0.dtd">
+<MIME-resolver>
+    <file>
+        <ext name="cpy"/>
+        <ext name="CPY"/>
+        <ext name="cobol"/>
+        <ext name="COBOL"/>
+        <ext name="cob"/>
+        <ext name="COB"/>
+        <ext name="cbl"/>
+        <ext name="CBL"/>
+        <ext name="ccc"/>
+        <ext name="CCC"/>
+        <ext name="ccp"/>
+        <ext name="CCP"/>
+        <resolver mime="text/x-cpy"/>
+    </file>
+</MIME-resolver>
