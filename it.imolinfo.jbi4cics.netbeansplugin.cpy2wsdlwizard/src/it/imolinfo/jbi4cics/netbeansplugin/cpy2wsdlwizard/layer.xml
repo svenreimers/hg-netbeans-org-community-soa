@@ -79,7 +79,7 @@
         </folder>
     </folder>
     <folder name="Templates">
-        <folder name="SOA">
+        <folder name="ESB">
             <file name="CPYTemplate.cpy" url="CPYTemplate.cpy">
                 <attr name="SystemFileSystem.localizingBundle" stringvalue="it.imolinfo.jbi4cics.netbeansplugin.cpy2wsdlwizard.Bundle"/>
                 <attr name="template" boolvalue="true"/>
