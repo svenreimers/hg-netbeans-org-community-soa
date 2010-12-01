@@ -74,6 +74,10 @@
             <dependency><code-name-base>org.netbeans.modules.etl.editor</code-name-base><run-dependency><specification-version>6.9</specification-version></run-dependency></dependency>
             <dependency><code-name-base>org.netbeans.modules.etl.project</code-name-base><run-dependency><specification-version>6.9</specification-version></run-dependency></dependency>
 
+            <!-- it -->
+            <dependency><code-name-base>it.imolinfo.jbi4cics.netbeansplugin.cpy2wsdlwizard</code-name-base><run-dependency><specification-version>6.9</specification-version></run-dependency></dependency>
+            <dependency><code-name-base>it.imolinfo.jbi4cics.netbeansplugin.libraries</code-name-base><run-dependency><specification-version>6.9</specification-version></run-dependency></dependency>
+                                                
             </module-dependencies>
             <public-packages/>
         </data>
