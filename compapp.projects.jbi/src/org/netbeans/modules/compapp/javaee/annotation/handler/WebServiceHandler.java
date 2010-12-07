@@ -138,7 +138,21 @@ public class WebServiceHandler implements AnnotationHandler{
                         interfaces.remove(cnWs);
                         portType = getPortType(cl, interfaces);
                     }
-                    
+
+                    // try to get portTypeName from endpoint interface in WS Annotation
+                    if (portType == null){
+                        String endpoint_interface = ws.getStringValue(PROP_ENDPOINT_INTERFACE);
+                        if (endpoint_interface != null && (!("".equals(portTypeName)))) {
+                            int lastdot = endpoint_interface.lastIndexOf('.');
+                            if (lastdot > 0) {
+                                portTypeName = endpoint_interface.substring(lastdot + 1);
+                            } else {
+                                portTypeName = endpoint_interface;
+                            }
+                            portType = new QName(tns, portTypeName) ;
+                        }
+                    }
+                                    
                     if (portType == null){
                         usedDefaultName = true;
                         portType = new QName(tns, className);
