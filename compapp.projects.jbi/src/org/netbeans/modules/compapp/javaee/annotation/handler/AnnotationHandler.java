@@ -73,6 +73,7 @@ public interface AnnotationHandler {
     public static String PROP_NAME = "name" ;  // No I18N   
     public static String PROP_SVC_NAME = "serviceName" ; // No I18N
     public static String PROP_PORT_NAME = "portName" ; // No I18N
+    public static String PROP_ENDPOINT_INTERFACE = "endpointInterface" ; // No I18N
     
     public String getAnnotationClassConstant();
     public List<Endpoint> getEndPoints();
