@@ -175,6 +175,12 @@ public class ConfigApiEditor extends java.beans.PropertyEditorSupport {
                                         return val;
                                     }
                                     String decryptVal = ScEncrypt.decrypt(decryptedKey, val);
+                                    if ("Password".equalsIgnoreCase(getName())) {
+                                    	String retVal =  "";
+                                    	for (int i=0;i< decryptVal.length(); i++)
+                                    		retVal +=  "*";
+                                    	return retVal;
+                                    }
                                     return decryptVal;
                                 } catch (Exception e) {
                                     return null;
