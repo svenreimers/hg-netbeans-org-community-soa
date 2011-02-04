@@ -50,10 +50,7 @@ made subject to such option by the copyright holder.
   Edit its content manually may cause unrecoverable errors. 
 -->
 
-<casa xmlns="http://java.sun.com/xml/ns/casa" 
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-      version="1.0" 
-      xsi:schemaLocation="http://java.sun.com/xml/ns/casa ./casa.xsd">
+<casa xmlns="http://java.sun.com/xml/ns/casa" version="1.0">
     <endpoints/>
     <service-units/>
     <connections/>

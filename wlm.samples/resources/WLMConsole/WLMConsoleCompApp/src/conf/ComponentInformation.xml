@@ -7,12 +7,6 @@
         <type>Engine</type>
     </component-info>
     <component-info>
-        <description>SNMP Binding</description>
-        <name>sun-snmp-binding</name>
-        <state>Installed</state>
-        <type>Binding</type>
-    </component-info>
-    <component-info>
         <description>Database binding</description>
         <name>sun-database-binding</name>
         <state>Installed</state>
@@ -49,12 +43,6 @@
         <type>Binding</type>
     </component-info>
     <component-info>
-        <description>IMS Binding</description>
-        <name>sun-ims-binding</name>
-        <state>Installed</state>
-        <type>Binding</type>
-    </component-info>
-    <component-info>
         <description>JMS Binding</description>
         <name>sun-jms-binding</name>
         <state>Installed</state>
@@ -77,24 +65,6 @@
         <name>sun-scheduler-binding</name>
         <state>Installed</state>
         <type>Binding</type>
-    </component-info>
-    <component-info>
-        <description>SMTP Binding</description>
-        <name>sun-smtp-binding</name>
-        <state>Installed</state>
-        <type>Binding</type>
-    </component-info>
-    <component-info>
-        <description>MQ Binding</description>
-        <name>sun-webspheremq-binding</name>
-        <state>Installed</state>
-        <type>Binding</type>
-    </component-info>
-    <component-info>
-        <description>This is a edm service engine.</description>
-        <name>sun-edm-engine</name>
-        <state>Installed</state>
-        <type>Engine</type>
     </component-info>
     <component-info>
         <description>This is a etl service engine.</description>

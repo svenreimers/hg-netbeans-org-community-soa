@@ -5,10 +5,11 @@
         <property name="esb.netbeans.platform" value="${netbeans.home}"/>
     </target>
     <target name="init-esb-cli" unless="netbeans.home">
-        <property file="${basedir}/nbproject/private/private.properties"/>
-        <property name="esb.netbeans.platform" value="${esb.netbeans.home}/platform11"/>
-        <property name="netbeans.user" value="${esb.netbeans.user}"/>
         <property name="from.commandline" value="true"/>
+        <property name="netbeans.dir" value="${esb.netbeans.home}"/>
+        <property name="netbeans.user" value="${esb.netbeans.user}"/>
+        <property file="${basedir}/nbproject/private/private.properties"/>
+        <property name="esb.netbeans.platform" value="${esb.netbeans.home}/platform"/>
     </target>
     <target name="check-catd-context">
         <condition property="no.catd.context">
