@@ -448,6 +448,14 @@
                 <binary-origin>external/avalon-logkit-current.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
+                <runtime-relative-path>ext/jbi.jar</runtime-relative-path>
+                <binary-origin>external/jbi.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/componentsl.jar</runtime-relative-path>
+                <binary-origin>external/componentsl.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
                 <runtime-relative-path>ext/etlengine.jar</runtime-relative-path>
                 <binary-origin>external/etlengine.jar</binary-origin>
             </class-path-extension>

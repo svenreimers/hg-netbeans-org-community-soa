@@ -146,6 +146,8 @@ is divided into following sections:
                         <include name="commons-collections-3.0.jar"/>
                         <include name="avalon-logkit-current.jar"/>
                         <include name="etlengine.jar"/>
+                        <include name="componentsl.jar"/>
+                        <include name="jbi.jar"/>
                         <include name="sbme.jar"/>
                     </fileset>
                     <fileset dir="${{esb.netbeans.home}}/soa/ant/nblib">
