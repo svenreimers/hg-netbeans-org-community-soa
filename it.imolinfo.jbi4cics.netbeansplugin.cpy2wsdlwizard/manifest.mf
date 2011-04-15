@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+OpenIDE-Module-Specification-Version: 6.9
+OpenIDE-Module: it.imolinfo.jbi4cics.netbeansplugin.cpy2wsdlwizard
+OpenIDE-Module-Layer: it/imolinfo/jbi4cics/netbeansplugin/cpy2wsdlwizard/layer.xml
+OpenIDE-Module-Localizing-Bundle: it/imolinfo/jbi4cics/netbeansplugin/cpy2wsdlwizard/Bundle.properties
