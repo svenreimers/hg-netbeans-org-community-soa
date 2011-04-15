@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
+
+    Copyright 1997-2010 Oracle and/or its affiliates. All rights reserved.
+
+    Oracle and Java are registered trademarks of Oracle and/or its affiliates.
+    Other names may be trademarks of their respective owners.
+
+    The contents of this file are subject to the terms of either the GNU
+    General Public License Version 2 only ("GPL") or the Common
+    Development and Distribution License("CDDL") (collectively, the
+    "License"). You may not use this file except in compliance with the
+    License. You can obtain a copy of the License at
+    http://www.netbeans.org/cddl-gplv2.html
+    or nbbuild/licenses/CDDL-GPL-2-CP. See the License for the
+    specific language governing permissions and limitations under the
+    License. When distributing the software, include this License Header
+    Notice in each file and include the License file at
+    nbbuild/licenses/CDDL-GPL-2-CP.  Oracle designates this
+    particular file as subject to the "Classpath" exception as provided
+    by Oracle in the GPL Version 2 section of the License file that
+    accompanied this code. If applicable, add the following below the
+    License Header, with the fields enclosed by brackets [] replaced by
+    your own identifying information:
+    "Portions Copyrighted [year] [name of copyright owner]"
+
+    Contributor(s):
+
+    The Original Software is NetBeans. The Initial Developer of the Original
+    Software is Sun Microsystems, Inc. Portions Copyright 1997-2006 Sun
+    Microsystems, Inc. All Rights Reserved.
+
+    If you wish your version of this file to be governed by only the CDDL
+    or only the GPL Version 2, indicate your decision by adding
+    "[Contributor] elects to include this software in this distribution
+    under the [CDDL or GPL Version 2] license." If you do not indicate a
+    single choice of license, a recipient has the option to distribute
+    your version of this file under either the CDDL, the GPL Version 2 or
+    to extend the choice of license to its licensees as provided above.
+    However, if you add GPL Version 2 code and therefore, elected the GPL
+    Version 2 license, then the option applies only if the new code is
+    made subject to such option by the copyright holder.
+-->
+<project name="main" basedir="." default="main">
+    <import file="build.tst"/>
+
+    <target name="main" depends="init,netbeans,clean,build,javadoc,zip"/>
+    <target name="test" depends="get-daily-test,clean,init,sierra"/>
+
+    <target name="init">
+        <property name="env.BUILD_NUMBER" value=""/>
+        
+        <tstamp>
+            <format property="time.stamp" pattern="yyyyMMdd_HHmm"/>
+        </tstamp>
+
+        <ant dir="${home}/nbbuild" target="download-all-extbins"/>
+    </target>
+
+    <!-- netbeans -->
+    <target name="netbeans">
+        <java jar="build.jar" fork="true" classpath="." outputproperty="netbeans.file">
+            <sysproperty key="netbeans-prox" value="${netbeans.prox}"/>
+            <sysproperty key="netbeans-type" value="${netbeans.type}"/>
+            <sysproperty key="netbeans-link" value="${netbeans.host}/${netbeans.path}"/>
+        </java>
+
+        <mkdir dir="${cache}/netbeans"/>
+        <property name="netbeans.url" value="${netbeans.host}/${netbeans.path}/${netbeans.file}"/>
+        <get src="${netbeans.url}" dest="${cache}/netbeans/${netbeans.zip}" usetimestamp="true"/>
+
+        <delete dir="${home}/nbbuild/netbeans"/>
+        <unzip src="${cache}/netbeans/${netbeans.zip}" dest="${home}/nbbuild"/>
+
+        <replace file="${home}/nbbuild/netbeans/etc/netbeans.conf" token="${netbeans.user}" value="${sierra.user}"/>
+
+        <echo file="${build.number}" message="netbeans build: ${netbeans.file}${line.separator}" append="true"/>
+        <echo file="${build.number}" message="sierra build: ${time.stamp}${line.separator}" append="true"/>
+        <echo file="${build.number}" message="sierra hudson: ${env.BUILD_NUMBER}${line.separator}" append="true"/>
+        <echo file="${build.number}" message="repository: ${repository}" append="true"/>
+        
+        <chmod file="${home}/nbbuild/netbeans/bin/netbeans" perm="ugo+rx"/>
+    </target>
+
+    <!-- sierra -->
+    <target name="sierra">
+        <mkdir dir="${cache}/netbeans"/>
+        <property name="sierra.url" value="${sierra.host}/${sierra.path}/${sierra.file}"/>
+        <get src="${sierra.url}" dest="${cache}/netbeans/${sierra.file}" usetimestamp="true"/>
+        <delete dir="${home}/nbbuild/netbeans"/>
+        <unzip src="${cache}/netbeans/${sierra.file}" dest="${home}/nbbuild"/>
+    </target>
+
+    <!-- zip -->
+    <target name="zip">
+        <delete dir="${cache}/latest"/>
+        <mkdir dir="${cache}/latest"/>
+
+        <zip destfile="${cache}/latest/${build.name}_${env.BUILD_NUMBER}_${time.stamp}.zip">
+            <zipfileset dir="${home}/nbbuild">
+                <include name="netbeans/**"/>
+                <exclude name="netbeans/ergonomics/**"/>
+                <exclude name="netbeans/groovy/**"/>
+                <exclude name="netbeans/identity/**"/>
+                <exclude name="netbeans/javacard/**"/>
+                <exclude name="netbeans/mobility/**"/>
+                <exclude name="netbeans/profiler/**"/>
+                <exclude name="netbeans/moduleCluster.properties"/>
+                <exclude name="netbeans/**/.lastModified"/>
+            </zipfileset>
+        </zip>
+
+        <copy file="${cache}/latest/${build.name}_${env.BUILD_NUMBER}_${time.stamp}.zip" tofile="${cache}/latest/${build.name}.zip"/>
+    </target>
+
+    <!-- daily -->
+    <target name="get-daily-test" depends="check-daily,get-test"/>
+    
+    <target name="check-daily">
+        <mkdir dir="${cache}/test/lock"/>
+
+        <tstamp>
+            <format property="daily" pattern="yyyyMMdd"/>
+        </tstamp>
+
+        <available property="lock.available" file="${cache}/test/lock/${daily}"/>
+    </target>
+
+    <target name="get-test" unless="lock.available">
+        <delete>
+            <fileset dir="${cache}/test/lock" includes="*"/>
+        </delete>
+
+        <echo file="${cache}/test/lock/${daily}" message="${daily}"/>
+        <cvs package="${test.cvs.modules}" cvsRoot="${test.cvs.host}" dest="${cache}/test" command="-q co -P ${test.cvs.branch}" failonerror="false"/>
+    </target>
+
+    <!-- javadoc -->
+    <target name="javadoc">
+        <!--ant target="javadoc" dir="${home}/print"/-->
+    </target>
+
+    <!-- module -->
+    <!--target name="build-module">
+        <echo message="============= ${module} ============="/>
+        <ant dir="${home}/${module}" target="netbeans"/>
+    </target-->
+
+    <!-- clean -->
+    <target name="clean">
+        <delete>
+            <fileset dir="${home}" includes="*/build/**/*"/>
+        </delete>
+    </target>
+
+    <!-- build -->
+    <target name="build" depends="build-01, build-02, build-03"/>
+    
+    <target name="build-01">
+        <ant dir="${home}/xml.kit" target="netbeans"/>
+        <ant dir="${home}/soa.kit" target="netbeans"/>
+    </target>
+
+    <target name="build-02">
+        <ant dir="${home}/bpel.kit" target="netbeans"/>
+        <ant dir="${home}/xslt.kit" target="netbeans"/>
+        <ant dir="${home}/wlm.kit" target="netbeans"/>
+    </target>
+
+    <target name="build-03">
+        <ant dir="${home}/esb.kit" target="netbeans"/>
+        <ant dir="${home}/encoder.kit" target="netbeans"/>
+        <ant dir="${home}/wsdlextensions.kit" target="netbeans"/>
+    </target>
+</project>
