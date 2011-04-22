@@ -1,3 +1,7 @@
+(^|/)build$
+(^|/)nbproject/private$
+^[^/]+/external/[^/]+\.(zip|jar|gz|bz2|gem|dll|xpi)$
+\.orig$
 ^bpel.samples/src/org/netbeans/modules/bpel/samples/resources/zip$
 ^iep.samples/src/org/netbeans/modules/iep/samples/resources/zip$
 ^wlm.samples/src/org/netbeans/modules/wlm/samples/resources/zip$
