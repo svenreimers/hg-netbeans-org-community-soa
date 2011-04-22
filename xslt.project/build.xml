@@ -43,7 +43,7 @@
   made subject to such option by the copyright holder.
 -->
 <project name="xslt.project" default="netbeans" basedir=".">
-    <import file="../nbbuild/templates/projectized.xml"/>
+    <import file="nbproject/build-impl.xml"/>
 
     <target name="ant-extra" depends="init">
         <mkdir dir="build/antclasses"/>

@@ -18,5 +18,5 @@
  Microsystems, Inc. All Rights Reserved.
 -->
 <project name="compapp.projects.wizard" default="netbeans" basedir=".">
-    <import file="../nbbuild/templates/projectized.xml"/>
+    <import file="nbproject/build-impl.xml"/>
 </project>

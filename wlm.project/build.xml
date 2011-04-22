@@ -2,7 +2,7 @@
 
 <project name="wlm.project" default="netbeans" basedir=".">
     <description>Builds, tests, and runs the project org.netbeans.modules.wlm.project.</description>
-    <import file="../nbbuild/templates/projectized.xml"/>
+    <import file="nbproject/build-impl.xml"/>
     <target name="chiba-extra" depends="release"> 
         <mkdir dir="build/chibaclasses"/>
         <javac srcdir="chiba_src" destdir="build/chibaclasses" source="1.5" debug="true" deprecation="true">            

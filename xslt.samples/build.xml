@@ -43,7 +43,7 @@
   made subject to such option by the copyright holder.
 -->
 <project name="xslt.samples" default="netbeans" basedir=".">
-    <import file="../nbbuild/templates/projectized.xml"/>
+    <import file="nbproject/build-impl.xml"/>
     <property name="zip.folder" value="src/org/netbeans/modules/xslt/samples/resources/zip"/>
 
     <target name="jar" depends="init-zip,zip-welcome,projectized-common.jar"/>

@@ -19,7 +19,7 @@
 -->
 
 <project name="iep.editor" default="netbeans" basedir=".">
-    <import file="../nbbuild/templates/projectized.xml"/>
+    <import file="nbproject/build-impl.xml"/>
      <!-- #temporary have jar/compile here till patch4 is ready -->
      
         <target name="compile" depends="init,up-to-date" unless="is.jar.uptodate">

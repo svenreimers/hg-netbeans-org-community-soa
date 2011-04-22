@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project basedir="." default="netbeans" name="it.imolinfo.jbi4cics.netbeansplugin.cpy2wsdlwizard">
-    <import file="../nbbuild/templates/projectized.xml"/>
+    <import file="nbproject/build-impl.xml"/>
 </project>

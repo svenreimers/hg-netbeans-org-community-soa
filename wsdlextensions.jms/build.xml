@@ -19,5 +19,5 @@
 -->
 
 <project name="wsdlextensions.jms" default="netbeans" basedir=".">
-    <import file="../nbbuild/templates/projectized.xml"/>
+    <import file="nbproject/build-impl.xml"/>
 </project>

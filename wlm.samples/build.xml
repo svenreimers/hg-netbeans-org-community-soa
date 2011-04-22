@@ -2,7 +2,7 @@
 
 <project basedir="." default="netbeans" name="wlm.samples">
     <description>Builds, tests, and runs the project org.netbeans.modules.wlm.samples</description>
-    <import file="../nbbuild/templates/projectized.xml"/>
+    <import file="nbproject/build-impl.xml"/>
 
 
     <property name="zip.folder" value="src/org/netbeans/modules/wlm/samples/resources/zip"/>
