@@ -46,6 +46,7 @@
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/nb-module-project/3">
             <code-name-base>org.netbeans.modules.wsdlextensions.kit</code-name-base>
+            <suite-component/>
             <module-dependencies>
 
             <!-- soa -->
