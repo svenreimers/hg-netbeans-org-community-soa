@@ -44,5 +44,5 @@
 -->
 
 <project name="compapp.configextension.msgtracking" default="netbeans" basedir=".">
-    <import file="../nbbuild/templates/projectized.xml"/>
+    <import file="nbproject/build-impl.xml"/>
 </project>

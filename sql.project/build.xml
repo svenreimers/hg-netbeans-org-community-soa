@@ -19,7 +19,7 @@
 -->
 
 <project name="sql.project" default="netbeans" basedir=".">
-    <import file="../nbbuild/templates/projectized.xml"/>
+    <import file="nbproject/build-impl.xml"/>
 
     <target name="ant-extra">
         <mkdir dir="build/antclasses"/>

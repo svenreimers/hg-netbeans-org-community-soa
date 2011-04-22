@@ -43,7 +43,7 @@
   made subject to such option by the copyright holder.
 -->
 <project name="etl.editor" default="netbeans" basedir=".">
-    <import file="../nbbuild/templates/projectized.xml"/>
+    <import file="nbproject/build-impl.xml"/>
 
     <taskdef name="i18n" classname="net.java.hulp.i18n.buildtools.I18NTask" classpath="${basedir}/external/net.java.hulp.i18ntask.jar"></taskdef>
     <target name="compile" depends="projectized-common.compile">

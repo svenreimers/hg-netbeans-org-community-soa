@@ -43,7 +43,7 @@
   made subject to such option by the copyright holder.
 -->
 <project name="bpel.samples" default="netbeans" basedir=".">
-    <import file="../nbbuild/templates/projectized.xml"/>
+    <import file="nbproject/build-impl.xml"/>
     <property name="zip.folder" value="src/org/netbeans/modules/bpel/samples/resources/zip"/>
 
     <target name="jar" depends="init-zip,zip-trs,zip-synchronous,zip-asynchronous,zip-blueprint,projectized-common.jar"/>
