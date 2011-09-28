@@ -25,24 +25,19 @@ import java.awt.Shape;
 import java.awt.geom.Area;
 import org.netbeans.modules.bpel.design.GUtils;
 
-
 public class GlowDescriptor implements Descriptor {
 
     private Color color;
-
     private double width;
-
 
     public GlowDescriptor(Color color) {
         this(color, 8);
     }
 
-
     public GlowDescriptor(Color color, double width) {
         this.color = color;
         this.width = width;
     }
-
 
     public void paint(Graphics2D g2, Shape shape) {
         Area area = (shape instanceof Area) ? (Area) shape : new Area(shape);
