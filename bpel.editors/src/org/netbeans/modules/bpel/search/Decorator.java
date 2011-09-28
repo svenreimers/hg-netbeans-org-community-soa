@@ -28,6 +28,7 @@ import org.netbeans.modules.bpel.design.DesignView;
 import org.netbeans.modules.bpel.design.decoration.Decoration;
 import org.netbeans.modules.bpel.design.decoration.DecorationProvider;
 import org.netbeans.modules.bpel.design.decoration.DecorationProviderFactory;
+import org.netbeans.modules.bpel.design.decoration.GlowDescriptor;
 import org.netbeans.modules.bpel.design.decoration.LabelStyleDescriptor;
 import org.netbeans.modules.bpel.design.model.elements.VisualElement;
 
@@ -37,8 +38,7 @@ import org.netbeans.modules.bpel.design.model.elements.VisualElement;
  */
 public final class Decorator extends DecorationProvider implements DecorationProviderFactory {
 
-    public Decorator() {
-    }
+    public Decorator() {}
 
     public DecorationProvider createInstance(DesignView view) {
         return new Decorator(view);
@@ -51,15 +51,11 @@ public final class Decorator extends DecorationProvider implements DecorationPro
 
     @Override
     public Decoration getDecoration(BpelEntity entity) {
-//      if ( !myIsClearSelection && mySelectedEntity == entity) {
-//          return GREEN_DECORATION; // glow
-//      }
-//      if ( !myIsClearHighlighting && myHighlightedEntities.contains(entity)) {
-//          return YELLOW_DECORATION; // highlight
-//      }
-        if (!myIsClearSelection && mySelectedEntity == entity) {
-            return new Decoration(new LabelStyleDescriptor(new Color(0x339900), 
-                    new Color(0x339900), element, Font.BOLD));
+        if ( !myIsClearSelection && mySelectedEntity == entity) {
+            return new Decoration(new LabelStyleDescriptor(new Color(0x339900), element, Font.BOLD)); // glow
+        }
+        if ( !myIsClearHighlighting && myHighlightedEntities.contains(entity)) {
+            return new Decoration(new GlowDescriptor(new Color(255, 255, 0), 20.0)); // highlight
         }
         return null;
     }
@@ -110,14 +106,11 @@ public final class Decorator extends DecorationProvider implements DecorationPro
             }
         }
         return null;
-  }
+    }
 
-
+    private VisualElement element;
     private boolean myIsClearSelection;
     private boolean myIsClearHighlighting;
-    private VisualElement element;
     private BpelEntity mySelectedEntity;
     private List<BpelEntity> myHighlightedEntities;
-//  private static final Decoration GREEN_DECORATION = new Decoration(new GlowDescriptor(new Color(56, 216, 120), 20));
-//  private static final Decoration YELLOW_DECORATION = new Decoration(new GlowDescriptor(new Color(255, 255, 0), 20));
 }
